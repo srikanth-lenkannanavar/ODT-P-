@@ -1,0 +1,54 @@
+<h2 class="page-sub-title">Store information</h2>
+
+<div class="row section relative">
+    <div class="button-fleft">
+        <a class="btn btn-default" ng-href="{{homeUrl}}/edit-profile/store-info">Edit</a>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-2 col-lg-2">
+        <div class="photo">
+            <span ng-if="imageUrl!=null || imageUrl!=''"><img alt="" title="{{retailerName}}" src="{{imageUrl}}"></span>
+            <span ng-if="imageUrl==null || imageUrl==''" class="text-center"><i class="fa fa-file-image-o no-image"></i></span>
+        </div>        
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 company-info">
+        <h5>{{retailerName}}</h5>
+        <p class="para">{{storeDesc}}</p>
+        <h5>Would you also like to be an onthedot.co.uk partner retailer and let customers organise their own deliveries from you?</h5>
+        <p class="para">
+            <span ng-if="partnerRetailer == 0">No</span>
+            <span ng-if="partnerRetailer == 1">Yes</span>            
+        </p>
+        <!--<h5>Would you like to offer this service on Bank holidays?</h5>
+        <p class="para">
+            <span ng-if="isWorkingOnHolidays == 0">No</span>
+            <span ng-if="isWorkingOnHolidays == 1">Yes</span>
+        </p>-->
+        <h5>I have</h5>
+        <p class="para">
+            <span ng-if="storeType == 0">1 store</span>
+            <span ng-if="storeType == 1">2 - 9 stores</span>
+            <span ng-if="storeType == 2">10 - 29 stores</span>
+            <span ng-if="storeType == 3">30+ stores</span>
+        </p>
+        
+        <h5>Do you ship from a central Distribution Centre?</h5>
+        <p class="para">
+            <span ng-if="shippingDetail == 0">No</span>
+            <span ng-if="shippingDetail == 1">Yes</span>          
+        </p>
+        <h5>Can your customers buy online?</h5>
+        <p class="para last">
+            <span ng-if="havePortal == 0">I don't have a website</span>
+            <span ng-if="havePortal == 1">No</span>        
+            <span ng-if="havePortal == 2">Yes</span>           
+        </p>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2 address-info">
+        <h5>Address</h5>
+        <p class="para">{{addressFirstLine}},<br> {{addressSecondLine}}<span ng-if="addressSecondLine !='' && addressSecondLine !=null">,<br> </span>{{city}} - {{postcode}} </p>
+        <p class="para"><span ng-if="businessPhone">+44</span> {{businessPhone}}</p>
+        <p class="para"><a rel="nofollow" target="_blank" ng-href="{{websiteUrl}}">{{website}}</a></p>
+    </div> 
+    <div class="col-lg-2">
+    </div>    
+</div>

@@ -1,0 +1,50 @@
+<div class="container inner-page min-height">
+    <div class="global-msg" ng-if="errFlag && errStatusCode !== 404 " scroll-to-global-error>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Oops! It appears something went wrong. Status code: {{errStatusCode}}
+            <span ng-if="errStatusMsg.length > 0">{{errStatusMsg}}</span>
+        </div>
+    </div>
+    <div class="global-msg" ng-if="paginationError">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Oops! It appears you have entered a wrong value</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1 class="page-main-title">My deliveries</h1>
+        </div>
+    </div>
+
+    <!--<div >-->
+        <!--<div class="alert alert-info" ng-if="myDeliveriesSuccess == 'ok' && myDeliveries.length == 0">You have not made any purchases yet</div>-->
+    <!--</div>-->
+
+    <div class="row" ng-if="errFlag && errStatusCode === 404 ">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                Sorry! Currently you do not have any deliveries in progress.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div ng-include src="'views/template/my-delivery/desktop-view-tpl.html'"></div>
+            <div ng-include src="'views/template/my-delivery/mobile-view-tpl.html'"></div>
+        </div>
+    </div>
+    <!--<button ng-click="cacelBooking();">Pop</button>-->
+</div>

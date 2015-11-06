@@ -1,0 +1,50 @@
+<div class="container no-padding-md" ng-if="isHomeHdr || isRetailerHdr">
+    <header class="header-home" ng-class="{'retailer-wrap': isRetailerHdr}">
+        <div class="header-nav" ng-if="!userLogged">
+            <nav class="navbar navbar-fixed-top navbar-inverse home-menu">
+                <otd-logo-hamburger></otd-logo-hamburger>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <otd-static-menu></otd-static-menu>
+                </div>
+            </nav>
+        </div>
+        <div ng-if="userLogged" class="header-nav">
+        <!--<div class="header-nav" id="bs-example-navbar-collapse-1">-->
+            <nav class="navbar navbar-fixed-top navbar-inverse home-menu">
+                <otd-logo-hamburger></otd-logo-hamburger>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <otd-transactional-menu></otd-transactional-menu>
+                </div><!-- /.nav-collapse -->
+            </nav>
+
+        </div>
+        <!-- <div class="clearfix"></div> -->
+
+
+    </header>
+</div>
+
+<nav class="navbar navbar-default navbar-inverse navbar-static-top " role="navigation" ng-if="!standAloneMapHeader && !isHomeHdr && !isRetailerHdr ">
+    <div class="container">
+        <otd-logo-hamburger></otd-logo-hamburger>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div ng-if="userLogged" class="collapse navbar-collapse">
+            <otd-transactional-menu></otd-transactional-menu>
+        </div>
+        <a id="rploginlink" href="/MyDeliveryPortal/samllogin?return=home" style="visibility:hidden"></a>
+        <div ng-if="userLoggedOut" class="collapse navbar-collapse" id="navbar" >
+            <otd-static-menu></otd-static-menu>
+         </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+<!--<div ng-if="standAloneMapHeader && !isHomeHdr">-->
+<div ng-if="(standAloneMapHeader && !isHomeHdr) || (standAloneMapHeader && !isRetailerHdr)">
+    <otd-standalone-map-header></otd-standalone-map-header>
+</div>
+
+
+<div class="container hdr-banr-container" ng-if="!standAloneMapHeader && !isHomeHdr && !isRetailerHdr">
+    <img src="images/header_image.png" ng-show="showImg" class="img-responsive" />
+</div>
+

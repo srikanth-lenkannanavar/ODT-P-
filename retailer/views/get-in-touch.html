@@ -1,0 +1,89 @@
+<div class="container aboutus form-page">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-main-title">get in touch</h1>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <form role="form" name="getInTouchRetailer" novalidate  method="post" ng-submit="sendMail(getInTouchRetailer.$valid)">
+                        <div ng-if="sendSuccess">
+                            <div class="alert alert-info">
+                                Your email has been sent successfully. We will be in touch soon
+                            </div>
+                        </div>
+                        <div ng-if="sendfailure">
+                            <div class="alert alert-danger alert-error">
+                                Sorry! There was an error sending your email. Please try again…
+                            </div>
+                        </div>
+
+                        <p class="para">If you want to find out more about the On the dot service, please leave your contact details below and we will be in touch.</p>
+
+                        <div class="row">
+                            <div class="col-md-6 ">
+
+                                <div class="form-group" ng-class="{'has-error': (!getInTouchRetailer.$pristine && getInTouchRetailer.firstName.$dirty && getInTouchRetailer.firstName.$invalid) || (getInTouchRetailer.$submitted && getInTouchRetailer.firstName.$invalid) || (!getInTouchRetailer.$pristine && getInTouchRetailer.firstName.$touched && getInTouchRetailer.firstName.$invalid) }">
+                                <!--<div class="form-group" ng-class="{'has-error': (!getInTouchRetailer.$pristine && getInTouchRetailer.firstName.$dirty && getInTouchRetailer.firstName.$invalid) }">-->
+                                    <input type="text" class="form-control " name="firstName" ng-model="firstName" required placeholder="First name *">
+                                    <div ng-if="(getInTouchRetailer.$submitted || !getInTouchRetailer.$pristine && getInTouchRetailer.firstName.$touched || (!getInTouchRetailer.$pristine && getInTouchRetailer.firstName.$dirty && getInTouchRetailer.firstName.$invalid))" ng-messages="getInTouchRetailer.firstName.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="lastName" ng-model="lastName" placeholder="Last name" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <input type="text" class="form-control " name="companyName" ng-model="companyName" placeholder="Company name">
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': (!getInTouchRetailer.$pristine && getInTouchRetailer.emailAddress.$dirty && getInTouchRetailer.emailAddress.$invalid) || (getInTouchRetailer.$submitted && getInTouchRetailer.emailAddress.$invalid) || (!getInTouchRetailer.$pristine && getInTouchRetailer.emailAddress.$touched && getInTouchRetailer.emailAddress.$invalid) }">
+                            <input type="text" class="form-control " name="emailAddress" ng-model="emailAddress"  placeholder="Email address *" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/"  ng-maxlength="80" required >
+                            <div ng-if="(getInTouchRetailer.$submitted || !getInTouchRetailer.$pristine && getInTouchRetailer.emailAddress.$touched || ( getInTouchRetailer.emailAddress.$dirty && getInTouchRetailer.emailAddress.$invalid))" ng-messages="getInTouchRetailer.emailAddress.$error" ng-messages-include='views/error-messages.html'>
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                                <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters length.</div>
+                                <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control " name="phoneNumber" ng-model="phoneNumber"  placeholder="Phone number">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="subject" ng-model="subject">
+                                <option value="Subject">Select Subject</option>
+                                <option value="API integration">API integration</option>
+                                <option value="Be part of onthedot.co.uk">Be part of onthedot.co.uk</option>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': (!getInTouchRetailer.$pristine && getInTouchRetailer.comment.$dirty && getInTouchRetailer.comment.$invalid) || (getInTouchRetailer.$submitted && getInTouchRetailer.comment.$invalid) || (!getInTouchRetailer.$pristine && getInTouchRetailer.comment.$touched && getInTouchRetailer.comment.$invalid)}">
+                            <textarea class="form-control" rows="5" name="comment"  ng-model="comment" ng-maxlength="2048" placeholder="Enter your comment here..."></textarea>
+                            <p ng-if="comment.length <= 2048">{{2048 - comment.length }} characters remaining</p>
+                            <div ng-if="(getInTouchRetailer.$submitted || !getInTouchRetailer.$pristine && getInTouchRetailer.comment.$touched || (getInTouchRetailer.comment.$dirty && getInTouchRetailer.comment.$invalid))" ng-messages="getInTouchRetailer.comment.$error" ng-messages-include='views/error-messages.html'>
+                                <div ng-message="maxlength" class="error-msg">Comment should be a maximum of 2048 characters in length.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 getintuch-btns">
+                                <button type="submit" class="btn btn-default btn-primary" >Send</button>
+                                <div ng-click="reset(getInTouchRetailer)" class="btn btn-default">Cancel</div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+                <div class="col-lg-4 hero-content getintuch">
+                    <h2 class="getintuch-sub-title">Contact Us</h2>
+                    <h5 class="page-sub-title">Give us a call</h5>
+                    <p><!-- <span class="glyphicon glyphicon-earphone"> --></span>0207 880 1444</p>
+                    <h5 class="page-sub-title">Email us</h5>
+                    <p><!-- <span class="glyphicon glyphicon-envelope"> --></span><a href="mailto:info@onthedot.co.uk">info@onthedot.co.uk</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

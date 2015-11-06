@@ -1,0 +1,323 @@
+<div class="container inner-page form-page" apply-bg>
+    <div class="global-msg" ng-if="!phoneNoValidatedStatus">        
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Oops! It appears your account has not been activated yet. Please validate your mobile number below
+        </div>
+    </div>
+    <div class="row my-profile-container">
+        <div class="col-md-12 my-profile-section">
+            <h1 class="page-main-title">
+                My profile
+            </h1>
+            <h2 class="page-sub-title" >
+                Personal information
+            </h2>
+            <div class="row">
+                <div class="col-md-9">
+                    <form role="form" name="myProfile" novalidate method="post">
+                        <div ng-show="updateSuccess">
+                            <div class="alert alert-success">
+                                <strong>Great! Your details have been saved </strong>
+                            </div>
+                        </div>
+                        <div ng-show="updateFailed">
+                            <div class="alert alert-danger alert-error">
+                                <strong>Oops! It appears there is a problem. Please try again...</strong>
+                            </div>
+                        </div>
+                        <div ng-show="getFailed" class="">
+                            <div class="alert alert-danger alert-error">
+                                <strong>Oops! It appears there is a problem. Please try again...</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-2 ">
+
+                                <div class="form-group">
+                                    <select ng-model="title" class="form-control" id="person-title" >
+                                        <option value="" selected>Title</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Ms">Ms</option>
+                                        <option value="Miss">Miss</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{'has-error': myProfile.firstName.$invalid && myProfile.firstName.$touched }">
+
+                                    <input type="text" class="form-control" name="firstName" id="firstName" ng-model="firstName" placeholder="First name *" required />
+
+                                    <div ng-messages="myProfile.firstName.$touched && myProfile.firstName.$error"  ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>     
+                                    </div>
+                                    <!--
+                                    <p class="error-msg"  ng-show="myProfile.firstName.$invalid && myProfile.firstName.$dirty">Oops! Please enter your first name</p>
+                                    -->
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <!--<div class="form-group" ng-class="{'has-error': myProfile.lastName.$invalid && myProfile.lastName.$dirty }">-->
+                                <div class="form-group">
+                                    <!--   <input type="text" class="form-control" name="lastName" id="llastName"  ng-model="lastName"  placeholder="Last name *">  -->
+                                    <!--<p class="error-msg"  ng-show="myProfile.lastName.$invalid && myProfile.lastName.$dirty">Oops! Please enter your last name</p>-->
+                                    <input type="text" class="form-control" name="lastName" id="llastName"  ng-model="lastName"  placeholder="Last name">
+                                    <!--<p class="error-msg"  ng-show="myProfile.lastName.$invalid && myProfile.lastName.$dirty">This field is required</p>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{'has-error': (myProfile.regEmail.$dirty && myProfile.regEmail.$invalid) || (myProfile.$submitted && myProfile.regEmail.$invalid) || (myProfile.regEmail.$touched && myProfile.regEmail.$invalid) }">
+
+                                    <input type="email" class="form-control" name="regEmail" ng-model="regEmail" id="regEmail" placeholder="Email address" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" required ng-maxlength="80" readonly>
+                                    <!--
+                                    <p class="error-msg" ng-show="myProfile.regEmail.$dirty && myProfile.regEmail.$error.required">
+                                        This field is required</p>
+                
+                                    <p class="error-msg" ng-show="myProfile.regEmail.$dirty && myProfile.regEmail.$error.pattern">
+                                        Please enter a valid email address</p>                          -->
+
+                                    <div ng-if="(myProfile.$submitted || myProfile.regEmail.$touched || (myProfile.regEmail.$dirty && myProfile.regEmail.$invalid))" ng-messages="myProfile.regEmail.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                                        <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                                        <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters length</div>
+                                    </div>                    
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+
+                                <div class="form-group" ng-class="{'has-error': (myProfile.phoneNo.$invalid && myProfile.phoneNo.$touched) || (myProfile.phoneNo.$invalid && myProfile.$submitted)}">
+                                    <!--
+                                    <div class="phone-ex">eg: 07222 555555 &nbsp;(or) &nbsp; (07222) 555555&nbsp; (or)&nbsp; +44 7222 555 555 </div>
+                                    -->
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+44</span>
+                                        <input type="text" class="form-control" name="phoneNo" ng-model="phoneNo" id="phoneNo" placeholder="Mobile number *" ng-pattern="/^(7|07)\d{9}$/" restrict-quick-validation required />
+                                        <span class="input-group-addon voucher-addon" ng-if="phoneNoValidatedStatus"><i class="fa fa-check"></i></span>
+                                    </div>
+
+                                    <div ng-if="(myProfile.phoneNo.$touched || myProfile.$submitted)" ng-messages="myProfile.phoneNo.$error"  ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                                        <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                                    </div>
+                                    <div class="mar-top-10 myprof-phone" ng-if="!phoneNoValidatedStatus">
+                                        <div class="clearfix">
+                                            <div class="icon-wrapper">
+                                                <i class="icon icon-onthedot-icons-13 ur-collection-err-icon"></i>
+                                            </div>
+                                            <div class="error-msg">Please make sure you validate your account</div>
+                                        </div>
+                                    </div>                                    
+                                    <!--
+                                    <p class="error-msg" ng-if="myProfile.phoneNo.$dirty && myProfile.phoneNo.$error.required">This field is required</p>
+                                    <p class="error-msg" ng-if="myProfile.phoneNo.$dirty &&  myProfile.phoneNo.$error.pattern">Please Enter a valid phone number.</p>
+                                    -->
+                                </div>
+
+                            </div>
+                            <div class="col-md-5" ng-if="!phoneNoValidatedStatus">
+                                <div class="form-group" ng-class="{'has-error': myProfile.phoneNo.$invalid && myProfile.phoneNo.$dirty}">
+                                    <a  class="btn btn-default btn-primary" ng-disabled="myProfile.phoneNo.$error.pattern || myProfile.phoneNo.$error.required"  ng-click="validateMob()">Validate</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="" date-dob >
+
+                                    <div class="input-group " id='datetimepickerdob'>
+                                        <input type="text" name="test" class="form-control"  datepicker-popup="dd/MM/yyyy" ng-model="dob" placeholder="Date of birth" is-open="data.opened" datepicker-options="dateOptions" close-text="Close" readonly/>
+                                        <span class="input-group-addon in-dp-ds-caln">
+                                            <span class="glyphicon-calendar glyphicon"></span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-pane">
+                            <div class="accept-terms">
+                                <label class="nomargin-btm">Would you like to hear more about our latest promotions and offers?</label>
+                                <div class="checkbox address-accordion-container">
+                                    <input type="checkbox" id="checkboxSub" name="chkOptNewsLetter" class="css3checkbox" ng-model="optNewsLetter"  />
+                                    <label class="toggler" for="checkboxSub">
+                                        <div class="check-sub-text">Please uncheck to opt out</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12">
+                                    <input type="hidden" ng-model="scimId">
+                                    <input type="hidden" ng-model="userName">
+                                    <input type="hidden" ng-model="currentPhoneNumber">
+                                    <button type="submit" class="btn btn-default btn-primary" ng-click="updateUserProfile()" ng-disabled="myProfile.$invalid">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="row">
+                            <div class="col-md-7">
+                                <div>Would you like to hear more about our latest promotions and offers?</div>
+                                <div class="check-profile-container">
+                                    <input type="checkbox" id="checkboxSub" name="chkOptNewsLetter" class="css3checkbox" ng-model="optNewsLetter" ng-true-value="'true'"/>
+                                    <label class="toggler" for="checkboxSub">
+                                        <div class="check-sub-text">Please uncheck to opt out</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+
+
+                    </form>
+
+
+                </div>
+                <div class="col-md-3">
+                    <!--<form name="myForm" method="post" enctype="multipart/form-data">
+                        <div class="upload-ur-photo">
+                            <div>
+                                <input type="file" class="my-browse" ng-show="showBrowse" ng-file-select="onFileSelect($files)" multiple accept="image/*" />
+                            </div>
+
+                            <img ng-src="{{img_url}}" ng-hide="showBrowse" class="thumb" />
+                            <div class="upload-ur-photo-mes" ng-hide="showMes" >
+                                <div>
+                                    <div>
+                                        <i class="fa fa-plus-circle fa-6"></i>
+                                    </div>
+                                    <div>
+                                        Upload your photo
+                                    </div>
+                                    <div>
+                                        PERSONAL PHOTO
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upload-ur-photo-mes-progress"  >
+                                <div ng-show="progress">
+                                    <i class="fa fa-spinner fa-5 fa-spin"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div ng-hide="showBrowse" class="upload-ur-photo-update">
+
+                            <div ng-click="">
+                                <div class="edit-browse-input">
+                                    <input type="file" class="my-browse-edit" ng-file-select="onFileSelect($files)" multiple accept="image/*" />
+                                </div>
+
+                                <span class="profile-img-edit-icon">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </span>
+                                <span class="profile-img-delete-icon">
+                                    <div id="location"  ng-click="deletePhoto()"><i class="fa fa-trash"></i></div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div  class="upload-ur-photo-error-section">
+                            <div ng-show="errMesFlag" class="error">
+                                <div class="alert alert-danger alert-error">
+                                    <strong>Error!</strong> {{errMes}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>-->
+                </div>
+
+            </div>
+            <div class="row" ng-if="UserTypeLogin == 'Login'">
+                <!--<div class="row">-->
+                <!--<div class="row"  >-->
+                <div class="col-md-12">
+                    <h2 class="page-sub-title">Change your password</h2>
+                </div>
+                <div class="col-md-9">
+                    <form role="form" name="conPassform" novalidate method="post">
+
+
+                        <div ng-show="changePasswordSaved">
+                            <div class="alert alert-success">
+                                <strong>Great! Your password has been saved </strong>
+                            </div>
+                        </div>
+                        <div ng-show="changePasswordfailed">
+                            <div class="alert alert-danger alert-error">
+                                <strong>Oops! It appears there is a problem. Please try again...</strong>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group" ng-class="{
+                                        'has-error'
+                                                : (conPassform.curPassword.$touched && conPassform.curPassword.$invalid) || (conPassform.$submitted && conPassform.curPassword.$invalid) || (conPassform.curPassword.$touched && conPassform.curPassword.$invalid)}">
+                                    <input type="password" class="form-control" name="curPassword" ng-model="curPassword" ng-minlength="6" ng-pattern="/^(\d+[a-zA-Z]|[a-zA-Z@!#$%^&*()|?,.:;'`~<>]+\d)[a-zA-Z@!#$%^&*()|?,.:;'`~<>\d]*$/" placeholder="Current password *" required id="cur-password" ng-keypress="clearErrorMsg()">
+                                    <div ng-if="(conPassform.$submitted || conPassform.curPassword.$touched || (conPassform.curPassword.$touched && conPassform.curPassword.$invalid))" ng-messages="conPassform.curPassword.$error" ng-messages-include='views/error-messages.html'>
+                                        <!--<div ng-messages="conPassform.curPassword.$dirty && conPassform.curPassword.$error"  ng-messages-include='views/error-messages.html'>-->
+                                        <div ng-message="minlength" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                        <div ng-message="pattern" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group" ng-class="{
+                                        'has-error'
+                                                : (conPassform.newPassword.$touched && conPassform.newPassword.$invalid) || (conPassform.$submitted && conPassform.newPassword.$invalid) || (conPassform.newPassword.$touched && conPassform.newPassword.$invalid) }">
+                                    <input type="password" name="newPassword" ng-model="newPassword" placeholder="New password *" required ng-pattern="/^(\d+[a-zA-Z]|[a-zA-Z@!#$%^&*()|?,.:;'`~<>]+\d)[a-zA-Z@!#$%^&*()|?,.:;'`~<>\d]*$/"
+                                           ng-minlength="6" class="form-control" id="new-password" >
+                                    <div ng-messages="conPassform.newPassword.$touched && conPassform.newPassword.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                        <div ng-message="minlength" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                        <div ng-message="pattern" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group" ng-class="{
+                                        'has-error'
+                                                : (conPassform.conNewPassword.$touched && conPassform.conNewPassword.$invalid) || (conPassform.$submitted && conPassform.conNewPassword.$invalid) || (conPassform.conNewPassword.$touched && conPassform.conNewPassword.$invalid) }">
+                                    <input type="password"  name="conNewPassword" ng-model="conNewPassword" placeholder="Confirm new password *" required  compare-to="newPassword" class="form-control" id="con-password" >
+                                    <div ng-messages="conPassform.conNewPassword.$touched && conPassform.conNewPassword.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="compareTo" class="error-msg">Oops! It appears your passwords do not match. Please try again…</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <pre>
+                            {{conPassform.conNewPassword.$error}}
+                        </pre>
+                        -->
+                        <button type="submit" class="btn btn-default btn-primary" ng-disabled="conPassform.$pristine || conPassform.$error.required || conPassform.$error.compareTo" ng-click="changePassword()">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,591 @@
+.footer-container{
+    font-family: 'Source Sans Pro';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    /*padding: 20px 15px;*/
+    padding: 20px 15px 40px 15px;
+    background:#43B02A;
+    overflow: hidden;
+
+    h1.footer-title{
+        color: #fff;
+        font-size: 20px;
+        margin: 5px 0;
+        font-weight: 600;
+
+    }
+
+    h1.footer-join-us{
+        margin-top: 35px;
+    }
+
+
+
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+            margin-top: 5px;
+            color: #ffffff;
+            a {
+                color: #fff !important;
+                cursor: pointer;
+                &:hover{
+                    @include opacity(0.5);
+                    -moz-transition: opacity 0.3s ease-in-out;
+                    -o-transition: opacity 0.3s ease-in-out;
+                    -webkit-transition: opacity 0.3s ease-in-out;
+                    transition: opacity 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+}
+.footer-container ul li:first-child {
+    margin-top: 0;
+}
+ul.social-links {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    li {
+        float: left;
+        margin: 0 0 0 8px;
+        a {
+            text-align: center;
+            /*border: 1px solid rgba(255,255,255, .3);*/
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            display: inline-block;
+            padding-top: 5px;
+            margin-left: 5px;
+            &:hover{
+                /*border: 1px solid rgba(255,255,255,.7);*/
+                -moz-transition: border 0.3s ease-in-out;
+                -o-transition: border 0.3s ease-in-out;
+                -webkit-transition: border 0.3s ease-in-out;
+                transition: border 0.3s ease-in-out;
+            }
+        }
+    }
+}
+ul.social-links li:first-child {
+    margin: 0;
+}
+
+.foot-bg{
+    /*background: url("../images/On-the-dot-footer.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 500px;
+    */
+}
+
+
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+    @if $media == handhelds {
+        @media only screen and (max-width: 410px) { @content; }
+    }
+    @else if $media == handhelds-mobile414 {
+        @media only screen and (min-width: 411px) and (max-width: 567px) { @content; }
+    }
+    @else if $media == handhelds-land {
+        @media only screen and (min-width: 568px) and (max-width: 767px) { @content; }
+    }
+    @else if $media == medium-screens {
+        @media only screen and (min-width: 768px) and (max-width: 1199px) { @content; }
+    }
+    @else if $media == wide-screens {
+        @media only screen and (min-width: 1200px) { @content; }
+    }
+}
+
+
+
+$pages:
+/*otd-home-footerbg,*/
+otd-user-registration-footerbg,
+/*otd-how-much-it-costs-footerbg,*/
+/*otd-where-we-deliver-footerbg,*/
+otd-get-in-touch-footerbg,
+otd-faq-footerbg,
+otd-press-footerbg,
+otd-aboutus-footerbg,
+/*otd-how-it-works-footerbg,*/
+otd-terms-and-conditions-footerbg,
+otd-generic-footerbg,
+otd-retailer-integration-footerbg,
+otd-are-you-a-retailer-footerbg,
+otd-on-the-dot-co-uk-footerbg,
+otd-integration-with-our-open-api-footerbg,
+otd-onthedot-consumer-offering-footerbg,
+otd-portal-footerbg;
+
+
+@each $item in $pages {
+    .#{$item} {
+
+        @include respond-to(handhelds) {
+            background: url("../images/footer/mobile/#{$item}_img.jpg") no-repeat top center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            height: 532px;
+            background-position: 50% 50%;
+            @if $item == "otd-portal-footerbg" {
+                height: 500px;
+            } else {
+                height: 500px;
+            }
+
+
+        }
+        @include respond-to(handhelds-mobile414) {
+            background: url("../images/footer/mobile/mobile414/#{$item}_img.jpg") no-repeat center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            min-height:500px;
+            @if $item == "otd-portal-footerbg" {
+                height: 500px;
+            } else {
+                height: 270px;
+            }
+
+
+        }
+
+        @include respond-to(handhelds-land) {
+            background: url("../images/footer/mobile/land/#{$item}_img.jpg") no-repeat 10% center;
+            @if $item == "otd-portal-footerbg" {
+
+                min-height: 500px;
+            } else {
+                background: url("../images/footer/mobile/land/#{$item}_img.png") no-repeat 10% center;
+                min-height: 370px;
+            }
+
+
+
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            width: 100%;
+
+            min-height: 500px;
+        }
+
+        @include respond-to(medium-screens) {
+            background: url("../images/footer/tablet/#{$item}_img.jpg") no-repeat top center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            min-height: 500px;
+        }
+        @include respond-to(wide-screens) {
+
+
+            background: url("../images/footer/desktop/#{$item}_img.jpg") no-repeat top center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            min-height: 500px;
+        }
+    }
+}
+
+/* home page footer start*/
+@media only screen and (max-width: 413px)
+{ /*320px*/
+
+    .footerimg {background: url("../images/footer/mobile/otd-home-footerbg_img.jpg") no-repeat center center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                width: 100%;
+                height: 200px;
+
+    }
+}
+@media only screen and (min-width: 414px) and (max-width:567px)
+{
+    /*414px*/
+    .footerimg {background: url("../images/footer/mobile/mobile414/otd-home-footerbg_img.jpg") no-repeat center center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                width: 100%;
+                height: 200px;
+
+    }
+}
+@media only screen and (min-width: 568px) and (max-width: 767px)
+{
+    /*568px*/
+    .footerimg {
+        background: url("../images/footer/mobile/land/otd-home-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 320px;
+    }
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px)
+{
+    /*768px*/
+    .footerimg {
+        background: url("../images/footer/tablet/otd-home-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 320px;
+        /*padding-bottom: 50px;*/
+
+    }
+}
+/*
+@media only screen and (min-width: 769px) and (max-width: 1199px)
+{
+  .footerimg {
+    background: url("../images/footer/desktop/otd-home-footerbg_img.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 320px;
+  }
+
+}
+*/
+@media only screen and (min-width: 1200px)
+{
+    .footerimg {
+        background: url("../images/footer/desktop/otd-home-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 488px;
+
+    }
+}
+/* home page footer End*/
+
+
+/* what it costs start*/
+@media only screen and (max-width: 413px)
+{ /*320px*/
+    .footerhowmuchitcost {background: url("../images/footer/mobile/otd-how-much-it-costs-footerbg_img.jpg") no-repeat center center;
+                          -webkit-background-size: cover;
+                          -moz-background-size: cover;
+                          -o-background-size: cover;
+                          background-size: cover;
+                          width: 100%;
+                          height: 200px;
+
+    }
+}
+@media only screen and (min-width: 414px) and (max-width: 567px)
+{
+    /*414px*/
+    .footerhowmuchitcost {background: url("../images/footer/mobile/mobile414/otd-how-much-it-costs-footerbg_img.jpg") no-repeat center center;
+                          -webkit-background-size: cover;
+                          -moz-background-size: cover;
+                          -o-background-size: cover;
+                          background-size: cover;
+                          width: 100%;
+                          height: 200px;
+
+    }
+}
+@media only screen and (min-width: 568px) and (max-width: 767px)
+{
+    /*568px*/
+    .footerhowmuchitcost {background: url("../images/footer/mobile/land/otd-how-much-it-costs-footerbg_img.jpg") no-repeat center center;
+                          -webkit-background-size: cover;
+                          -moz-background-size: cover;
+                          -o-background-size: cover;
+                          background-size: cover;
+                          width: 100%;
+                          height: 320px;
+                          /*
+                           margin: 20px;
+                           padding-bottom: 50px;
+                          */
+
+    }
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1199px)
+{
+    .footerhowmuchitcost {background: url("../images/footer/tablet/otd-how-much-it-costs-footerbg_img.jpg") no-repeat center center;
+                          -webkit-background-size: cover;
+                          -moz-background-size: cover;
+                          -o-background-size: cover;
+                          background-size: cover;
+                          width: 100%;
+                          height: 320px;
+                          /*padding-bottom: 50px;*/
+
+    }
+}
+@media only screen and (min-width: 1200px)
+{
+    .footerhowmuchitcost {background: url("../images/footer/desktop/otd-how-much-it-costs-footerbg_img.jpg") no-repeat center center;
+                          -webkit-background-size: cover;
+                          -moz-background-size: cover;
+                          -o-background-size: cover;
+                          background-size: cover;
+                          width: 100%;
+                          height: 493px;
+                          /*padding-bottom: 50px;*/
+
+    }
+}
+/* what it costs End*/
+
+
+/*footer for where we deliver Start*/
+
+
+@media only screen and (max-width: 413px)
+{ /*320px*/
+    .footerwherewedeliver {
+        background: url("../images/footer/mobile/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+    }
+}
+@media only screen and (min-width: 414px) and (max-width:567px) {
+    /*414px*/
+    .footerwherewedeliver {
+        background: url("../images/footer/mobile/mobile414/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+    }
+}
+@media only screen and (min-width: 568px) and (max-width: 767px)
+{
+    /*568px*/
+    .footerwherewedeliver {
+        background: url("../images/footer/mobile/land/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 260px;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px)
+{
+
+    .footerwherewedeliver {
+        background: url("../images/footer/tablet/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+}
+/*
+@media only screen and (min-width: 769px) and (max-width: 991px)
+{
+  .footerwherewedeliver {
+    background: url("../images/footer/desktop/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 200px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px)
+{
+  .footerwherewedeliver {
+    background: url("../images/footer/desktop/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 250px;
+  }
+}
+*/
+@media only screen and (min-width: 1200px) {
+    .footerwherewedeliver {
+        background: url("../images/footer/desktop/otd-where-we-deliver-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 350px;
+    }
+}
+
+
+
+
+/*footer for where we deliver End*/
+
+/*footer for How much it works Start*/
+
+
+@media only screen and (max-width: 413px)
+{ /*320px*/
+    .footerhowitworks {
+        background: url("../images/footer/mobile/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+    }
+}
+@media only screen and (min-width: 414px) and (max-width: 567px)
+{
+    /*414px*/
+    .footerhowitworks {
+        background: url("../images/footer/mobile/mobile414/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+
+    }
+}
+@media only screen and (min-width: 568px) and (max-width: 767px)
+{
+    /*568px*/
+    .footerhowitworks {
+        background: url("../images/footer/mobile/land/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 320px;
+        margin: 20px;
+
+    }
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px)
+{
+    /*768px*/
+    .footerhowitworks {
+        background: url("../images/footer/tablet/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 320px;
+    }
+}
+/*
+@media only screen and (min-width: 769px) and (max-width: 1199px)
+{
+  .footerhowitworks {
+    background: url("../images/footer/desktop/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+  }
+}
+*/
+
+@media only screen and (min-width: 1200px) {
+    .footerhowitworks {
+        background: url("../images/footer/desktop/otd-how-it-works-footerbg_img.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 500px;
+    }
+}
+
+/*footer for How much it works End*/
+
+
+/*footerhowitworks   otd-how-it-works-footerbg_img*/
+
+@media only screen and (max-width : 320px) {
+    .foot-bg{
+        /* background: url("../images/On-the-dot-mobile-footer.jpg") no-repeat center center;*/
+    }
+}
+
+@media only screen and (max-width : 767px) {
+    .footer-container{
+        ul{
+            padding: 0px;
+        }
+
+    }
+    .footer-container {padding-left:5px; padding-right:0;}
+    .footer-container ul li:first-child {margin-top:5px;}
+    .footer-container .share-wrap ul li {margin-top:0;}
+
+    .no-padding-sm{
+        padding: 0px;
+    }
+}
+
+
+@media only screen and (max-width : 991px) {
+    /*.share-wrap {margin-top: 30px;}*/
+}

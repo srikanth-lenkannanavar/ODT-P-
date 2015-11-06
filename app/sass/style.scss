@@ -1,0 +1,357 @@
+  @import "compass/css3";
+  @import "variables";
+  @import "on-the-dot-fonts";
+  @import "page-layout";
+  @import "utility";
+  @import "header";
+  @import "main";
+  @import "home";
+  @import "radio-checkbox";
+  @import "modal-style";
+  @import "subscription";
+  @import "my-profile";
+  @import "delivery-zone";
+  @import "your-quote";
+  @import "address-confirmation";
+  @import "booking-confirmation";
+  @import "my-billing";
+  @import "my-delivery";
+  @import "user-registration";
+  @import "track-map";
+  @import "copy-paste";
+  @import "my-subscription";
+  @import "edit-booking";
+  @import "forgot-password";
+  @import "footer";
+  @import "aboutus";
+  @import "upload-document";
+  @import "faq";
+  @import "cookie";
+  @import "get-in-touch";
+  @import "press";
+  @import "tc";
+
+  //@import "themes/orange/*.png";../images/bg.png
+  //@import "compass/utilities/sprites";
+  //@import "../images/*.png";
+
+
+  a{cursor: pointer;}
+  #map-container{
+    height: 500px;
+  }
+
+  body.bg-container{
+    /*background: transparent url('../images/bg.png') repeat;*/
+    /*background: red;*/
+  }
+
+
+  #step-1, #step-2, #step-3{
+    margin-top:15px;
+  }
+
+  .collapse-control{
+    color: #fa3b9a;
+  }
+
+  hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+    border-style: solid none;
+    border-width: 1px 0;
+    margin: 18px 0;
+    color: #44cde0;
+  }
+
+  #address-confirmation .well{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding:0px;
+  }
+  /*Logged in header design End*/
+
+
+
+
+  .form-progress{
+    border: none;
+    float: right;
+    position: absolute;
+    right:0;
+  }
+
+  .form-progress li{
+    margin: 10px;
+  }
+
+  .form-progress li:first-child{
+    margin-left: 0;
+  }
+
+  .form-progress li a{
+    color: black;
+    padding:5px 10px;
+  }
+
+  .form-progress>li.active>a,
+  .form-progress>li.active>a:hover,
+  .form-progress>li.active>a:focus{
+    border-radius: 20px;
+    border:1px solid #44cde0;
+    background-color: #44cde0;
+
+  }
+
+  .form-progress>li>a,
+  .form-progress>li>a:hover{
+    border-radius: 20px;
+    border:1px solid #44cde0;
+
+  }
+
+  .tab-content{
+    clear: both;
+  }
+
+  #address{
+    resize: none;
+
+  }
+
+  .field-description{
+    font-size: 14px;
+    padding:0;
+    color: grey;
+    margin-bottom: 15px;
+  }
+
+  .field-description span{
+    float: left;
+    margin-right: 25px;
+  }
+
+  .panel-body{
+    padding: 15px;
+  }
+
+  .address-list{
+    list-style: none;
+  }
+
+  .address-list li{
+    margin: 8px 0;
+  }
+
+  .address-list a{
+    color: #c65ea0;
+  }
+
+  .address-list a:hover{
+    text-decoration: underline;
+  }
+
+  .collapse-control{
+    margin: 20px 0;
+    display: block;
+  }
+
+  .collapse-control:before{
+    content: '- ';
+  }
+
+  .collapse-control.collapsed:before{
+    content: '+ ';
+  }
+
+
+  #form-panel > .form-inline .form-group{
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  #step-2{
+
+  }
+
+  #address-confirmation .well .form-group{
+    padding-bottom :20px;
+    padding-right: 10px;
+  }
+
+  #address-confirmation .well label{
+    font-size: 12px;
+  }
+
+  #file-upload-field{
+    width:194px;
+  }
+
+  .file-upload{
+    padding:0px;
+  }
+
+  .file-upload > h3{
+    padding: 15px;
+  }
+
+  .file-upload .tab-content{
+    padding: 15px;
+  }
+
+  .file-upload .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    padding-top: 85px;
+    margin-top:20px;
+  }
+
+  .file-upload .drop-box-hover{
+    border: 5px dashed red;
+  }
+
+
+  #label img{
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .notification{
+    position:relative;
+  }
+
+  .notification .glyphicon-bullhorn{
+    color: red;
+  }
+
+  .notification .alert-notify{
+    position: absolute;
+    display: block;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid grey;
+    z-index:9999999999;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    top:4px;
+    left:2px;
+  }
+
+  .navbar-default .navbar-nav > li > a.profile{
+    /*
+     padding:0px;
+     padding-top:5px;
+     padding-right: 5px;
+     padding-bottom: 5px;
+     */
+    margin-top: 15px;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  .btn-blue{
+    background-color: #51cae3;
+    color: white;
+  }
+
+
+  .collapse-head{
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    margin:0;
+    border-right: 0;
+    border-left: 0;
+    border-top: 0;
+  }
+
+
+
+  /* Login changes begin */
+  .rounded-circle-login{
+    position: absolute;
+    margin-left: 45%;
+    background: #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: solid 1px #333;
+    top: -20px;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 14px;
+  }
+
+  .remember{
+    color:#79796a;
+  }
+
+
+  .forgot-pass a{
+    color:rgb(249, 0, 255);
+    text-decoration: underline;
+  }
+
+  .login-not-mbr-section {
+    margin-top: 80px;
+  }
+
+  .disclaimer-text{
+    opacity: 0.5;
+  }
+  /* Login changes end */
+
+
+
+  .social-container{
+    margin-top: 50px;
+  }
+
+  h1.delivery-header{
+    color: #79796a;
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+
+  .first-name-container,.last-name-container{
+    float: left;
+  }
+
+  .first-name-container input, .last-name-container input{
+  }
+
+  ul.cslide li{
+    display: inline;
+  }
+
+  #background{
+    background: transparent url('../images/bg.png') no-repeat;
+    height:1000px;
+    padding-top: 120px;
+  }
+
+  .background{
+    background: transparent url('../images/bg.png') no-repeat;
+    height:1000px;
+    padding-top: 120px;
+  }
+
+  .page-header, .page-header h3{
+    border: none;
+    color:white;
+  }
+

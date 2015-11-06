@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 6, 2015, 9:55:35 AM
+    Author     : srikanthl
+    font-family: 'segoe_ui';
+*/
+.container.full-ui-container.edit-booking{
+    .col-md-12.address-accordion-container.page-sub-title
+    {
+      /*font-family: 'segoe_ui';*/
+        font-size: 14px;
+        color: #26798A;
+        font-weight: bolder;
+    }
+
+    div.row.addr-hide-show-margin {
+        border: 1px solid #4fc6dd;
+        padding-top: 10px;
+    }
+
+    .package-date{
+        border: none;
+        background: #FAFAFA;
+    }
+    .package-date:active{
+        border: none;
+        background: #FAFAFA;
+    }
+    .package-date-text{
+        background-color: #FAFAFA;
+        border: none;
+
+        cursor: pointer;
+    }
+
+  
+
+}
+.defualt-select{
+    font-weight: bolder;
+}
+.form-page.edit-booking {
+    margin-top:0; 
+    margin-bottom: 40px;
+}
+.form-page label.toggler, .form-page label.toggler_r {
+  margin-bottom: 5px;
+}
+
+.deliverslot-container {
+    margin-top: -50px;
+}
+.deliverslot-container.nomargin {
+    margin: 0;
+}
+
+.page-sub-title.grey a.btn-primary {margin:0; margin-left: 15px;}
+
+@media screen and (max-width: 992px) { 
+    .deliverslot-container {margin:0;}
+    .swap-right {margin-bottom: 0;}
+    
+    h5.page-sub-title.grey {margin-bottom: 25px;}
+}
+
+@media screen and (max-width: 620px) { 
+    .page-sub-title.grey .line {display:block;}
+    .page-sub-title.grey a.btn-primary {margin-left:0; margin-top:10px;}
+}

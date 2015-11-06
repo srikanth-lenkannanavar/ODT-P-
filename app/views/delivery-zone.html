@@ -1,0 +1,249 @@
+
+<!-- <div id="map_canvas" style="height:500px;"></div>     -->
+
+
+<div class="container form-page" apply-bg >
+<div class="row">
+
+<div class="col-md-5">
+    <div id="map-container"></div>
+    <div class="map-info" >
+        Your On the dot collection zone includes retailers within 5 miles from your chosen delivery postcode
+    </div>
+
+</div>
+
+
+
+<div class="col-md-7 reset-padding right-col relative">
+<!-- pagination steps -->
+<div class="pagination-steps">
+    <ul>
+        <li class="circle1">
+            <div class="selected-step" title="Choose retailer" ng-click="go('/Booking/Retailers/')">1</div>
+        </li>
+        <li class="circle2">
+            <div title="Choose delivery timeslot">2</div><!--ng-click="collectionDeliveryGoBack()"-->
+        </li>
+        <li class="circle3">
+            <div title="Confirm and book">3</div><!-- ng-click="go('/address-confirmation')"-->
+        </li>
+    </ul>
+</div><!-- /pagination steps -->
+<div class="delivery-controls">
+    <form class="form-inline form-delivery" role="form" name="postCode" ng-submit="validatePostCode()">
+        <div class="delivery-controls">
+            <label  for="name" class="label-delivery pull-left">Delivery postcode</label>
+            <div class="select-wrap" ng-hide="!isAddressEmpty">
+                <div class="form-group" >
+                    <select class="form-control"
+                            ng-model="selectedOption" ng-change="postValueChange(selectedOption)"
+                            ng-options="data.id for data in names | orderBy:'id'" ng-value="selectedOption.id">
+                        <option value="">New</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-wrap">
+                <div class="input-group">
+                    <input id="postcode" ng-model="mydeliveryuser.postCodeValue" name="postcCodeVal" check-postcode
+                           class="form-control bdr-r-none" type="text" placeholder="Postcode"/>
+                    <div class="input-group-addon btn btn-default btn-primary square-btn" title="Go" ng-click="updateDefault(mydeliveryuser.postCodeValue)">
+                        <span>Go</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mapmark-wrap">
+                <!--<span class="btn btn-default btn-primary square-btn map" tooltip data-toggle="popover" title="Use your current location" ng-click="findAndUseLocation()" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?" data-placement="bottom">
+                    <div class="icon icon-onthedot-icons-01"></div>
+                    <img src="images/map-marker.png" height="18" width="18" title="Use your current location">
+                </span>-->
+                
+                <a tabindex="0" class="btn btn-default btn-primary square-btn map" tooltip role="button" data-toggle="popover" title="Use your current location" ng-click="findAndUseLocation()" data-content="Please check your browser's location settings!" data-placement="bottom">
+                    <div class="icon icon-onthedot-icons-01"></div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-messages="postCode.postcCodeVal.$error" ng-messages-include='views/error-messages.html'>
+                <div ng-message="checkPostcode" class="del-pc-err-mes error-msg">Oops! You have entered an invalid postcode. Please try again…</div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<alert class="mydeliveryerror" ng-repeat="alert in alerts"
+       type="{{alert.type}}">{{alert.msg}}
+</alert>
+
+
+
+
+<!-- <div class="row" ng-if="postCode.$invalid">
+    <div class="col-md-10 delivery-address-warning">
+        Oops! This postcode doesn't seem to exist. Please check your postcode and try again…
+    </div>
+</div> -->
+
+<!--<div class="row" ng-if="postCode.$valid"> ghana-->
+<div class="row">
+<div class="col-md-12">
+<accordion close-others="" class="retailer-accordion" >
+<accordion-group class="retailer-zone-conatiner" ng-if="partitionedData.length > 0" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+    <!--<accordion-group class="retailer-zone-conatiner" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">-->
+    <accordion-heading >
+        <span class="icon icon-onthedot-icons-24" ng-class="{'icon-onthedot-icons-23': status.isFirstOpen, 'icon-onthedot-icons-24': !status.isFirstOpen}"></span>
+        Choose one of our partner retailers for your On the dot collection
+    </accordion-heading>
+
+    <!--<accordion-heading >
+        <h2 class="page-sub-title"> <i class="pull-left fa" ng-class="{'fa-chevron-circle-up': status.isFirstOpen, 'fa-chevron-circle-down': !status.isFirstOpen}"></i> </h2>
+    </accordion-heading>-->
+    <p class="field-description">
+        Once you have bought your shopping online and chosen the
+        retailer's Click &amp; Collect option, just select the retailer and then the specific store you would like us to collect from
+    </p>
+    <div class="retailer-logo-container clearfix" >
+        <section id="retailer-section-1" ng-repeat="rows in partitionedData">
+            <div id="flip1" class="retailer-logo clearfix">
+                <div class="col-xs-4"  ng-repeat="item in rows">
+                    <img cc class="img-responsive"  src="{{item.imageUrl}}" ng-click="imageClick($event)" data-rowid="{{partitionedData.indexOf(rows)}}"  data-cid="flip{{$parent.$index}}{{$index}}-content" alt="" />
+
+                    <div id="flip{{$parent.$index}}{{$index}}-content" class="retailer-content">
+                        <ul class="location">
+                            <li ng-repeat="branch in item.retailerDetailsList">
+                                <a ng-click="showRetailerDetails(branch)">{{branch.retailerName}} -   {{branch.streetName}}, {{branch.postCode|codeFilter}}</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- flip-->
+            <div id="flip{{$index}}-panel" class="show-panel clearfix"></div>  <!-- show panel -->
+        </section>
+    </div>
+    <p class="field-description">
+        Is the retailer you are looking for not here? Just add the address below
+    </p>
+</accordion-group>
+<accordion-group  is-open="status.isSecondOpen">
+<accordion-heading >
+    <span class="icon icon-onthedot-icons-24" ng-class="{'icon-onthedot-icons-23': status.isSecondOpen, 'icon-onthedot-icons-24': !status.isSecondOpen}"></span>
+    Add your retailer's address
+</accordion-heading>
+<!--<accordion-heading>
+
+    <h2 class="page-sub-title"> <i class="pull-left fa" ng-class="{'fa-chevron-circle-up': status.isSecondOpen, 'fa-chevron-circle-down': !status.isSecondOpen}"></i></h2>
+</accordion-heading>-->
+<p class="field-description">
+    If you are adding a retailer that is not one of our partners,
+    don't forget to confirm with them first that it is ok for us to collect your stuff on your behalf. If we get there and they won't release your items we will still need to charge you. You also need to check that your retailer is within your On the dot 5 mile collection zone. Thank you
+</p>
+<div>
+    <form role="form">
+        <div class="form-group adress-block max-mb">
+            <label for="address-search">Search for an address</label>
+            <input type="text" class="form-control" id="address-search" ng-model="search.content" ng-change="predict()" placeholder="Search for your retailer by name and address">
+            <!--                                <p class="field-description">
+                                                <a class="add-man" href="">Enter Address manually</a>
+                                            </p>-->
+
+            <ul id="results"  ng-if="dropDownVal">
+                <li ng-repeat="pred in dropDownVal" ng-click="populate($index)">{{pred.name}},{{pred.address}}</li>
+            </ul>
+        </div>
+    </form>
+
+    <form  role="form" name="addRetailers" novalidate ng-submit="saveRetailerAddress(addRetailers.$valid)">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.pickupPoint.$dirty && addRetailers.pickupPoint.$invalid) || (addRetailers.$submitted && addRetailers.pickupPoint.$invalid) || (addRetailers.pickupPoint.$touched && addRetailers.pickupPoint.$invalid) }">
+                    <input id="pickup-point" name="pickupPoint" ng-model="retailer.pickupPoint" ng-maxlength="60"  placeholder="Retailer name/collection point *" type="text" class="form-control" required>
+                    <div ng-if="(addRetailers.$submitted || addRetailers.pickupPoint.$touched || (addRetailers.pickupPoint.$dirty && addRetailers.pickupPoint.$invalid))" ng-messages="addRetailers.pickupPoint.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>
+                        <div ng-message="required" class="error-msg">Oops! Please enter a retailer or collection point name</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.addressLine1.$dirty && addRetailers.addressLine1.$invalid) || (addRetailers.$submitted && addRetailers.addressLine1.$invalid) || (addRetailers.addressLine1.$touched && addRetailers.addressLine1.$invalid) }">
+                    <input id="address-line-1" name="addressLine1" placeholder="First line of address*"  ng-maxlength="60" ng-model="retailer.addressLine1" type="text" class="form-control" required >
+                    <div ng-if="(addRetailers.$submitted || addRetailers.addressLine1.$touched || (addRetailers.addressLine1.$dirty && addRetailers.addressLine1.$invalid))" ng-messages="addRetailers.addressLine1.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>
+                        <div ng-message="required" class="error-msg">Oops! Please enter the first line of the address</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.city.$dirty && addRetailers.city.$invalid) || (addRetailers.$submitted && addRetailers.city.$invalid) || (addRetailers.city.$touched && addRetailers.city.$invalid) }">
+                    <input id="address-line-3" name="city" ng-model="retailer.city" ng-maxlength="60" placeholder="Town/city*"  type="text" class="form-control" required>
+                    <div ng-if="(addRetailers.$submitted || addRetailers.city.$touched || (addRetailers.city.$dirty && addRetailers.city.$invalid))" ng-messages="addRetailers.city.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>
+                        <div ng-message="required" class="error-msg">Oops! Please enter a town or city</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.$submitted && addRetailers.postalCode.$invalid) || (addRetailers.postalCode.$touched && addRetailers.postalCode.$invalid) }">
+                    <input id="address-line-4" name="postalCode" placeholder="Postcode*" check-postcode restrict-quick-validation ng-model="retailer.postalCode" type="text" class="form-control" required>
+                    <div ng-if="(addRetailers.$submitted || addRetailers.postalCode.$touched)" ng-messages="addRetailers.postalCode.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="checkPostcode" class="error-msg">Oops! Please enter a valid postcode (e.g. EC2A 4PH)</div>
+                        <div ng-message="required" class="error-msg">Oops! Please enter a valid postcode (e.g. EC2A 4PH)</div>
+                        <div ng-if="postcodeInvalid" class="del-pc-err-mes">Oops! You have entered an invalid postcode. Please try again…</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.openTime.$dirty && addRetailers.openTime.$invalid) || (addRetailers.$submitted && addRetailers.openTime.$invalid) || (addRetailers.openTime.$touched && addRetailers.openTime.$invalid) }">
+                    <!-- <input id="open-time" name="openTime" ng-model="openTime" type="time" class="form-control"> -->
+                    <label for="open-time">Store opening time *</label></br>
+                    <select class="form-control" id="open-time" name="openTime" ng-model="retailer.openTime"  ng-options="time for time in times" required>
+                    </select>
+                    <div ng-if="(addRetailers.$submitted || addRetailers.openTime.$touched || (addRetailers.openTime.$dirty && addRetailers.openTime.$invalid))" ng-messages="addRetailers.openTime.$error" ng-messages-include='views/error-messages.html'>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"  ng-class="{'has-error': (addRetailers.closeTime.$dirty && addRetailers.closeTime.$invalid) || (addRetailers.$submitted && addRetailers.closeTime.$invalid) || (addRetailers.closeTime.$touched && addRetailers.closeTime.$invalid) }">
+                    <!--  <input id="close-time" name="closeTime" ng-model="closeTime" type="time" class="form-control"> -->
+                    <label for="open-time">Store closing time *</label></br>
+                    <select class="form-control" id="close-time" name="closeTime" check-store-close-time open-time="retailer.openTime"  ng-model="retailer.closeTime" ng-options="closetime for closetime in closetimes"  required>
+                    </select>
+                    <div ng-if="(addRetailers.$submitted || addRetailers.closeTime.$touched || (addRetailers.closeTime.$dirty && addRetailers.closeTime.$invalid))" ng-messages="addRetailers.closeTime.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="checkStoreCloseTime" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                    </div>
+                </div>
+                <!--                                                <div class="error-msg" ng-if="retailer.closeTime <= retailer.openTime">
+                                                                 Please Select the Greater time than open time
+                                                                </div>-->
+            </div>
+        </div>
+        <!--
+        <button type="submit" class="btn btn-default btn-primary" ng-click="saveRetailerAddress()" ng-disabled="addRetailers.$error.required">Save & Continue</button>
+        -->
+        <input name="retailerLat" ng-model="retailer.lat" type="hidden" >
+        <input name="retailerLng" ng-model="retailer.lng" type="hidden" >
+        <button type="submit" class="btn btn-default btn-primary" ng-click="saveRetailerAddress()">Save &amp; Continue</button>
+    </form>
+
+
+
+</div>
+
+</accordion-group>
+</accordion>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+<!--Localizing visual design temporarily-->
+

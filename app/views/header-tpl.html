@@ -1,0 +1,297 @@
+<!--<div class="container padding-0" ng-if="isHomeHdr">-->
+<!--<header class="header-home">-->
+<!--<div class="header-nav">-->
+<!--<div class="header-links flt">-->
+<!--<ul class="list-unstyled list-inline">-->
+<!--<li><a href="#">Are you a retailer?</a></li>-->
+<!--<li><a id="loginlink" href="/MyDeliveryPortal/samllogin?return=home">Login</a> </li>-->
+<!--</ul>-->
+
+
+<!--</div>-->
+<!--<div class="signup flt text-center control-label"><a href="register">SIGN UP</a></div>-->
+<!--<div class="clearfix"></div>-->
+<!--</div>-->
+<!--<div class="clearfix"></div>-->
+<!--<form class="form-inline" role="form" novalidate>-->
+<!--<div class="row mg-top-27">-->
+<!--<div class="col-sm-12 col-md-6">-->
+<!--<div class="postcode-div">-->
+<!--<input id="postcode" ng-model="mydeliveryuser.postCodeValue" class="form-control"-->
+<!--type="text" placeholder="Enter your delivery postcode">-->
+<!--<button type="Get started" class="btn btn-default btn-gradient" ng-click="go('/Booking/Retailers')" >Get started</button>-->
+<!--<alert class="mydeliveryerror" ng-repeat="alert in alerts"-->
+<!--type="{{alert.type}}">{{alert.msg}}</alert>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-12 col-md-6 text-center padding-20">-->
+<!--<div class="tageline">-->
+<!--<h1>Deliveries when you want them</h1>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+<!--</header>-->
+<!--</div>-->
+<div class="container padding-0" ng-if="isHomeHdr || isRetailerHdr">
+    <header class="header-home" ng-class="{'retailer-wrap': isRetailerHdr}">
+        <div class="header-nav" ng-if="!userLogged">
+            <nav class="navbar navbar-fixed-top navbar-inverse home-menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-if="isHomeHdr">
+                            <a ng-href="{{retailerHomeUrl}}">Are you a retailer?</a></li>
+
+                        <li ng-if="isRetailerHdr">
+                            <a ng-href="{{homeUrl}}">Are you a shopper?</a></li>
+
+                        <li><a id="loginlink" href="/MyDeliveryPortal/samllogin?return=home">Login</a></li>
+                        <li class="signup"><a ng-href="{{homeUrl}}/register">sign up</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div ng-if="userLogged" class="header-nav" id="bs-example-navbar-collapse-1">
+            <!--<div class="header-nav" id="bs-example-navbar-collapse-1">-->
+            <nav class="navbar navbar-fixed-top navbar-inverse home-menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a ng-href="{{homeUrl}}/my-deliveries">My deliveries</a></li>
+                        <li ng-if="showSubscriptionMenu"><a ng-href="{{homeUrl}}/my-subscription">My bundles</a></li>
+                        <li><a ng-href="{{homeUrl}}/my-billing">My payment history</a></li>
+                        <li><a ng-href="{{homeUrl}}/myprofile">My profile</a></li>
+                        <li class="signup hidden-xs hidden-sm">
+                            <a href="javaScript:void(0)" class="dropdown" ng-click="isReplyFormOpen = !isReplyFormOpen">{{loggedUser}}<span class="caret"></span></a>
+                            <ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="list-unstyled log-header">
+                                <li>
+                                    <a href="/MyDeliveryPortal/samllogout">Logout</a>
+                                </li>
+                            </ul>
+                            <!--<ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="log-header" >
+                                <li class="logout-nav"><a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a></li>
+                            </ul>-->
+                        </li>
+                        <li class="mobilecheckMobile">
+                            <a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a>
+                        </li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </nav>
+            <!-- <ul class="nav navbar-nav navbar-right log-header">
+                <li>
+                    <a href="/MyDeliveryApp/my-deliveries">
+                        My deliveries
+                    </a>
+                </li>
+                <li ng-if="showSubscriptionMenu">
+                    <a href="/MyDeliveryApp/my-subscription">
+                        My bundles
+                    </a>
+                </li>
+                <li>
+                    <a href="/MyDeliveryApp/my-billing">
+                        My payment history
+                    </a>
+                </li>
+                <li>
+                    <a href="myprofile">
+                        My profile
+                    </a>
+                </li>
+                <li class="active-user highlight-menu mobilecheckDesk">
+                    <a href="javaScript:void(0)" class="dropdown" ng-click="isReplyFormOpen = !isReplyFormOpen">{{loggedUser}}<span class="caret"></span></a>
+                    <ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="log-header" >
+                        <li class="logout-nav"><a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="mobilecheckMobile">
+                    <a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a>
+                </li>
+            </ul> -->
+        </div>
+        <!-- <div class="clearfix"></div> -->
+
+        <form class="form-inline" role="form"  name="postcodeForm" novalidate ng-if="!isRetailerHdr">
+
+            <div class="">
+                <div class="col-sm-12 col-md-6 text-center padding-b-20 col-md-push-6">
+                    <div class="tageline">
+                        <!--<h1>Deliveries when you want them</h1>-->
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-md-pull-6">
+                    <div class="postcode-div"><input type="text" id="postcode" name="postcode" restrict-quick-validation check-postcode-home ng-model="mydeliveryuser.postCodeValue" required placeholder="Enter your delivery postcode" class="form-control">
+                        <button type="submit" class="btn btn-default btn-gradient" ng-click="go('/Booking/Retailers')">Get started</button>
+                        <!--<a class="flt btn-gradient" ng-click="findAndUseLocation()">
+                            <img src="images/Icon_location.png" title="Use your current location">
+                            <div class="icon icon-onthedot-icons-01"></div>
+                        </a>-->
+                        <span class="btn btn-default btn-gradient square-btn map" title="Use your current location" ng-click="findAndUseLocation()">
+                            <div class="icon icon-onthedot-icons-01"></div>
+                            <!--<img src="images/map-marker.png" height="18" width="18" title="Use your current location">-->
+                        </span>
+
+                        <div ng-if="(postcodeForm.$submitted || postcodeForm.postcode.$touched)" ng-messages="postcodeForm.postcode.$error" >
+                            <div ng-message="checkPostcode"  class="del-pc-err-mes">Please enter a valid postcode</div>
+                            <div ng-message="required"  class="del-pc-err-mes">Please enter a valid postcode</div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </header>
+</div>
+
+<nav class="navbar navbar-default navbar-inverse navbar-static-top " role="navigation" ng-if="!standAloneMapHeader && !isHomeHdr && !isRetailerHdr">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="header-brand-logo" ng-href="{{homeUrl}}" >
+                <img src="images/logos/onthedontlogo.png" alt="" />
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div ng-if="userLogged" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!--<div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-href="{{homeUrl}}/my-deliveries">
+                        My deliveries
+                    </a>
+                </li>
+
+                <li ng-if="showSubscriptionMenu">
+                    <a ng-href="{{homeUrl}}/my-subscription">
+                        My bundles
+                    </a>
+                </li>
+
+                <li>
+                    <a ng-href="{{homeUrl}}/my-billing">
+                        My payment history
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="{{homeUrl}}/myprofile">
+                        My profile
+                    </a>
+                </li>
+                <li class="active-user highlight-menu mobilecheckDesk">
+                    <!--<li class="signup mobilecheckDesk">-->
+                    <a href="javaScript:void(0)" class="dropdown" ng-click="isReplyFormOpen = !isReplyFormOpen">{{loggedUser}}<span class="caret"></span></a>
+                    <ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="list-unstyled log-header" >
+                        <li>
+                            <a href="/MyDeliveryPortal/samllogout">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="mobilecheckMobile">
+                    <a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <a id="rploginlink" href="/MyDeliveryPortal/samllogin?return=home" style="visibility:hidden"></a>
+        <div ng-if="userLoggedOut" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="{{retailerHomeUrl}}">Are you a retailer?</a></li>
+                <li><a id="loginlink" href="/MyDeliveryPortal/samllogin?return=home">Login</a></li>
+                <li class="highlight-menu"><a ng-href="{{homeUrl}}/register" >sign up</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+<!--<div ng-if="standAloneMapHeader && !isHomeHdr">-->
+<div ng-if="(standAloneMapHeader && !isHomeHdr) || (standAloneMapHeader && !isRetailerHdr)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="clearfix track-map-container">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2">
+                            <a class="header-brand-logo " ng-href="{{homeUrl}}" >
+                                <img src="images/logos/onthedontlogo.png" alt="" />
+                            </a>
+                        </div>
+                        <div class="col-md-10" style="border-left:1px solid #f3f3f3;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h1 class="track-ur-hdr-lbl">Track your delivery</h1>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row booking-info mar-top-10">                                
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 reset-padding-left-desktop">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                                    <p><span class="title">Collect from:</span>
+                                                        <span class="data" ng-if="headerMap.collectFrom && headerMap.collect">{{headerMap.collectFrom}} | {{headerMap.collect}}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                                    <p><span class="title">Delivery to:</span>
+                                                        <span class="data" ng-if="headerMap.deliveryTo && headerMap.delivery">{{headerMap.deliveryTo}} | {{headerMap.delivery}}</span>
+                                                    </p>
+                                                </div>
+
+                                                <!--<div class="col-xs-12 col-sm-4 col-md-3">-->
+                                                <!--<p><span class="title">Package ready from: </span>-->
+                                                <!--<span class="data" ng-if="headerMap.deliveryTime">{{headerMap.deliveryTime| date:'medium' }}</span>-->
+                                                <!--</p>-->
+                                                <!--</div>-->
+                                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                                    <p><span class="title">Date of delivery: </span>
+                                                        <span class="data" ng-if="headerMap.deliveryTime">{{headerMap.deliveryTime| date: "dd-MM-yyyy" }} {{headerMap.startTime| uktimefilter}} - {{headerMap.endTime| uktimefilter}}</span>
+                                                    </p>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container hdr-banr-container" ng-if="!standAloneMapHeader && !isHomeHdr && !isRetailerHdr">
+    <div class="row">
+        <div class="col-md-12 remove-boot-pad-lh">
+            <!--
+            <img ng-src="{{headerImg}}" ng-show="showImg" class="img-responsive animated " ng-class="{'flipInX': showImg}"/>
+            -->
+
+            <img src="images/header_image.png" ng-show="showImg" class="img-responsive" />
+        </div>
+    </div>
+</div>
+

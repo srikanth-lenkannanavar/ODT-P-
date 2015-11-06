@@ -1,0 +1,145 @@
+<div class="container inner-page min-height" apply-bg>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-main-title">My deliveries</h1>
+            <button  class="afloat btn btn-primary" ng-click="getNewBooking()" ></i> Book a new delivery</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="clearfix">
+                <div class="pull-right "> </div>
+            </div>
+            <div class="table-wrap table-responsive hidden-xs">
+
+
+                <div ng-if="!userdelivery || userdelivery.length == 0">
+                    <div class="alert alert-info">You have not made any purchases yet</div>
+                </div>
+
+                <table class="table" ng-if="userdelivery.length > 0">
+                    <thead>
+                        <tr class="row-margin">
+                            <th wid>Order no.</th>
+                            <!-- <th><a href="" ng-click="order('createdate', reverse)"><i class="fa fa-sort"></i>Order date</a></th> -->
+                            <th><a href="" ng-click="doSort(userdelivery)"><i class="fa fa-sort"></i>Order date</a></th>
+                            <th>Collect from</th>
+                            <th>Deliver to</th>
+                            <th><a href="" ng-click="order('bookingstatus', reverse)"><i class="fa fa-sort"></i>Status</a></th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="delivery in userdelivery">
+                            <td width=10%>{{delivery.brjobnumber}}</td>
+                            <td width=10%>{{delivery.createdate}}</td>
+                            <td width=20%>
+                                <div><strong>{{delivery.retailername}}</strong></div>
+                                <div>{{delivery.retaileraddressline1}} {{delivery.retaileraddressline2}} {{delivery.retailercity}} {{delivery.retailerpostalcode|codeFilter}}</div>
+                            </td>
+                            <td width=30%>
+                                 {{delivery.deliveryrefaddress1}} {{delivery.deliveryrefaddress2}} {{delivery.deliveryrefaddresstown}} {{delivery.deliveryrefaddresscounty}} {{delivery.postcode|codeFilter}}
+                            </td>
+                            <td width="14%">{{delivery.bookingstatus}}</td>
+                            <td width="16%" class="action">
+                                <a class="table-btn locate btn btn-default" href="" ng-if='delivery.isLiveTrack' title="Live track"><i class="icon icon-onthedot-icons-05" ng-click="track(delivery.brjobnumber, delivery.accountnumber, delivery)"></i></a>
+                                <a class="table-btn edit btn btn-default" href="" ng-if='delivery.isEdit' ng-click="editBooking(delivery.uuid, delivery.userid, delivery.bookingstatus, delivery.transactiondate)" title="Edit booking"><i class="icon icon-onthedot-icons-06"></i></a>
+                                <a class="table-btn delete btn btn-default" href="" ng-if='delivery.isCancel' title="Cancel booking" ng-click="confirmCancellation(delivery.userid, delivery.status, delivery.transactiondate)"><i class="icon icon-onthedot-icons-07"></i></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row delivery-grid-sm-container">
+                <div class="col-xs-12 col-md-12">
+                    <!--<div class="clearfix">
+                        <div class="pull-left"> <button  class="btn new-delivery-btn" ng-click="getNewBooking()"></i> Book a new delivery</button></div>
+                    </div>-->
+
+                    <div ng-if="userdelivery.length == 0">
+                        <div class="alert alert-info">No Delivery</div>
+                    </div>
+
+
+                    <table class="table mobile-device-billing table billing-table"  ng-if="userdelivery.length > 0">
+                        <thead>
+                            <tr class="row-margin">
+                                <th>Order no.</th>
+                                <th><!--<i class="fa fa-sort"
+                                       ng-click="order('status', reverse)"> Status</i>-->
+                                     <a href="" ng-click="doSort(userdelivery)"><i class="fa fa-sort"></i>Order date</a></th>
+                                    <!--<a href="" ng-click="order('bookingstatus', reverse)"><i class="fa fa-sort"></i>Status</a></th>-->
+                                <th class="text-right">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="delivery in userdelivery">
+                            <tr>
+                                <td>
+                                    <a href="" class="sm-my-del-ord">{{delivery.brjobnumber}}</a>
+                                </td>
+                                <!--<td>{{delivery.bookingstatus}}</td>-->
+                                <td>{{delivery.createdate}}</td>
+                                <td class="action">
+                                    <!--<a href="" ng-if='delivery.isLiveTrack' title="Live track">
+                                        <i class="fa fa-map-marker"></i></a>
+                                    <a href="" ng-if='delivery.isEdit' ng-click="editBooking(delivery.uuid, delivery.userid, delivery.bookingstatus, delivery.transactiondate)" title="Edit booking">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <a href="" ng-if='delivery.isCancel' title="Cancel booking" ng-click="confirmCancellation(delivery.userid, delivery.bookingstatus, delivery.transactiondate)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>-->
+                                    <a class="table-btn locate btn btn-default" href="" ng-if='delivery.isLiveTrack' title="Live track"><i class="icon icon-onthedot-icons-05" ng-click="track(delivery.brjobnumber, delivery.accountnumber, delivery)"></i></a>
+                                    <a class="table-btn edit btn btn-default" href="" ng-if='delivery.isEdit' ng-click="editBooking(delivery.uuid, delivery.userid, delivery.bookingstatus, delivery.transactiondate)" title="Edit booking"><i class="icon icon-onthedot-icons-06"></i></a>
+                                    <a class="table-btn delete btn btn-default" href="" ng-if='delivery.isCancel' title="Cancel booking" ng-click="confirmCancellation(delivery.userid, delivery.status, delivery.transactiondate)"><i class="icon icon-onthedot-icons-07"></i></i></a>
+                                </td>
+
+                            </tr>
+                            <tr class="my-del-sm-info">
+                                <td colspan="3" class="collapse-section relative">
+                                    <button type="button" class="close sm-mybilling-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <div class="col-50-p">
+                                        <dl class="dl-horizontal">
+                                            <dt>Collect from:</dt>
+
+                                            <dd>
+                                                <div><strong>{{delivery.retailername}}</strong></div>
+                                                <div>{{delivery.retaileraddressline1}} {{delivery.retaileraddressline2}} {{delivery.retailercity}} {{delivery.retailerpostalcode|codeFilter}}</div>
+                                            </dd>
+                                            <!--<dt>Order date:</dt>-->
+                                            <dt>Status:</dt>
+                                            <!--<dd class="last">{{delivery.createdate}}</dd>-->
+                                            <dd class="last">{{delivery.bookingstatus}}</dd>
+                                        </dl>   
+                                    </div>
+                                    <div class="col-50-p">
+                                        <dl class="dl-horizontal">
+                                            <dt>Deliver to:</dt>
+                                            <dd class="last">{{delivery.deliveryrefaddress1}} {{delivery.deliveryrefaddress2}}</dd>
+                                        </dl>                               
+                                    </div>
+
+                                    <!--<div class="row ">
+                                        <div class="col-xs-5">
+                                            <label for="">Collect from:</label><br> <span>{{delivery.retaileraddressline1}}</span>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <label for="">Deliver to:</label>
+                                            <br><span>
+                                                {{delivery.deliveryrefaddress1}} {{delivery.deliveryrefaddress2}}</span>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span class="sm-mybilling-close">X</span>
+                                        </div>
+                                    </div>-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<button ng-click="cacelBooking();">Pop</button>-->
+</div>

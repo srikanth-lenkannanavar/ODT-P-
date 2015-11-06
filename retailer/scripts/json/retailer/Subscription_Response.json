@@ -1,0 +1,66 @@
+{
+    "data": [{
+            "subscriptionname": "5 Mile - Mini bundle",
+            "displayname": "Mini bundle",
+            "subscriptiondurationinmonths": 12,
+            "noofdeliveries": 100,
+            "cost": 100.0,
+            "jobtotal": 120.0,
+            "jobvat": 20.0,
+            "currency": "GBP",
+            "collectionLeadTime": "30",
+            "subscriptiondetails": "100 deliveries within a 5 Mile zone",
+            "createdate": 1437131950035,
+            "updateddate": 1437131950035,
+            "miles": "\u0000\u0000\u0000\u0005",
+            "specialdescription": "Lorem ipsum dolor sit amet,consectetur adipisicing"
+        }, {
+            "subscriptionname": "5 Mile - Mega bundle",
+            "displayname": "Mega bundle",
+            "subscriptiondurationinmonths": 12,
+            "noofdeliveries": 200,
+            "cost": 200.0,
+            "jobtotal": 240.0,
+            "jobvat": 40.0,
+            "currency": "GBP",
+            "collectionLeadTime": "30",
+            "subscriptiondetails": "200 deliveries within a 5 Mile zone",
+            "createdate": 1437131959496,
+            "updateddate": 1437131959496,
+            "miles": "\u0000\u0000\u0000\u0005",
+            "specialdescription": "Lorem ipsum dolor sit amet,consectetur adipisicing"
+        }, {
+            "subscriptionname": "10 Mile - Mini bundle",
+            "displayname": "Mini bundle",
+            "subscriptiondurationinmonths": 12,
+            "noofdeliveries": 20,
+            "cost": 60.0,
+            "jobtotal": 72.0,
+            "jobvat": 12.0,
+            "currency": "GBP",
+            "collectionLeadTime": "30",
+            "subscriptiondetails": "20 deliveries within a 10 Mile zone",
+            "createdate": 1437131968946,
+            "updateddate": 1437131968946,
+            "miles": "\u0000\u0000\u0000\n",
+            "specialdescription": "Lorem ipsum dolor sit amet,consectetur adipisicing"
+        }, {
+            "subscriptionname": "10 Mile - Mega bundle",
+            "displayname": "Mega bundle",
+            "subscriptiondurationinmonths": 12,
+            "noofdeliveries": 40,
+            "cost": 120.0,
+            "jobtotal": 144.0,
+            "jobvat": 24.0,
+            "currency": "GBP",
+            "collectionLeadTime": "30",
+            "subscriptiondetails": "40 deliveries within a 10 Mile zone",
+            "createdate": 1437131980387,
+            "updateddate": 1437131980387,
+            "miles": "\u0000\u0000\u0000\n",
+            "specialdescription": "Lorem ipsum dolor sit amet,consectetur adipisicing"
+        }],
+    "success": {
+        "status": "ok"
+    }
+}

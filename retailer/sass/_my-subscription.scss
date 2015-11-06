@@ -1,0 +1,176 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 23, 2015, 3:31:04 PM
+    Author     : srikanthl
+*/
+
+
+//@media screen and (min-width: 767px)  {
+
+.pull-left.date-row,.pull-right.date-row 
+{
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.col-md-height
+{
+    height: 100px;
+    margin: 12px;
+    border: 1px solid #51CAE3;
+    border-radius: 6px;
+    font-size: 25px;
+    padding: 0px;
+}
+.col-md-height1
+{
+    width: 0px;
+    height: 97px;
+    border-left: 139px solid white;
+    z-index: 1;
+    margin: 1px 8px 1px 1px;
+    border-radius: 5px;
+}
+.col-md-height2
+{
+    height: 100px;
+    background: #51CAE3;
+    z-index: 0;
+    padding: 30px 0px;
+    font-size:24px;
+    color: #FFFFFF;
+}
+
+.pull-left.col-md-height1 > p {
+    color: #51CAE3;
+    margin: 0px -90px;
+    font-weight: bold;
+    font-size: 70px;
+}
+div.subscription-well-2>div.row-1>div.col-md-11.col-md-height{
+    border: 1px dashed #51CAE3;
+    margin-right: 20px;
+    height:50px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+div.subscription-well-2>div.row-1>div.col-md-11.col-md-height >div.fa-warning{
+    color: #FFB300; 
+    margin-right: 5px;
+}
+
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height{
+    background: #99DFEE;
+}
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height >.col-md-4.pull-left{
+    font-size: 16px;
+    font-weight: bold;
+}
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height >.col-md-2.pull-right{
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration:line-through;
+}
+
+div.subscription-well-2 h4.title{
+    color: #ffffff;
+    font-weight: bold;
+}
+
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height >div.row>p.pull-left{
+    font-size: 16px;
+    margin: 4px 28px;
+    color: #FFFFFF;
+}
+
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height >div.row>p.pull-right{
+    font-size: 16px;
+    margin: 4px 28px;
+    color: #FFFFFF;
+}
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height >div.row >p>a{
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height.row-3{
+    background: #43B02A;
+    border: none;
+}
+div.subscription-well-2>div.row-2>div.col-md-6.col-md-height.row-4{
+    background: #FFB300;
+    border: none;
+}
+
+.my-subscription .ur-collection-err {margin: 0;}
+.my-subscription .ur-collection-err i, .my-subscription .ur-collection-err i:before {line-height: 1;}
+.my-subscription .ur-collection-err p {margin: 8px 0 0 0}
+
+.my-subscription .subscript-summary-box {
+    margin-bottom: 0
+}
+
+.my-subscription h2 {
+    font-size: 22px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.bundle-wrap {margin-top:25px;}
+.bundle-wrap .green-box {
+    margin-top: 25px; 
+}
+.bundle-wrap .green-box:nth-child(1) {
+    margin-top: 0;
+}
+
+.sub-bottom-content {
+    margin: 15px 0px -25px 0px;
+}
+@media only screen and (max-width : 767px) {
+    .green-box p {
+        margin-bottom: 15px;
+    }
+    .green-box sup {
+        top: -0.5em;
+    }
+    .green-box .main-price {
+        font-size: 34px;
+    }
+}
+@media only screen and (min-width : 992px) {
+    subscript-amt{
+        text-align: right;
+        /*margin-right: 25px;*/
+    }
+}
+@media only screen and (max-width : 352px) {
+    .subscript-vat {margin-right: -7px;}
+}
+@media screen and (max-width : 475px) {
+    .subscript-summary-box.giant .subscribe-info-box {
+        height: 100%;
+        font-size: 17px;
+        display: table-cell;
+        vertical-align: middle;
+        line-height: 120%;
+    }
+}
+.subscript-vat {
+    font-size: 10px;
+    margin-top: -20px;
+
+    /* font-family: 'source_sans_proregular'; */
+    color: #B8B8AE;
+}
+
+.my-bundles{
+    .row {
+        /*margin-right: -32px;*/
+        /*margin-left: -15px;*/
+    }
+}

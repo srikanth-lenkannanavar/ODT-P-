@@ -1,0 +1,143 @@
+<div class="container inner-page min-height my-subscription" apply-bg>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-main-title">Bundles</h1>
+            <button  class="afloat btn btn-primary" ng-click="getNewBooking()" ></i> Book a new delivery</button>
+        </div>
+    </div>
+    <h2 class="page-sub-title" ng-if="check">
+        {{userSubs.displayname}} 
+    </h2>
+    <!--<div class="subscription-well-1" ng-if="check">-->
+    <div class="subscription-well-1" ng-if="check">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="pull-left date-row">Purchased on: {{userSubs.subscriptionstartdate}}</div>  
+                <div class="pull-right date-row">Expires on: {{userSubs.subscriptionenddate}}</div>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="subscript-summary-box giant clearfix">
+
+                    <div class="ur-sub-big pull-left ng-binding">
+                        {{userSubs.remainingbookingsforsubscription}}
+                    </div>
+                    <div class="subscribe-info-box ng-binding">
+                        <!---->
+                        <div class="box-content" ng-if="userSubs.remainingbookingsforsubscription > 1">Good news! You still have {{userSubs.remainingbookingsforsubscription}} out of {{userSubs.totalbookingsforsubscription}} deliveries left in your bundle</div>  
+                        <div class="box-content" ng-if="userSubs.remainingbookingsforsubscription == 1" >Good news! You still have  {{userSubs.remainingbookingsforsubscription}} out of {{userSubs.totalbookingsforsubscription}} deliveries left in your bundle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="subscription-well-2 clearfix" ng-if="!check">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 pad-top-5">
+                    <!--<p>Bundles can used for deliveries made within your On the dot collection zone. Please check the postcodes</a> available.</p>-->
+                    <p>Bundles are an easy way to get your deliveries On the dot whilst saving money. Check the <a ng-href="{{homeUrl}}/where-we-deliver">postcodes</a> we deliver to</p>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- <div class="row row-2 clearfix">
+            <div class="col-md-6 col-md-height">
+                <div class="col-md-4 pull-left">BUNDEL 1</div> 
+                <div class="col-md-2 pull-right">&#163; 6.25</div> 
+
+                <div class="row">
+                    <p class="pull-left">4 delivery  for less then the price of 3 </p>
+                    <p class="pull-right">&#163; 20.25</p> 
+                </div>
+                <div class="row">
+                    <p class="pull-left"><a href="#">Click Here to Buy Now</a></p>
+                </div>
+            </div>
+        </div> -->
+
+        <!--<div ng-init="subname={{data.displayname}}" class="row row-2" ng-repeat="data in AllSubscription">
+
+            <div class="col-md-6 col-md-height row-3">
+                <div class="col-md-4 pull-left">{{data.displayname}}</div> 
+                <div class="col-md-2 pull-right">&#163; 34.75</div> 
+                <div class="row" ng-if="data.subscriptionname == 'Bundle1' ">
+                    <p class="pull-left">{{data.noofdeliveries}} deliveries for less than the price of 3  </p>
+                    <p class="pull-right">&#163; {{data.cost}}</p> 
+                </div>
+                  <div class="row" ng-if="data.subscriptionname == 'gold' ">
+                    <p class="pull-left">{{data.noofdeliveries}} deliveries for less than the price of 5 : 
+                    &#163; {{data.cost}}  </p>
+                    <p class="pull-right">&#163; {{data.cost}}</p> 
+                </div> 
+                  <div class="row" ng-if="data.subscriptionname == 'Bundle2' ">
+                    <p class="pull-left">{{data.noofdeliveries}} deliveries for less than the price of 5 </p>
+                    <p class="pull-right">&#163; {{data.cost}}</p> 
+                </div>
+                <div class="row">
+                    <p class="pull-left"><a href="" ng-click="buySubscriptions(data.cost, data.subscriptionname, data.displayname)" >Buy now</a></p>
+                </div>
+            </div>
+        </div>-->
+        <!--  <div class="row row-2 row-4">
+               <div class="col-md-6 col-md-height row-4">
+                 <div class="col-md-4 pull-left">BUNDEL 1</div> 
+                 <div class="col-md-2 pull-right">&#163; 6.25</div> 
+ 
+                 <div class="row">
+                     <p class="pull-left">4 delivery  for less then the price of 3 </p>
+                     <p class="pull-right">&#163; 20.25</p> 
+                 </div>
+                 <div class="row">
+                     <p class="pull-left"><a href="#">Click Here to Buy Now</a></p>
+                 </div>
+             </div> -->
+    </div>
+    <!--<div class="row" ng-init="subname={{data.subscriptionname}}" ng-repeat="data in AllSubscription">-->
+    <div class="row bundle-wrap" ng-if="!check">
+        <div class="col-md-6">
+            <div class="green-box"  ng-repeat="data in AllSubscription">
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8 col-lg-8">
+                        <h4 class="title">{{data.displayname}}</h4>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-lg-4 text-right">
+                        <p class="sub-price"><strike> &#163;{{data.noofdeliveries * 6.95|number:2}}</strike></p>
+                    </div>
+                </div>
+                <!--ng-if="data.subscriptionname == 'Bundle2' "-->
+                <div class="row" ng-if="data.displayname == 'Small bundle'">
+                    <div class="col-xs-7 col-sm-8 col-lg-8">
+                        <p>{{data.jobtotal| number:2|currency:"&pound;"}} for {{data.noofdeliveries}} deliveries ({{data.subscriptiondetails| currency:"&pound;"}} per delivery)
+                            <!-- : 
+                    &#163; {{data.cost}}--></p>
+                    </div>
+                    <div class="col-xs-5 col-sm-4 col-lg-4 text-right">
+                        <p><span class="main-price">{{data.jobtotal| number:2|currency:"&pound;"}}</span></p>
+                    </div>
+                </div>
+                <div class="row" ng-if="data.displayname == 'Big bundle'">
+                    <div class="col-xs-7 col-sm-8 col-lg-8">
+                        <p>  <p>{{data.jobtotal| number:2|currency:"&pound;"}} for {{data.noofdeliveries}} deliveries ({{data.subscriptiondetails| currency:"&pound;"}} per delivery)<!-- : 
+                    &#163; {{data.cost}}--></p>
+                    </div>
+                    <div class="col-xs-5 col-sm-4 col-lg-4 text-right">
+                        <p><span class="main-price">{{data.jobtotal| number:2|currency:"&pound;"}}</span></p>
+                    </div>
+                </div>
+                <a href="" class="anchor" ng-click="buySubscriptions(data.jobtotal, data.subscriptionname, data.displayname)" >Buy now</a>
+            </div>  
+
+        </div>
+    </div>
+    <div class="row" ng-if="!check">
+        <div class="col-md-12 col-xs-12 pad-top-5 sub-bottom-content">
+            <!--<p>Bundles can used for deliveries made within your On the dot collection zone. Please check the postcodes</a> available.</p>-->
+            <p>Our bundles expire within 6 months of purchase. </p>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,146 @@
+.delivery-grid-desktop,
+.delivery-grid-sm{
+
+    .action{
+        background: #E1F3F7;
+    }
+
+    th{
+        /*background-color: $grid-th-tr-color;*/
+        font-weight: bold;
+        cursor: pointer;
+        i{
+            font-weight: bold;
+        }
+    }
+
+    thead > tr > th,  tbody > tr > td
+    {
+       /* border-top: 1px solid  $grid-th-tr-color !important;
+        border-bottom: 1px solid  $grid-th-tr-color!important;*/
+        font-size: 12px;
+    }
+
+    tbody > tr:hover {
+        background: #F1F8FA;
+    }
+    .action > a > .fa{
+        color:$action-icon-color;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 2px;
+        cursor: pointer;
+
+    }
+
+    .action a {
+        border-right: 1px solid #fff;
+        padding: 5px;
+    }
+
+
+
+
+}
+
+.table > tbody > tr > td.action {vertical-align: middle; text-align:right;}
+.table > tbody > tr > td.action a {margin-right: 5px; padding: 5px 0 3px 0; border:none; width: 32px; line-height:1;}
+.table > tbody > tr > td.action a.edit {background:#43B02A; color: #ffffff;} 
+.table > tbody > tr > td.action a.delete {background: #43B02A; color: #ffffff;}
+.table > tbody > tr > td.action a.locate {background: #43B02A; color: #ffffff;} 
+.table > tbody > tr > td.action a:hover {}
+.table-btn i {font-size:20px;}
+
+button.afloat {
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.delivery-grid-sm,.delivery-grid-sm-container{
+    display: none;
+}
+
+.new-delivery-btn{
+    color: #fff;
+    background-color: #A6E2EF;
+    border-color: #A6E2EF;
+    margin-bottom: 5px;
+    &:hover{
+        color: #fff;
+        background-color: #A6E2EF;
+        border-color: #A6E2EF;
+
+    }
+}
+
+@media only screen and (min-width : 1024px) {
+    .delivery-grid-desktop{
+        th{
+            font-size: 12px !important;
+          /*font-family: 'segoe_ui';*/
+        }
+        td{
+            font-size: 12px !important;
+          /*font-family: 'segoe_ui';*/
+        }
+
+    }
+
+}
+
+
+@media only screen and (max-width : 767px) {
+    .table-responsive > .table, .table-responsive {/*display: none;*/ border: none;}
+
+    .delivery-grid-sm,.delivery-grid-sm-container{
+        display: block;
+    }
+
+    .collapse-section{
+        background: #e3e3e3;
+        color: #555555;
+    }
+
+    .my-del-sm-info{
+        display: none;
+    }
+    .delivery-grid-sm.table > tbody + tbody {
+        border-top: none;
+    }
+    
+
+}
+
+@media only screen and (max-width : 480px) {
+    button.afloat {position: static; margin-bottom: 15px;}
+}
+
+
+
+@media only screen and (max-width : 350px) {
+    .delivery-grid-sm{
+        th{
+            font-size: 10px !important;
+          /*font-family: 'segoe_ui';*/
+        }
+        td{
+            font-size: 10px !important;
+          /*font-family: 'segoe_ui';*/
+        }
+        .action > a > .fa{
+
+            font-size: 10px;
+
+
+        }
+        .action a {
+            border-right: 1px solid #fff;
+            padding: 0px;
+        }
+
+
+    }
+
+
+}

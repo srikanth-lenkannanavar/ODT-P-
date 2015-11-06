@@ -1,0 +1,178 @@
+h2.page-bold-title{
+    color: $app-green;
+    font-family: source_sans_probold;
+    font-size: 28px;
+}
+.booking-conf{
+    .well{
+        border-radius: 0;
+        background-color: transparent;
+        border: 1px solid $app-green;
+        padding:20px;
+    }
+    .brt-subscription{
+        font-size: 14px;
+    }
+}
+
+.total{
+    display: -webkit-inline-box;
+}
+.total > div{
+    margin: 45px 0px 0px 2px;
+    /*    font-size: 10px;
+        font-weight: 600;*/
+}
+
+.order-header{
+    font-size: 18px;
+    font-weight: 600;
+}
+.thank-you {
+    margin-top:40px;
+    margin-bottom: 40px;
+}
+.thank-you h2.page-bold-title {
+    margin:0 0 5px 0;
+}
+.booking-info {
+    margin-top: 30px;
+}
+
+
+.booking-info-retailer {
+    border: 1px solid $border-color;
+    margin: 0px 0px;
+}
+.booking-info.min-margin {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+.booking-info p {
+    font-weight: 600;
+}
+
+.store-title{
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 5px;    
+}
+.booking-info p span.data {
+    display: block;
+    font-weight:normal;
+    margin-top: 5px;
+}
+.booking-info p span.details {
+    display: block;
+    font-weight: normal;
+    margin-top: -4px;
+}
+.booking-info p span.book-amount {
+    margin: -10px 0px;
+    font-size: 30px;
+    color: #60BA48;
+    display: block;
+    font-family: source_sans_proregular;
+    font-weight: normal;
+}
+.subscription-amount{
+    font-size: 12px;
+}
+.vat-in-span{
+    font-weight: 400;
+    display: block;
+    margin: -35px 0px 0px 90px;
+}
+.fb-share-text{
+    display: table-cell;
+    vertical-align: middle;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+.fb-share-btn{
+    padding: 1px 4px 0px 0px;
+    border-radius: 2px !important;
+    line-height: 1.7;
+    border: none;
+    /*vertical-align: top;*/
+    font-family: 'helvetica neue', helvetica, arial, 'lucida grande', sans-serif;
+    font-size: 11px;
+    /* font-weight: bold; */
+    display: table;
+    vertical-align: middle;
+    /* height: 17px; */
+    /* overflow: hidden; */
+}
+.fb-share-icon{
+    font-size: 14px;
+    /* line-height: 1; */
+    margin-right: 4px;
+    margin-left: 4px;
+}
+/*payg users voucher wrap*/
+.payg-wrap p {
+    margin-bottom: 5px;
+}
+.payg-wrap p.para strong {
+    color:#43B02A;
+}
+.thank-you .action-pane {margin-top: 20px; margin-left:0; overflow: hidden; border-top: 1px solid #e8e8e8; padding-top: 20px;
+                         margin-right: 15px;}
+.thank-you .action-pane .col-md-12 {padding-left: 0; padding-top:15px; padding-bottom:0; border-top:1px solid #e8e8e8;}
+@media screen and (max-width: 767px)
+{
+    /*.booking-info p span.data {margin-left: 110px;}
+    .booking-info p span.title {float:left;}*/
+    .booking-info p {margin-bottom: 15px;}
+    .booking-info p span.data {margin-top: 0;}
+    .thank-you .action-pane {margin-bottom: 30px; margin-right: 0;}
+    /*.booking-info p {vertical-align: top;}
+    .booking-info p span {display: inline-block; padding-left: 5px; margin:0;}*/
+/*    .hidden-print{
+        display: none;
+    }*/
+.booking-info-retailer {
+    border: none;
+    margin: 0px 0px;
+}
+.header-mar-top{
+    margin-top: 25px;
+}
+}
+@media (min-width: 992px){
+
+    .cust-col-md-3 {
+        width: 22%;
+    }
+    .cust-col-md-3-subscription {
+        width: 34%;
+    }
+    .right-border{
+        border-right: 1px solid $border-color;
+    }
+}
+.bottom-border{
+    border-bottom: 1px solid $border-color;
+    padding: 15px;
+}
+.onlyprint {display: none;}
+
+
+
+.sub-title{
+    /*    font-family: 'Source Sans Pro', sans-serif;
+        letter-spacing: -1px;*/
+    font-size: 18px;
+    color: $tes-sub-title-tcolor;
+    font-weight: 600;
+}
+@media  (min-width: 767px)  {
+    .col-sm-4{
+        .logo-border{
+            img{
+                max-width: 100%
+            }
+        }
+    }
+}

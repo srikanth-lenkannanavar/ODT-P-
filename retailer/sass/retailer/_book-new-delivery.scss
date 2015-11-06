@@ -1,0 +1,164 @@
+/*book-new-delivery-accordion Style Begin */
+
+.book-new-delivery-accordion .panel-default, .panel-default {
+    border-color:transparent;
+    border-bottom: 1px solid #fafafa;
+    border-radius: 0;
+}
+.panel:first-of-type{
+    border-top:0;
+}
+.panel-group .panel + .panel {
+    margin-top:0;
+}
+.book-new-delivery-step-0{
+    background-color: #f6f6ec;
+    padding: 0% 3%;
+
+
+}
+
+
+.item-value-validation-box{
+  color:#E83624;
+  display: table;
+
+  .warning-icon-box{
+    width: 26px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 5px;
+    vertical-align: middle;
+    display: table-cell;
+    /*float: left;*/
+  }
+  .warning-content-box{
+    display: table-cell;
+    overflow: hidden;
+    padding-top: 5px;
+  }
+
+}
+
+
+.book-new-delivery-section{
+    border: 1px solid #f6f8ef;
+    padding: 10px 15px 0px 15px;
+    .book-new-delivery-accordion{
+        .choose-ts-summary-header{
+            background-color: #f9faf5;
+            padding-top: 25px;
+            margin-top: -30px;
+        }
+        .choose-ts-summary-sel-ts{
+            margin-top: 0px;
+            margin-bottom: -5px;
+            color: #82827f;
+            font-weight: bold;
+            font-size: 12px;
+            word-spacing: 3px;
+
+        }
+        .choose-ts-summary-date-label{
+            letter-spacing: 0.1px;
+            font-weight: normal !important;
+            .choose-ts-sel-date,
+            .choose-ts-sel-time{
+                font-size:12px;
+                letter-spacing: 0.1px;
+            }
+        }
+        .choose-ts-summary-vat{
+            color: #d8d7d3;
+            font-size: 12px;
+            margin-top: -10px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+
+        }
+
+        .panel-default > .panel-heading h4.panel-title .icon {
+            padding-right: 0;
+            line-height: 100%;
+        }
+        .panel{
+            box-shadow:none;
+            border-bottom: none;
+        }
+        .panel-heading{
+            .panel-title{
+                padding-right:0px;
+            }
+        }
+        .panel-body{
+            padding: 0 0 20px 0px !important;
+        }
+        .panel-group .panel-heading + .panel-collapse > .panel-body{
+            border-top: none;
+        }
+        .bundle-header{
+            display: table;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            .ur-sub-big{
+                font-weight: 600;
+                padding-left: 0;
+                padding-right: 5px;
+                display:table-cell;
+                margin: 0;
+                font-size: 45px;
+                vertical-align: middle;
+                color: #43B02A;
+                height: 50px;
+                text-align: center;
+                /*background: #ffffff;*/
+
+            }
+            .bundle-box{
+                display: table-cell;
+                vertical-align: middle;
+                p{
+                    font-size: 14px;
+                    margin: 0;
+                    line-height: 16px;
+
+                }
+            }
+
+        }
+
+
+
+        @media screen and (max-width: 360px) {
+            .confirm-del-add-title {
+                width: 230px;
+                float: left;
+                word-break: break-word;
+                padding-bottom: 10px;
+            }
+        }
+
+    }
+}
+@media screen and (min-width: 992px){
+    .col-md-padding-5{
+        padding: 0px 12px;
+    }
+    .div-right-border{
+        margin-right: 0%;
+        border-right: 1px solid #ccc;
+    }
+    .logo-border{
+        border: 1px solid #f6f6ec;
+        padding: 8px;
+
+        margin: 0 auto;
+        float: right;
+        img{
+            width: 100%;
+        }
+        width: 80px;
+    }
+}
+
+/* book-new-delivery-accordionStyle End */

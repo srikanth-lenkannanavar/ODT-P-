@@ -1,0 +1,219 @@
+<div class="container thank-you padding-rl-30">
+    <div class="row" ng-if="bookingFailed">
+        <div class="alert alert-danger alert-error">
+            Oops! There seems to be a problem with your booking. Please contact our customer care team on 020 7880 1444.
+        </div>
+    </div>
+
+    <div class="booking-conf" ng-if="!bookingFailed">
+        <div class="row">
+            <div class="col-md-12 reset-padding-desktop">
+                <h2 class="page-bold-title" >Thank you! Your booking has been made.</h2>
+                <p> An email confirmation has been sent to you.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 reset-padding-desktop">
+                <div class="row booking-info">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 reset-padding-left">
+                            <div>
+                                <p><span class="title">Your booking no.:</span>
+                                    <span class="data">{{orderNo}}</span></p>
+                            </div> 
+                            <div ng-if="!subscribeBook && vouchercode == ''">
+                                <p>Total amount:<span class="book-amount"> &pound; {{price}}</span></p>
+                            </div>
+
+                            <div ng-if="subscribeBook">
+                                <div class="subscript-summary-box clearfix ng-scope">
+                                    <div class="ur-sub-big pull-left ng-binding">{{remainingSubscription}}</div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription > 1">
+                                        <span>You still have {{remainingSubscription}} deliveries left to use</span>
+                                    </div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription == 1">
+                                        <span>You still have {{remainingSubscription}} delivery left to use</span>
+                                    </div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription == 0">
+                                        <span>You have no more deliveries left to use in your bundle</span>
+                                    </div>
+                                </div>
+                                <div ng-if="vouchercode != ''">
+                                    <p><span class="title">Voucher code used:</span>
+                                        <span class="data">{{vouchercode}}</span>
+                                    </p>
+                                </div>
+                            </div>                      
+
+
+                            <div class="payg-wrap" ng-if="!subscribeBook && vouchercode != ''">
+                                <p class="para"><strong>Yay! You had a freebie. Enjoy</strong></p>
+                                <p><span class="title">Voucher code used:</span>
+                                    <span class="data">{{vouchercode}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 reset-padding-left">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p><span class="title">Delivery date:</span>
+                                        <span class="data">{{deliveryDate| date: "dd-MM-yyyy"}}</span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p><span class="title">Delivery timeslot:</span>
+                                        <span class="data">{{retailerstoreopentime| uktimefilter}} - {{retailerstoreclosetime| uktimefilter}}</span>
+                                    </p>
+                                </div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p>
+                                        <span class="title">Collect from:</span>
+                                        <span class="data">
+                                            {{retailername}}<br>
+                                            {{retaileraddress}}<br>
+                                            {{retailercity}}<br>
+                                            {{retailerpostalcode|codeFilter}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p>
+                                        <span class="title">Deliver to:</span>
+                                        <span class="data">
+                                            {{deliveryrefname}}<br>
+                                            {{deliveryToAddress}}<br>
+                                            {{deliveryrefaddresstown}}<br>
+                                            <span class="data" ng-if="deliveryToPhone">{{deliveryToPhone}}<br></span>
+                                            {{deliveryToPostcode|codeFilter}}
+                                        </span>
+                                    </p>
+                                    <div ng-hide="isAddressEmpty">
+                                        <button class="btn btn-primary tiny" ng-click="saveAddress()">Save address</button>
+                                    </div>
+                                </div>
+                            </div>                         
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row booking-info">
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <p><span class="title">Your booking no:</span>
+                            <span class="data">{{orderNo}}</span></p>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <p><span class="title">Delivery date:</span>
+                            <span class="data">{{deliveryDate| date: "dd-MM-yyyy"}}</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <p><span class="title">Delivery timeslot:</span>
+                            <span class="data">{{retailerstoreopentime | date: "HH:mm" :'UTC'}} - {{retailerstoreclosetime | date: "HH:mm" :'UTC'}}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row booking-info min-margin">
+
+                    <div class="col-xs-12 col-sm-5 col-md-5" ng-if="!subscribeBook && vouchercode == ''">
+                        <p>Total amount:<span class="book-amount">&#163; {{price}}</span></p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5 col-md-5" ng-if="subscribeBook">
+                        <div class="subscript-summary-box clearfix ng-scope">
+                            <div class="ur-sub-big pull-left ng-binding">{{remainingSubscription}}</div>
+                            <div class="subscribe-info-box  ng-binding">You still have {{remainingSubscription}} deliveries left to use</div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                           <p><span class="title">Collect from:</span>
+                            <span class="data">{{retailerpostalcode}}<br>
+                          {{retaileraddress}}<br>
+                          {{retailercity}}</span></p>
+                        <p><strong>{{retailerpostalcode}}</strong></p>
+                        <p><strong>{{retaileraddress}}</strong></p>
+                        <p><strong>{{retailercity}}</strong></p>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3"> 
+                           <p><span class="title">Deliver to:</span>
+                            <span class="data">{{deliveryToPostcode}}<br>
+                        {{deliveryToAddress}}<br>
+                        {{deliveryrefaddresstown}}<br>
+                        {{deliveryToPhone}}</span></p>
+                        <div ng-hide="isAddressEmpty">
+                            <button class="btn btn-primary tiny" ng-click="saveAddress()">Save address</button>
+                        </div>
+                    </div>
+                </div>-->
+                <!--<div class="row booking-info">
+                    <div class="col-md-6 ">
+                        <div ng-if="vouchercode != ''">
+                            <p><span class="title">Voucher code used:</span>
+                                <span class="data">{{vouchercode}}</span>
+                            </p>
+                        </div>
+                        <div class="book-adrr-vocher" ng-if="vouchercode != ''">
+                            <p>Voucher code used:</p>
+                            <strong class="book-adrr">
+                                {{vouchercode}}
+                            </strong>
+                        </div>
+                        
+                        <div class="payg-wrap" ng-if="!subscribeBook && vouchercode != ''">
+                            <p class="para"><strong>Yay! You had a freebie. Enjoy</strong></p>
+                            <p><span class="title">Voucher code used:</span>
+                                <span class="data">{{vouchercode}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>-->
+
+
+                <div class="action-pane">
+                    <button class="btn btn-primary hidden-print hidden-xs hidden-sm hidden-md" ng-click="orderPrnt();"> Print</button>
+                    <button class="btn btn-default" ng-click="closePage();"> Close</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 reset-padding-desktop share-wrap">
+                <div class="well">
+                    <h2 class="page-bold-title mar-top-0">Tell your friends about <span class="block-lg">On the dot!</span></h2>
+                    <p class="para min-margin"><strong>Share on Facebook or Twitter</strong><!--I Just brought the {{subscriptionname}} Subscription from Mydeliver.--></p>
+                    <p>Amazing! I have just booked a delivery with @onthedotuk to get my goodies when I want them! #ihatewaiting</p>
+                    <div class="soc-btn mar-bot-25">
+                        <div class="pull-left">
+                            <!--<div  class="fb-share-button" data-href="{{composeFbUrl()}}" data-layout="button_count"></div>-->
+                            <a class="btn btn-facebook fb-share-btn" ng-click="fbShare();">
+                                <i class="fa fa-facebook-square fb-share-icon"></i>
+                                <span class="fb-share-text">Share</span></a>
+                            <!--<div id="fb-root"></div>
+                            <div class="fb-share-button" data-href="{{landingPage}}" data-layout="button_count" ng-click="fbShare();"></div>-->
+                            <!--<div ng-click="fbShare();">ABCD</div>-->
+                        </div>
+                        <div class="pull-left mar-left-15">
+                            <!--<a id="idTwitterAnchor" class="twitter-share-button" data-text="{{twitterText();}}" data-url="{{landingPage}}" href="https://twitter.com/share"></a>-->
+                            <a class="twitter-share-button" data-count="none" data-text="{{twitterText();}}" data-url="{{landingPage}}" tweet></a>
+                        </div>
+                    </div>
+                    <!--<div class="row">-->
+                    <!--<div class="col-md-6">-->
+                    <!--<button class="btn btn-default btn-facebook" id="idCmdFeed"><i class="fa fa-facebook"></i> | Share This</button>-->
+                    <!--</div>-->
+
+                    <!--<div class="col-md-6">-->
+                    <!--<button class="btn btn-default btn-twitter"><a id="idTwitterAnchor" class="twitter-share-button" href="https://twitter.com/share"></a></button>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

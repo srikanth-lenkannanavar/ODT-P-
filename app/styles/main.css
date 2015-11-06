@@ -1,0 +1,220 @@
+@font-face {
+    font-family: 'segoe_ui';
+    src: url('../fonts/segoeui-webfont.eot');
+    src: url('../fonts/segoeui-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoeui-webfont.woff') format('woff'),
+         url('../fonts/segoeui-webfont.ttf') format('truetype'),
+         url('../fonts/segoeui-webfont.svg#segoe_uiregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html,body {
+	font-family: 'segoe_ui';
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.jumbotron {
+	text-align: center;
+}
+
+.keyfeature-image {
+	height: 100px;
+	width: 100px;
+	background-color: #e6e6e6;
+	float: left;
+	margin: 0 10px;
+}
+
+.customer-image {
+	height: 200px;
+	width: 500px;
+	background-color: #e6e6e6;
+}
+
+.angular-google-map-container {
+	height: 500px;
+}
+
+.alert {
+	margin-bottom: 0px;
+}
+
+.mydeliveryerror {
+	color: #a94442;
+	background: transparent;
+	border: none;
+}
+
+.mydeliverydiv {
+  display: table;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.notiimg {
+  vertical-align: middle;
+  display: table-cell;
+}
+.myspan {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+/*My Deliveries*/
+
+#my-deliveries .panel-body{
+  text-align: center;
+}
+
+#my-deliveries .table-responsive{
+  margin: 0 15px;
+}
+
+/*My Subscription*/
+.big-number{
+  font-weight: bold;
+  font-size: 50px;
+  vertical-align: middle;
+}
+
+#my-subscription .checkbox{
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.subscription-plan{
+  width: 400px;
+  min-height: 500px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.modal-body > .subscription-plan{
+  width:auto;
+}
+.subscription-plan ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.subscription-plan ul li {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.subscription-plan ul li.plan-name{
+  padding: 15px 0px;
+  font-size: 22px;
+}
+
+.subscription-plan ul li.plan-price{
+  height: 80px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0;
+}
+
+.subscription-plan ul li.plan-price span{
+  font-size: 30px;
+}
+
+#my-subscription .panel{
+  margin-top: 20px;
+}
+
+#modal-form-later .form-group{
+  /*width: 230px;*/
+  margin-bottom: 20px;
+}
+
+#modal-form-later{
+  margin: 0 auto;
+}
+
+
+.ui-container{
+  background-color: #e7e0e7;
+  margin-top: 20px;
+  min-height:800px;
+  margin-bottom: 20px;
+  border:2px solid white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-bottom: 20px;
+}
+#map-container{
+  margin-top:20px;
+  border:2px solid white;
+  border-right: none;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+#step-1, #step-2, #step-3{
+  margin-top:15px;
+}
+
+.collapse-control{
+  color: #51cae3;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin:0px;
+  padding:0px;
+  color: #ccc;
+}
+
+#address-confirmation .well{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding:0px;
+}
+
+ /* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+
+#map-container{
+  margin-top:0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height:200px;
+  border-right:2px solid white;
+  border-top: none;
+}
+
+.ui-container{
+  background-color: #e7e0e7;
+  margin-top: 0px;
+  min-height:800px;
+  margin-bottom: 20px;
+  border:2px solid white;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding-bottom: 20px;
+  border-top: none;
+}
+
+
+}

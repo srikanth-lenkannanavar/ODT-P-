@@ -1,0 +1,78 @@
+<div class="modal-header alert-header">
+    <div class="row">
+        <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">
+           <div class="icon icon-onthedot-icons-33 color-green"></div>           
+        </div>
+        <div class="col-md-9 col-xs-9 reset-padding-left">
+            <h1 class="modal-main-title">Please validate your mobile number</h1>
+            <p>A text message has been sent to {{phoneNo}} with your unique validation code.</p>
+        </div>        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+    </div>  
+    <div class="row">
+        <div class="col-md-12"><hr class="line"></div>
+    </div>  
+</div>
+
+<form role="form" name="mobValidate" novalidate id="modal-form-mob-validate" class="form">
+    <div class="modal-body alert-body">
+       <div class="row">
+            <div class="col-md-3 col-xs-0 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-md-9  col-xs-12 reset-padding-left">                
+                <div ng-if="flag" class="alert alert-danger">
+                    Please Enter Address.
+                </div>
+                <div ng-if="flag1" class="alert alert-danger">
+                    This address is already in use.
+                </div>
+                <div ng-if="phoneNoValidatedStatus" class="alert alert-success">
+                    Great! Your account has been activated.
+                </div>
+                
+                <div class="" ng-class="{'has-error': (mobValidate.$submitted && mobValidate.regEmail.$invalid) || (mobValidate.regEmail.$touched && mobValidate.regEmail.$invalid) }">
+                    <label>Please enter below to activate your account</label>
+                    <input type="text" class="form-control" name="regEmail" ng-model="activeCode"  placeholder="4 digit code" maxlength="4" restrict-quick-validation ng-pattern="/^(\d)+$/" required >
+                    <div ng-if="(mobValidate.$submitted || mobValidate.regEmail.$touched  )"
+                         ng-messages="mobValidate.regEmail.$error" >
+                        <div ng-message="pattern" class="error-msg">
+                            Oops! Please enter your unique validation code
+                        </div>
+                        <div ng-message="required" class="error-msg">
+                            Oops! Please enter your unique validation code
+                        </div>
+                    </div>
+                    <div  ng-if="failedCode" class="error-msg">
+                        Oops! It appears there was a problem validating your account. Please try again…
+                    </div>
+                    <div  ng-if="expiredCode" class="error-msg">
+                        Oops! It appears there was a problem validating your account. Please try again…
+                    </div>
+
+                </div>                            
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="modal-footer alert-footer go-right-modal-btn">
+        <div class="row">
+            <div class="col-xs-1 col-sm-3 col-md-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-xs-11 col-sm-9 col-md-9 reset-padding-left">
+                 <button type="button" class="btn btn-default btn-primary" ng-click="verifyPIN()">Confirm</button>
+                 <button type="button" class="btn btn-default" ng-click="closeModal()">Cancel</button>
+                 <div class="action-info">
+                    <a href="" class=""  ng-class="{ 'gen-new-pin-disable': isPinDisable }" ng-click="generateNewPin()"><i class="fa fa-retweet"></i> Send new validation code
+                    </a>
+                    <p>We will send a new validation code to your registered mobile number. Please allow at least 5 minutes before requesting another code.</p>
+                </div>                
+            </div>
+        </div>
+        <div class="row">
+            
+        </div>
+    </div>
+</form>
+
+

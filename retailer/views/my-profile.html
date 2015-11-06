@@ -1,0 +1,33 @@
+<div class="container my-profile mar-bot-45 min-height" apply-bg="">
+    <div class="global-msg" >
+        <div class="alert alert-success alert-dismissable" ng-if="saveSuccess">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            <span ng-bind="successMessage"></span>
+        </div>
+        <div class="alert alert-danger alert-dismissable" ng-if="getFailed">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            <span ng-bind="alertMessage"></span>
+        </div>
+    </div>
+    <h1 class="page-main-title">my profile</h1>
+    <div ng-if="getSuccess">
+        <section>
+            <div ng-include src="'views/template/my-profile/user-information.html'"></div>
+        </section>
+        <section>
+            <div ng-include src="'views/template/my-profile/store-information.html'"></div>
+        </section>
+        <section>
+            <div ng-include src="'views/template/my-profile/store-opening-hours.html'"></div>
+        </section>
+        <section>
+            <div ng-include src="'views/template/my-profile/bank-holiday-opening-hours.html'"></div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+
+.sm-mybilling-open-close{
+  display: none;
+  margin: 1px;
+  position: relative;
+}
+
+.sm-mybilling-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: .7;
+  padding: 5px 10px !important;
+}
+
+.inner-page nav  {text-align: right;}
+.pagination {margin: 4px 0;}
+.pagination li {display: inherit; float: left; list-style:none; margin-left: 5px; line-height: 28px;}
+.pagination li:first-child {margin-left:0;}
+.btn-tertiary {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #686868;
+}
+.btn-tertiary:hover {
+    background: #e7e7e7;
+    border: 1px solid #ccc;
+}
+.btn-tertiary:focus, .btn-tertiary:active:focus {
+    border: 1px solid #ccc;
+    outline: none;
+}
+.btn-default.btn-tertiary[disabled] {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    opacity: 0.4;
+}
+
+.pagination li .btn-default.btn-tertiary {
+    line-height: 20px;
+    height: 30px;
+    padding: 0;
+    width: 30px;
+    text-align: center;
+}
+.pagination li .btn-default.btn-tertiary i {
+    line-height: 1;
+    vertical-align: sub;
+}
+.pagination li .form-control {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    text-align: center;
+}
+
+.bill-amount{
+  color: #43B02A;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Medium Devices, Desktops */
+@media screen and (min-width: 767px)  {
+  .show-my-payment-history-mobile{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px)  {
+  .hide-my-payment-history-mobile{
+    display: none;
+  }
+
+  .sm-mybilling-open-close{
+    background: #e3e3e3;
+    color: #555555;
+    th{
+      text-transform: capitalize;
+      padding-right: 10px;
+    }
+  }
+
+  .sm-mybilling-close
+  {
+    color: red;
+    cursor: pointer;
+    font-weight: bolder;
+  }
+}
+/*For error massage color anf font size*/
+.cust-error-temp{
+  font-size: 18px;
+  margin-top: 30px;
+}
+.row-margin-data{
+  text-align: right;
+}

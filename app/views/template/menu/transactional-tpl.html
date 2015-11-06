@@ -1,0 +1,26 @@
+<ul class="nav navbar-nav" ng-class="{'navbar-right': !standAloneMapHeader && !isHomeHdr && !isRetailerHdr }">
+    <li class="active"><a ng-href="{{homeUrl}}/my-deliveries">My deliveries</a></li>
+    <li ng-if="showSubscriptionMenu"><a ng-href="{{homeUrl}}/my-subscription">My bundles</a></li>
+    <li><a ng-href="{{homeUrl}}/my-billing">My payment history</a></li>
+    <li><a ng-href="{{homeUrl}}/myprofile">My profile</a></li>
+    <li class="signup hidden-xs hidden-sm" ng-if="isHomeHdr || isRetailerHdr">
+        <a href="javaScript:void(0)" class="dropdown" ng-click="isReplyFormOpen = !isReplyFormOpen">{{loggedUser}}<span class="caret"></span></a>
+        <ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="list-unstyled log-header">
+            <li>
+                <a href="/MyDeliveryPortal/samllogout">Logout</a>
+            </li>
+        </ul>
+    </li>
+    <li class="active-user highlight-menu mobilecheckDesk" ng-if="!standAloneMapHeader && !isHomeHdr && !isRetailerHdr">
+        <!--<li class="signup mobilecheckDesk">-->
+        <a href="javaScript:void(0)" class="dropdown" ng-click="isReplyFormOpen = !isReplyFormOpen">{{loggedUser}}<span class="caret"></span></a>
+        <ul ng-init="isReplyFormOpen = false" ng-show="isReplyFormOpen" class="list-unstyled log-header" >
+            <li>
+                <a href="/MyDeliveryPortal/samllogout">Logout</a>
+            </li>
+        </ul>
+    </li>
+    <li class="mobilecheckMobile">
+        <a class="logout-nav" href="/MyDeliveryPortal/samllogout">Logout</a>
+    </li>
+</ul>

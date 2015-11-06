@@ -1,0 +1,510 @@
+.choose-ts-price{
+  color: #43B02A !important;
+  font-size: 30px !important;
+  font-weight: normal;
+  position: relative;
+  cursor: pointer;
+}
+
+.book-new-del-choose-timeslot-container {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+
+   .choose-ts-summary-header{
+     cursor: pointer;
+   }
+  .quote-calendar-container {
+    float: right;
+  }
+
+  .or-line-border{
+    border-top: 1px solid #dbdbdb;
+    position: relative;
+    margin-top: 35px;
+    .or-line-circle{
+      position: absolute; border-radius: 100%;
+      border: 5px solid #fff;
+      padding: 5px;
+      left: 45%;
+      top: -20px;
+      background-color: #FFF;
+    }
+
+  }
+
+
+
+  .y-not-exp {
+    font-size: 12px;
+    letter-spacing: 0;
+    color: rgba(104,104,104,.5);
+    margin-bottom: 10px;
+  }
+
+  .quote-calendar-container {
+    border: 1px solid $app-green;
+    padding: 0 0;
+  }
+
+  .delivery-slot-header {
+    background: $app-green;
+    text-align: center;
+    padding: 10px;
+    color: $white-color;
+  }
+
+  .quote-dp-container {
+    padding: 15px 0 10px 0;
+    /*border-bottom: 1px solid $your-quote-border;*/
+    margin: 0px;
+    position: relative;
+  }
+
+  .quote-price-section h2.page-sub-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .quote-price-section {
+    margin-bottom: 15px;
+  }
+
+  .in-dp-ds {
+    border: 1px solid $blue-bg;
+  }
+
+.ts-close-msg {
+  padding: 5px;
+  color: #E83624;
+  font-size: 12px;
+}
+
+  .ds-arrow {
+    color: $app-green;
+    position: absolute;
+    left: 6px;
+    top: 25px;
+    cursor: pointer;
+
+    .enabled-dp{
+      cursor: pointer;
+    }
+    .disabled-dp{
+      @include opacity(0.3);
+      cursor: none;
+    }
+
+  }
+  .ds-arrow:hover {
+    color: $app-orange;
+  }
+  .ds-arrow.right {
+    left: auto;
+    right: 6px;
+  }
+
+
+
+  ul.time-slot-list {
+    list-style: none;
+    padding: 1px 0 0 0;
+  }
+
+  ul.time-slot-list li {
+    float: left;
+    width: 100%;
+    padding: 0 15px;
+    border-bottom: 1px solid $app-green;
+  }
+
+  ul.time-slot-list li:first-child {
+    border-top: 1px solid #43B02A;
+  }
+
+
+  ul.time-slot-list li:last-child {
+    border-bottom: none;
+  }
+
+
+  ul.time-slot-list li.active {
+    background: $your-quote-ds-radio-active-bg;
+  }
+
+  ul.time-slot-list li .delivery-slot-radio input[type="radio"] {
+    margin-left: 0 !important;
+  }
+  .showmore{
+    cursor: pointer;
+  }
+  .deliverslot-footer p {
+    text-align: center;
+    color: #43B02A;
+    padding: 5px;
+    float: left;
+    width: 100%;
+    line-height: 18px;
+    margin: 0;
+
+  }
+
+  .deliverslot-footer p a {
+    text-decoration: underline;
+    color: $blue-bg;
+  }
+
+
+  .subscript-box {
+    /*background: red;
+    border: 1px solid;*/
+    clear: both;
+  }
+
+  .quote-sub-module h1 {
+    color: $your-quote-sub-header;
+    font-weight: bold;
+
+  }
+
+  .subscript-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .subscript-box-field {
+    padding: 8px 0;
+    position: relative;
+  }
+
+  .sub-offer {
+    color: $app-green;
+    font-weight: normal;
+    padding: 2px;
+    /*text-transform: capitalize;*/
+  }
+
+  .sub-module-info {
+    background: $app-orange;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 0 8px;
+    text-align: center;
+    color: $white-color;
+    font-style: italic;
+
+  }
+
+  .sub-offer {
+    margin-bottom: 0 !important;
+  }
+
+  .offer-label{
+    margin-left: 0;
+    /*float: left;*/ /*john commented in order to remove the extra space between the radio button label and the content*/
+    line-height: 150%;
+    text-transform: none;
+    color: rgb(103, 103, 103);
+  }
+
+  .quote-sub-mes {
+    color: $your-quote-collect-head-quote-mes;
+    padding-top: 0;
+    font-size: 12px;
+    margin-left: 25px;
+    margin-bottom: 0;
+  }
+
+  .bundle-price-section{
+    text-align: right;
+    label.quote-sub-amt {
+      color: $app-green;
+      font-size: 22px;
+      word-break: break-all;
+    }
+    .vat-details{
+      font-size: 12px;
+      margin-top: 0px;
+
+    }
+
+
+  }
+
+
+  .no-timeslot-warn{
+    .no-timeslot-warn-icon-box{
+      width: 42px;
+      font-size: 30px;
+      font-weight: bold;
+      vertical-align: middle;
+      height: 68px;
+      color:#E83624;
+    }
+
+    .no-timeslot-war-msg-box{
+      overflow: hidden;
+      color:#E83624;
+    }
+  }
+
+  .sub-info-brdr-shape {
+    border-left: 0 solid #f6f6f6;
+    border-right: 4px solid #f6f6f6;
+    border-top: 4px solid $blue-bg;
+    font-size: 0;
+    left: 100px;
+    line-height: 0;
+    position: absolute;
+    top: 21px;
+    width: 0;
+  }
+
+  .subscript-box-field.subscript-box-field1 {
+    width: 250px;
+  }
+
+  .subscript-box-field:nth-child(2) {
+    margin-left: 15px;
+  }
+
+  .delivery-price {
+    /*  float: right !important;*/
+    color: $your-quote-amt;
+    margin-left: 15px;
+    /*padding-left: 15px;*/
+  }
+
+  .delivery-slot-radio label{
+    font-weight: normal;
+  }
+
+
+  .delivery-slot-radio{
+    padding:10px 0 0 10px;
+  }
+
+
+  html > body .sub-info-brdr-shape, x:-moz-any-link {
+    top: 23px;
+  }
+
+  .subscript-summary-box{
+    background: #43B02A;
+    /*padding: 0 0 0 10px;*/
+    color: #fff;
+    border:1px solid #43B02A;
+    height: 70px;
+    margin-bottom: 15px;
+
+    .ur-sub-big{
+      width: 68px;
+      font-size: 40px;
+      font-weight: bold;
+      vertical-align: middle;
+      color: #43B02A;
+      height: 68px;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .subscribe-info-box{
+      background-color: #43B02A;
+      height: 68px;
+      padding: 10px;
+      overflow: hidden;
+    }
+  }
+
+  .subscript-summary-box.giant {
+    height: 90px;
+    display: table;
+    width: 100%;
+
+    .ur-sub-big {
+      height: 90px;
+      width: 100px;
+      font-size: 62px;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .subscribe-info-box {
+      height: 100%;
+      font-size: 24px;
+      display: table-cell;
+      vertical-align: middle;
+      line-height: 120%;
+    }
+  }
+
+  .quote-wrap {
+    margin-top:40px;
+  }
+
+  .delivery-slot-container {
+    border: 1px solid #43B02A;
+    overflow: hidden;
+  }
+
+
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    /* padding: 50%; */
+    padding-top: 30%;
+    /* padding-bottom: 50%; */
+    padding-left: 40%;
+    z-index: 99;
+    color: green;
+    .load-text{
+      color:#fff;
+    }
+
+  }
+
+
+  @media only screen and (min-width : 350px) {
+    .project-overlay {
+      width: 85%;
+    }
+  }
+
+
+
+  @media only screen and (min-width : 992px) {
+    .quote-calendar-container{
+      width:245px;
+    }
+    .later-now{
+      display: inline;
+      width: auto;
+      margin-right:15px;
+    }
+  }
+
+  .subscription-btn-align{
+    padding: 10px 0 10px 0;
+  }
+
+  .calendar-wrap {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 801px) {
+    .quote-calendar-container{
+      margin-left: 15px !important;
+      margin-right: 15px !important;
+    }
+    .quote-container,
+    .dz-container,
+    .your-quote-container {
+      //    border-bottom: 1px solid $your-quote-border;
+      padding-bottom: 15px;
+    }
+
+    .steps-hidden-sm {
+      display: none;
+    }
+
+    .pin-timer-head {
+      padding-left: 15px;
+    }
+
+    .collect-head,
+    .collect-pin-code {
+      font-size: 11px;
+    }
+
+    .quote-setps-container,
+    .dz-setps-container,
+    .quote-calendar-container {
+      float: none;
+      display: table;
+      margin: 0 auto 10px;
+    }
+
+    .quote-collect-row-container,
+    .dz-delivery-add-row-container,
+    .quote-price-container {
+      float: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .your-quote-container {
+      border: none;
+      padding:0;
+    }
+    .quote-price-section {
+      padding-top: 25px;
+    }
+    .quote-price-container .quote-price-section {
+      padding-top: 25px;
+    }
+  }
+
+  .voucher-group{
+    width:100%;
+  }
+
+  @media screen and (max-width: 768px){
+    .redeem-btn-section{
+      padding-top: 10px;
+    }
+  }
+
+  @media screen and (max-width: 320px) and (min-width: 800px) {
+    .subscribe-info-box  {
+      font-size: 18px;
+    }
+
+    .collect-head,
+    .collect-pin-code {
+      font-size: 12px;
+    }
+
+    .pin-timer-head {
+      padding-left: 20px;
+    }
+    .subscript-summary-box.giant .subscribe-info-box,  .subscribe-info-box, .box-content  {
+      font-size: 18px;
+    }
+  }
+
+
+  .y-not-buy{
+
+    font-family: source_sans_probold;
+  }
+
+  .form-page .time-slot-list label.toggler, .form-page .time-slot-list label.toggler_r {
+    margin-bottom: 0.8em;
+  }
+
+
+
+  .vat-subset{
+    position: absolute;
+    font-weight: normal;
+    top:24px;
+    padding-left: 5px;
+  }
+
+  @media screen and (min-width: 992px) {
+
+    .book-now-btn-section,.book-now-btn-section{
+      button{
+        float:right;
+      }
+    }
+
+  }
+
+
+}
+

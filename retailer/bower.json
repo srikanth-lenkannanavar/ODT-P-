@@ -1,0 +1,34 @@
+{
+  "name": "OnTheDot App",
+  "version": "0.1",
+  "authors": [
+    "ghanavel <jerinavel@gmail.com>"
+  ],
+  "description": "Client side libs",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "1.3.16",
+    "Angular-Postcode-Validation-Service": "https://github.com/markstrefford/Angular-Postcode-Validation-Service.git",
+    "angular-cookies": "1.3.16",
+    "angular-route": "1.3.16",
+    "angular-sanitize": "1.3.16",
+    "angular-bootstrap": "~0.11.2",
+    "bootstrap": "~3.2.0",
+    "json3": "~3.3.1",
+    "moment-timezone": "~0.2.5",
+    "es5-shim": "~3.1.0",
+    "jquery": "~2.1.3",
+    "angular": "1.3.16",
+    "angular-messages": "1.3.16",
+    "angulartics": "~0.18.0",
+    "momentjs": "2.8.4",
+    "eonasdan-bootstrap-datetimepicker": "3.1.3"
+  }
+}

@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h1 class="modal-main-title">Track your delivery</h1>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-clear" ></span></button>
+</div>
+<form id="modal-form-track-delivery" class="form" role="form" name="trackDelivery">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group track-info">
+                    <div class="row-info">
+                        <label class="control-label">Collect from: </label>
+                        <br>{{bookingObj.store.retailerName}}
+                        <br>{{bookingObj.store.address.firstLine}}, {{bookingObj.store.address.city}} | {{bookingObj.store.address.postCode|codeFilter}}
+                    </div>
+                    <div class="row-info">
+                        <label class="control-label">Package ready from: </label>
+                        <br>{{bookingObj.item.deliveryDate | ISO8601Parse : "UK" : "DD-MM-YYYY"}} | {{bookingObj.item.readyAt}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 track-info">
+                <div class="form-group">
+                    <div class="row-info">
+                        <label class="control-label">Deliver to: </label>
+                        <br>{{bookingObj.consumer.name}},<br>
+                        <span ng-show="bookingObj.consumer.address.firstLine">{{bookingObj.consumer.address.firstLine + ", " + bookingObj.consumer.address.seconeLine}} </span> 
+                        <span>{{bookingObj.consumer.address.city + " |"}} </span>
+                        <span>{{bookingObj.consumer.address.postCode|codeFilter}}</span>
+                    </div>
+                    <div class="row-info">
+                        <label class="control-label">Date of delivery: </label>
+                        <br>{{bookingObj.timeslot.startTime | ISO8601Parse : "UK" : "DD-MM-YYYY"}} |{{bookingObj.timeslot.startTime| ISO8601Parse : "UK" : "HH:mm"}} - {{ bookingObj.timeslot.endTime| ISO8601Parse : "UK" : "HH:mm"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 track-delivery">
+                <div id="map-container">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

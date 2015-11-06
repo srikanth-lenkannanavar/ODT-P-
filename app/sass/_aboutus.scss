@@ -1,0 +1,148 @@
+.aboutus.container, .hero-content {
+    padding: 0 30px;
+}
+.aboutus {
+    margin-bottom: 40px;
+}
+.aboutus h2.page-sub-title {
+    font-size: 28px;
+    color: #43B02A;
+    margin: 0 0 15px 0;
+}
+
+.aboutus p.para {
+    margin-right:20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+}
+
+.aboutus p.para strong {
+    font-size:18px;
+    color: #686868;
+    letter-spacing: 0;
+}
+.aboutus p.para a {
+    text-decoration: none;
+}
+.aboutus p.para.head {
+    margin-top: 30px;
+}
+
+.aboutus p.para.head strong {
+    font-size: 24px;
+    
+}
+.aboutus p.para.min-margin {
+    margin-bottom: 5px;
+}
+.aboutus p.para.sub {
+    font-size: 14px;
+}
+
+.aboutus img.image {margin-bottom:20px;}
+
+
+
+ul.dash {
+    list-style-type: none;
+    padding: 0 12px;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+}
+
+ul.dash > li:before {
+    content: "-"; /* en dash here */
+    position: absolute;
+    margin-left: -8px; 
+}
+ul.dash li {
+    margin-bottom: 8px;
+}
+
+
+@media screen and (max-width: 1190px)  {
+    .hero-content {
+        padding: 0 15px;
+    }
+    ul.dash {
+        margin-bottom: 30px;
+    }
+}
+
+
+.aboutus .panel-title {
+    color: #43B02A;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    line-height: 24px;
+}
+.aboutus .panel-heading {
+    padding: 10px 0px 5px 0px;
+    background: transparent;
+    border: none;
+}
+.aboutus .panel-body {
+    border: none !important;
+    padding: 0 28px;
+}
+.aboutus .panel-body p {
+    margin-bottom: 5px;
+    font-size:16px;
+}
+.panel {
+    box-shadow:none;
+}
+.accordion-toggle i.fa {
+    margin-right: 12px;
+}
+
+
+.col-lg-custom-5 {width:20%; float:left; text-align: center; margin:15px 0 0 0;}
+
+.upload-doc .panel-body {
+    padding:0;
+}
+.upload-doc .panel-body p {
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.icon-wrap {
+    background: #43B02A;
+    border-radius: 50%;
+    height: 66px;
+    width: 66px;
+    display: inline-block;
+    padding-top: 20px;
+    font-weight: normal;
+}
+.icon-wrap i {
+    font-size: 25px;
+    line-height: 1;
+    color: white;
+}
+.upload-doc .panel-body p strong {
+    display: block;
+    color: black;
+    font-size: 16px;
+    margin: 15px 0px 5px 0px;
+}
+
+@media screen and (max-width: 991px)  {
+    .col-lg-custom-5 {width:100%;}
+}
+
+@media screen and (max-width: 767px)  {
+    .aboutus.container, .hero-content {padding:0 20px;}
+    
+    .aboutus.container .hero-content {
+          padding: 0 15px;
+          margin-top: 30px;
+    }
+    .aboutus .table-responsive  {
+        border: 1px solid #e3e3e3;
+    }
+}

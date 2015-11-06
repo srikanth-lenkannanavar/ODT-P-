@@ -1,0 +1,211 @@
+<!--<form id="modal-get-quote-notification" class="form" role="form" novalidate name="getQuoteNotification">
+    <div class="cust-error-temp" ng-if="flag">
+
+        <div class="alert alert-info alert-error-cust"   >
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            Please Enter Address.
+        </div>
+
+
+    </div>
+    <div class="cust-error-temp" ng-if="flag1">
+
+        <div class="alert alert-info alert-error-cust"   >
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            This address is already in use.
+        </div>
+
+
+    </div>
+
+    <div class="cust-error-temp" ng-if="flagcheck">
+
+        <div class="alert alert-info alert-cust"   >
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            Great! Your address book has been updated
+        </div>
+
+
+    </div>
+    <div class="modal-body medium-modal-body" >
+        <div class="medium-modal-container clearfix" ng-hide="flagcheck">
+            <div class="col-md-2 col-xs-1 book-warn-container ">
+                <i class="fa fa-question fa-4x book-distance-circle mobile-device-billing-1"></i>
+                <i class="fa fa-question fa-2x book-distance-circle mobile-device-billing"></i>
+            </div>
+                        <div class="cust-error-temp" ng-if="flag">
+            
+                            <div class="alert alert-info"   >
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>Note!</strong>Please Enter Address.
+                            </div>
+            
+            
+                        </div>
+            <div class="col-md-10  col-xs-10 book-distance-text">
+                <p class="head-p">Do you want to save this delivery address to your address book?</p>
+
+
+                <div ng-hide="flagcheck">
+                    <input type="text" class="form-control" name="userAddrMy" ng-model="userAddrMy" placeholder="Nickname of address e.g. Home, Bob's house…"
+                           ng-change="userAddrMyCase(userAddrMy)"/>
+                    {{userAddrMyC+ "" + home}}
+                    <div ng-repeat="x in names" class="error-div">
+                        <div ng-if="x.id == userAddrMyC">
+                            <p class="error-div-msg">Oops! You have used that nickname already. Please choose another…</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="medium-modal-sub-container clearfix" >
+        <div class="col-md-offset-2  col-md-10  col-xs-offset-1 col-xs-10 book-distance-text" ng-hide="flagcheck">
+            <p class="book-distance-info-text">
+                {{deliveryToAddress}},<br>{{deliveryrefaddresstown}}<br><span class="book-notify-strong">{{deliveryToPostcode}}</span>
+            </p>
+        </div>
+                        <div ng-repeat="x in names" >
+                            <div ng-if="x.defualt == userAddrMy">
+                                <p class="error-msg">Address Already Present.Please enter new Address</p>
+                            </div>
+                            //  {{x.defualt}}
+                        </div>
+
+
+    </div>
+
+    <div class="modal-footer" >
+        <div class="row" ng-hide="flagcheck">
+            <div class="col-md-offset-2  col-md-10 col-xs-offset-1  col-xs-12 text-left medium-modal-footer-btn">
+                <button type="submit" class="btn btn-blue btn-medium-modal" ng-click="submitForm(userAddrMy)"> Save </button>
+                <button class="btn btn-cancel btn-medium-modal" ng-click="closeModal()"> Cancel  </button>
+            </div>
+        </div>
+    </div>
+</form>-->
+
+
+<!--<div class="modal-header alert-header">        
+    <div class="row">
+        <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">
+           <div class="icon icon-onthedot-icons-13 color-red"></div>                   
+        </div>
+        <div class="col-md-9 col-xs-9 reset-padding-left">
+            <h1 class="modal-main-title">We are not there yet!</h1>
+            <p>We are working hard to get there. Sorry for the inconvenience caused.</p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+    </div>
+    <div class="row">
+        <div class="col-md-12"><hr class="line"></div>
+    </div>
+    
+</div>
+
+<form id="modal-get-quote-notification" class="form" role="form" novalidate name="getQuoteNotification">
+    <div class="modal-body alert-body">
+       <div class="row">
+            <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-md-9  col-xs-9 reset-padding-left">
+                <p>Please provide your email address to receive notifications message when <span class="notify-strong">"SERVICE AVAILABLE"</span> to your requested address.</p> 
+                <div ng-class="{'has-error': (addRetailers.$submitted && getQuoteNotification.userEmail.$invalid ) || ( getQuoteNotification.userEmail.$touched  && getQuoteNotification.userEmail.$invalid ) }">
+                    <input type="email" class="form-control" name="userEmail" ng-model="userEmail" placeholder="Enter email address" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" required >
+                </div>
+
+                <div ng-if="(addRetailers.$submitted || (getQuoteNotification.userEmail.$touched  && getQuoteNotification.userEmail.$invalid))" ng-messages="getQuoteNotification.userEmail.$error" ng-messages-include='views/error-messages.html'>
+                    <div ng-message="pattern" class="error-msg" id="divCommError">Please enter a valid email address</div>
+                </div>               
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="modal-footer alert-footer go-right-modal-btn">
+        <div class="row">
+            <div class="col-xs-1 col-sm-3 col-md-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-xs-11 col-sm-9 col-md-9 reset-padding-left">
+                <button class="btn btn-primary btn-medium-modal" ng-disabled="getQuoteNotification.$invalid" ng-click="quoteNotifySubmit()">Submit</button>
+                <button class="btn btn-default" ng-click="retDistHideModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</form>-->
+
+<div class="modal-header alert-header">        
+    <div class="row">
+        <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">
+            <div class="icon icon-onthedot-icons-27 color-green"></div>                   
+        </div>
+        <div class="col-md-9 col-xs-9 reset-padding-left">
+            <h1 class="modal-main-title">Do you want to save this delivery address to your address book?</h1>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+    </div>
+</div>
+
+<form id="modal-get-quote-notification" class="form" role="form" novalidate name="getQuoteNotification">
+    <div class="modal-body alert-body">
+        <div class="row">
+            <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-md-9  col-xs-9 reset-padding-left">
+                <!--                <div class="alert alert-info alert-error-cust" ng-if="flag">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    Enter a name for the address.
+                                </div>-->
+
+                <div class="alert alert-info alert-error-cust" ng-if="flag1">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    Oops! You have used that nickname already.
+                </div>
+
+                <div class="alert alert-info alert-cust" ng-if="flagcheck">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    Great! Your address book has been updated
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="userAddrMy" ng-model="userAddrMy" placeholder="Nickname of address e.g. Home, Bob's house…"
+                           ng-change="userAddrMyCase(userAddrMy)" maxlength="12" size="12"/>
+                    <div ng-if="ifNameexist">
+                        <p class="error-msg">Oops! You have used that nickname already. Please choose another…</p>
+                    </div>
+                </div>
+                <div ng-if="flag" class="error-div">
+                    <p class="error-msg">
+                        Enter a name for the address.
+                    </p>
+                </div>
+
+                <!--<div ng-if="(addRetailers.$submitted || (getQuoteNotification.userEmail.$touched  && getQuoteNotification.userEmail.$invalid))" ng-messages="getQuoteNotification.userEmail.$error" ng-messages-include='views/error-messages.html'>
+                    <div ng-message="pattern" class="error-msg" id="divCommError">Please enter a valid email address</div>
+                </div> -->  
+                <p class="book-distance-info-text nomargin-btm">
+                    {{deliveryToAddress}},<br>{{deliveryrefaddresstown}}<br><span class="book-notify-strong">{{deliveryToPostcode}}</span>
+                </p>
+                <!--                <div ng-repeat="x in names" >
+                                    <div ng-if="x.defualt == userAddrMy">
+                                        <p class="error-msg">Address Already Present.Please enter new Address</p>
+                                    </div>
+                                    //  {{x.defualt}}
+                                </div>    -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer alert-footer go-right-modal-btn">
+        <div class="row">
+            <div class="col-xs-1 col-sm-3 col-md-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-xs-11 col-sm-9 col-md-9 reset-padding-left">
+                <button type="submit" class="btn btn-primary" ng-click="submitForm(userAddrMy)" ng-disabled="ifNameexist">Save</button>
+                <button class="btn btn-default" ng-click="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

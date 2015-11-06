@@ -1,0 +1,103 @@
+<div class="book-new-delivery-step-0 mar-bot-25">
+    <form class="" role="form"  name="postcodeForm" novalidate ng-submit="editPackageCollection(postcodeForm.$valid, storeTimes.storeShopOpen, storeTimes.storeShopClose,errStatusIDFlag)">
+        <div class="row">
+            <div class="col-md-12 mar-top-10">
+                <p class="main-para">Enter your customer's delivery post code</p> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 div-right-border" style="">
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div ng-if="isGo" ng-class="{'has-error': postcodeForm.postcode.$invalid && postcodeForm.postcode.$touched}">
+                            <input type="text"  readonly id="postcode" name="postcode" check-postcode ng-model="mydeliveryuser.postCodeValue" required class="form-control" placeholder="Enter your customer delivery post code"/>
+                        </div>
+                        <div class="div-postcode "ng-if="!isGo">
+
+                            <input id="postcode" ng-model="mydeliveryuser.postCodeValue" name="postCodeValue" check-postcode
+                                   class="form-control bdr-input" type="text" placeholder="Enter your store post code" required readonly/>
+                            <!--<div class="input-group-addon btn btn-default btn-green square-btn" title="Edit" ng-click="edit()">-->
+                            <!--<span class="icon icon-edit"></span>-->
+                            <!--</div>-->
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="signup-postcode-error" ng-if="(postcodeForm.$submitted && postcodeForm.postcode.$invalid) || (postcodeForm.postcode.$invalid && postcodeForm.postcode.$touched)" ng-messages="postcodeForm.postcode.$error">
+                        <div ng-message="required"  class="error-msg">Please enter a valid postcode</div>
+                        <div ng-message="checkPostcode"  class="error-msg">Oops! You have entered an invalid postcode. Please try again…</div>
+                    </div>
+                </div>
+                <div class="row mar-bot-5 mar-top-15">
+                    <div class="col-md-12">
+                        <label>The customer's item(s) are ready for collection</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 mar-bot-15"> 
+                        <div class="form-group" >
+                            <div class='input-group date' id='collectionDate'  collection-ready-date>
+                                <input type='text' ng-model="mydeliveryuser.deliverydate" readonly class="form-control" />
+                                <span class="input-group-addon ">
+                                    <span class="icon icon-calendar"></span>
+                                </span>
+                            </div>
+                            <!--<div ng-if="isPastCollectionDate" class="error-msg">Past date is invalid.</div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-5"> 
+                        <div>
+                            <!--{{mydeliveryuser.readyat}}-->
+                            <select name="ShopOpen" class="form-control" ng-change="hideTimeslot();" ng-model="mydeliveryuser.readyat" ng-options="time as time for time in openTimes">
+                            </select>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="row mar-bot-15 hidden-sm hidden-xs hidden-print">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" ng-if="storeDetails.imageUrl"> 
+                        <div class="logo-border white-background" >
+                            <img src="{{storeDetails.imageUrl}}"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                        <label>{{storeDetails.retailerName}}</label>
+                        <br>
+                        <span ng-if="storeDetails.address.firstLine"> {{storeDetails.address.firstLine + ","}}</span>
+                        <span ng-if="storeDetails.address.secondline"> {{storeDetails.address.secondline + ","}}</span>
+                        <span ng-if="storeDetails.address.city"> {{storeDetails.address.city + ","}}</span>
+                        <span ng-if="storeDetails.address.postCode"> {{storeDetails.address.postCode|codeFilter}}</span>
+                    </div>
+                </div>
+                <div class="row mar-bot-5 mar-top-10">
+                    <div class="col-md-12">
+                        <label ng-if="mydeliveryuser.deliverydate === currentDate"> Today's shop opening hours</label>
+                        <label ng-if="mydeliveryuser.deliverydate !== currentDate"> {{mydeliveryuser.deliverydate}}, shop opening hours</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-padding-5">
+                        <select name="storeShopOpen" ng-model="storeTimes.storeShopOpen" class="form-control" ng-change="storehideTimeslot(storeTimes.storeShopOpen, shopopenTimes, storeTimes.storeShopClose, times);" ng-options="time for time in shopopenTimes"></select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-padding-5"> 
+                        <select name="storeShopClose" ng-model="storeTimes.storeShopClose" class="form-control" ng-change="storehideTimeslot(storeTimes.storeShopOpen, shopopenTimes, storeTimes.storeShopClose, times);" ng-options="time for time in times"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-md-padding-5 error-msg" ng-if="isBankHoliday && storeTimes.storeShopOpen == 'Closed' && storeTimes.storeShopClose == 'Closed'">
+                        Oops! You have previously registered this date as a holiday. You can still continue with this booking today, but you may wish to amend your holiday opening hours on your profile page for future bookings
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-md-padding-5 error-msg" ng-if="errStatusIDFlag">
+                        Oops! It looks like you have made a mistake. Please check the store opening and closing time
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mar-top-45">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <button type="submit" class="btn btn-default btn-primary mar-top-m-50">Go</button> 
+            </div>
+        </div>
+    </form>
+</div>

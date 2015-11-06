@@ -1,0 +1,560 @@
+
+/* Quote Page CSS Begin */
+.quote-detail-container{
+  margin-bottom: 40px;
+}
+
+.quote-container {
+  /*margin: 25px 25px 0 25px;*/
+  padding-bottom: 20px;
+  border-bottom: 1px solid $your-quote-border;
+
+}
+
+
+.pad-l0 {
+  padding-left: 0 !important;
+}
+
+.pin-timer-head-container {
+  border-bottom: 1px solid $your-quote-border;
+}
+
+.pin-timer-head {
+  padding-left: 25px;
+}
+
+.collect-head {
+  color: $your-quote-collect-head-quote-mes;
+}
+
+.collect-pin-code,
+.package-pickup-lbl {
+  color: $your-quote-sub-header;
+  font-weight: bold;
+}
+
+.collect-head,
+.collect-pin-code {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.quote-steps {
+  margin: 0 auto;
+  width: 102px;
+  display: block;
+  height: 27px;
+  /*background: url("../images/bg_quote_step_tepIndicator.png") no-repeat center 0;*/
+  position: relative;
+}
+
+.quote-steps ul {
+  list-style: none;
+}
+
+.quote-steps .steps-num-list li {
+  list-style: none;
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  margin: -1px 0 0 18px;
+  color: $white-color;
+  border-radius: 10px;
+  width: 20px;
+  height: auto;
+  text-align: center;
+}
+
+.quote-steps .steps-num-list li.circle1 {
+  background: $your-quote-steps-circle3;
+
+}
+
+.quote-steps .steps-num-list li.circle2 {
+  background: $app-green;
+
+}
+
+.quote-steps .steps-num-list li.circle3 {
+  background: $your-quote-steps-circle3;
+
+}
+
+.quote-steps .number-container {
+  display: block;
+  height: 30px;
+  margin: 5px 0 0 -36px;
+  position: absolute;
+  width: 204px;
+}
+
+.quote-setps-container {
+  float: right;
+}
+
+.quote-collect-row-container {
+  float: left;
+}
+
+.ur-collection-err{
+
+  padding: 5px;
+  /*
+  border: 1px dashed red;
+  margin-left: 2px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  */
+}
+
+
+.ur-collection-err-icon {
+  padding: 0px;
+  font-size: 35px;
+  color: red;
+}
+
+.ur-collection-info-icon {
+    color: #43B02A;
+    font-size: 24px;
+    padding: 0;
+}
+
+.icon-wrapper {float:left; margin-right:10px;}
+
+.pickup-sel-field {
+  display: inline;
+  width: auto;
+}
+
+.your-quote-container {
+    /*margin: 25px 25px 0 25px;*/
+    /*border-bottom: 1px solid $your-quote-border;*/
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 20px;
+}
+
+.quote-calendar-container {
+  float: right;
+}
+
+/*.quote-price-container {
+  float: left;
+}*/
+
+.y-not-exp {
+  font-size: 12px;
+  letter-spacing: 0;
+  color: rgba(104,104,104,.5);
+  margin-bottom: 10px;
+}
+
+.quote-calendar-container {
+  border: 1px solid $app-green;
+  padding: 0 0;
+}
+
+.deliverslot-header {
+  background: $app-green;
+  text-align: center;
+  padding: 10px;
+  color: $white-color;
+}
+
+.quote-dp-cotainer {
+    padding: 15px 0 10px 0;
+    /*border-bottom: 1px solid $your-quote-border;*/
+    margin: 0px;
+    position: relative;
+}
+
+.quote-price-section h2.page-sub-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.quote-price-section {
+    margin-bottom: 15px;
+}
+
+.in-dp-ds {
+  border: 1px solid $blue-bg;
+}
+
+
+
+.ds-arrow {
+    color: $app-green;
+    position: absolute;
+    left: 6px;
+    top: 25px;
+    cursor: pointer;
+    
+    .enabled-dp{
+        cursor: pointer;
+    }
+    .disabled-dp{
+        @include opacity(0.3);
+        cursor: none;
+    }
+
+}
+.ds-arrow:hover {
+    color: $app-orange;
+}
+.ds-arrow.right {
+    left: auto;
+    right: 6px;
+}
+
+
+
+ul.time-slot-list {
+  list-style: none;
+  padding: 1px 0 0 0;
+}
+
+ul.time-slot-list li {
+  float: left;
+  width: 100%;
+  padding: 0 15px;
+  border-bottom: 1px dotted $app-green;
+}
+
+ul.time-slot-list li:first-child {
+    border-top: 1px solid #43B02A;
+}
+
+ul.time-slot-list li.active {
+  background: $your-quote-ds-radio-active-bg;
+}
+
+ul.time-slot-list li .delivery-slot-radio input[type="radio"] {
+  margin-left: 0 !important;
+}
+.showmore{
+   cursor: pointer;
+}
+.deliverslot-footer p {
+  text-align: center;
+  color: #43B02A;
+  padding: 5px;
+  float: left;
+  width: 100%;
+  line-height: 18px;
+  margin: 0;
+
+}
+
+.deliverslot-footer p a {
+  text-decoration: underline;
+  color: $blue-bg;
+}
+
+.quote-price-container a {
+  color: $blue-bg;
+  text-decoration: underline;
+}
+
+.ur-quote-today {
+  color: $your-quote-header-blue;
+
+}
+
+.quote-hr-line {
+/*
+  border-bottom: 1px dotted $blue-bg;
+  position: relative;
+  */
+
+}
+
+.quote-rounded-circle {
+    margin-left: 25%;
+    background: $app-green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-top: 9px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    color:#fff;
+
+}
+
+.subscript-box {
+  /*background: red;
+  border: 1px solid;*/
+  clear: both;
+}
+
+.quote-sub-module h1 {
+  color: $your-quote-sub-header;
+  font-weight: bold;
+
+}
+
+.subscript-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.subscript-box-field {
+  padding: 8px 0;
+  position: relative;
+}
+
+.sub-offer {
+  color: $app-green;
+  font-weight: normal;
+  padding: 2px;
+  /*text-transform: capitalize;*/
+}
+
+.sub-module-info {
+  background: $app-orange;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0 8px;
+  text-align: center;
+  color: $white-color;
+  font-style: italic;
+
+}
+
+.sub-offer {
+  margin-bottom: 0 !important;
+}
+
+.offer-label{
+  margin-left: 0;
+  /*float: left;*/ /*john commented in order to remove the extra space between the radio button label and the content*/
+  line-height: 150%;
+  text-transform: none;
+}
+
+.quote-sub-mes {
+  color: $your-quote-collect-head-quote-mes;
+  padding-top: 0;
+  font-size: 12px;
+  margin-left: 25px;
+  margin-bottom: 0;
+}
+
+label.quote-sub-amt {
+  color: $app-green;
+  font-size: 22px;
+}
+
+.sub-info-brdr-shape {
+  border-left: 0 solid #f6f6f6;
+  border-right: 4px solid #f6f6f6;
+  border-top: 4px solid $blue-bg;
+  font-size: 0;
+  left: 100px;
+  line-height: 0;
+  position: absolute;
+  top: 21px;
+  width: 0;
+}
+
+.subscript-box-field.subscript-box-field1 {
+  width: 250px;
+}
+
+.subscript-box-field:nth-child(2) {
+    margin-left: 15px;
+}
+
+.delivery-price {
+  /*  float: right !important;*/
+  color: $your-quote-amt;
+  margin-left: 15px;
+  /*padding-left: 15px;*/
+}
+
+.delivery-slot-radio label{
+  font-weight: normal;
+}
+
+
+.delivery-slot-radio{
+  padding:10px 0 0 10px;
+}
+
+
+html > body .sub-info-brdr-shape, x:-moz-any-link {
+  top: 23px;
+}
+
+.subscript-summary-box{
+  background: #43B02A;
+ /*padding: 0 0 0 10px;*/
+  color: #fff;
+  border:1px solid #43B02A;
+  height: 70px;
+  margin-bottom: 15px;
+
+  .ur-sub-big{
+    width: 68px;
+    font-size: 45px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #43B02A;
+    height: 68px;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  .subscribe-info-box{
+    background-color: #43B02A;
+    height: 68px;
+    padding: 10px;
+    overflow: hidden;
+  }
+} 
+
+.subscript-summary-box.giant {
+    height: 90px;
+    display: table;
+    width: 100%;
+    
+    .ur-sub-big {
+        height: 90px;
+        width: 100px;
+        font-size: 62px;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    .subscribe-info-box {
+        height: 100%;
+        font-size: 24px;
+        display: table-cell;
+        vertical-align: middle;
+        line-height: 120%;
+    }
+}
+
+.quote-wrap {
+    margin-top:40px;
+}
+
+.deliverslot-container {
+    border: 1px solid #43B02A;
+    overflow: hidden;
+}
+
+
+
+@media only screen and (min-width : 992px) {
+  .quote-calendar-container{
+    width:245px;
+  }
+  .later-now{
+        display: inline;
+        width: auto;
+        margin-right:15px;
+  }
+}
+
+.subscription-btn-align{
+  padding: 10px 0 10px 0;
+}
+
+.calendar-wrap {
+    padding: 0 30px;
+}
+
+
+
+
+@media screen and (max-width: 801px) {
+  .quote-calendar-container{
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+  }
+  .quote-container,
+  .dz-container,
+  .your-quote-container {
+//    border-bottom: 1px solid $your-quote-border;
+    padding-bottom: 15px;
+  }
+
+  .steps-hidden-sm {
+    display: none;
+  }
+
+  .pin-timer-head {
+    padding-left: 15px;
+  }
+
+  .collect-head,
+  .collect-pin-code {
+    font-size: 11px;
+  }
+
+  .quote-setps-container,
+  .dz-setps-container,
+  .quote-calendar-container {
+    float: none;
+    display: table;
+    margin: 0 auto 10px;
+  }
+
+  .quote-collect-row-container,
+  .dz-delivery-add-row-container,
+  .quote-price-container {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .your-quote-container {
+        border: none;
+        padding:0;
+    }
+    .quote-price-section {
+        padding-top: 25px;
+    }
+    .quote-price-container .quote-price-section {
+        padding-top: 25px;
+    }
+}
+
+@media screen and (max-width: 320px) and (min-width: 800px) {
+    .subscribe-info-box  {
+        font-size: 18px;
+    }
+    
+    .collect-head,
+    .collect-pin-code {
+    font-size: 12px;
+    }
+
+    .pin-timer-head {
+    padding-left: 20px;
+    }
+    .subscript-summary-box.giant .subscribe-info-box,  .subscribe-info-box, .box-content  {
+        font-size: 18px;
+    }
+}
+
+
+.y-not-buy{
+
+  font-family: source_sans_probold;
+}
+
+.form-page .time-slot-list label.toggler, .form-page .time-slot-list label.toggler_r {
+    margin-bottom: 0.8em;
+}
+/* Quote Page CSS End */
+

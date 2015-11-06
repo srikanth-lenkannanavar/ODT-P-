@@ -1,0 +1,44 @@
+[
+    {
+        "id": "home",
+        "addressline2": "addressline2",
+        "postalcode": "HA11JU",
+        "addressline1": "addressline1",
+        "town": "town"
+    },
+    {
+        "id": "office",
+        "addressline2": "addressline2",
+        "postalcode": "postalcode",
+        "addressline1": "addressline1",
+        "town": "town"
+    },
+    {
+        "id": "Z",
+        "addressline2": "yyyyyyy",
+        "postalcode": "HA11JZ",
+        "addressline1": "xxxxxxxxxx",
+        "town": "www"
+    },
+    {
+        "id": "B",
+        "addressline2": "yyyyyyy",
+        "postalcode": "HA22JU",
+        "addressline1": "xxxxxxxxxx",
+        "town": "www"
+    },
+    {
+        "id": "D",
+        "addressline2": "yyyyyyy",
+        "postalcode": "sssss",
+        "addressline1": "xxxxxxxxxx",
+        "town": "www"
+    },
+    {
+        "id": "F",
+        "addressline2": "yyyyyyy",
+        "postalcode": "sssss",
+        "addressline1": "xxxxxxxxxx",
+        "town": "www"
+    }
+]

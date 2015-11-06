@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav navbar-nav " ng-class="{'navbar-right': !standAloneMapHeader && !isHomeHdr && !isRetailerHdr }">
+    <li ng-if="!isRetailerHdr">
+        <a ng-href="{{homeUrl}}/retailer">Are you a retailer?</a></li>
+
+    <li ng-if="isRetailerHdr">
+        <a ng-href="{{homeUrl}}/app">Are you a shopper?</a>
+    </li>
+
+    <li><a id="loginlink" href="/MyDeliveryPortal/samllogin?return=home">Login</a></li>
+    <li  ng-class="{'highlight-menu': !standAloneMapHeader && !isHomeHdr && !isRetailerHdr,'signup': isHomeHdr || isRetailerHdr  }"><a ng-href="{{homeUrl}}/register">sign up</a></li>
+</ul>

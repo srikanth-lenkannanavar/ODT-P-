@@ -1,0 +1,193 @@
+/* Subscription CSS Begin */
+
+.sub-plan-section{
+  /*background: green;*/
+  border-bottom: 1px solid gray;
+  padding: 15px;
+
+  .subscription-date-container{
+    /*background: red;*/
+  }
+
+}
+
+.auto-renew-section{
+  padding: 20px 0;
+  .auto-renew-mes{
+    font-size: 0.9em;
+    /*color: red;*/
+    color: $upgrade-list-content-color;
+    line-height: 13px;
+
+  }
+
+}
+
+.upgrade-plan-section,.choose-plan-section{
+  background: $upgrade-bg-brdr-color;
+  /*background: red;*/
+  border: 2px solid $upgrade-bg-brdr-color;
+  padding: 10px;
+  .big-number{
+    font-weight: bold;
+    font-size: 50px;
+    vertical-align: middle;
+  }
+  .plan-title-panel{
+    .plan-name{
+      color:#b6b6aa;
+      font-size:35px;
+    }
+  }
+  .fa{
+    color:#a7a7a1;
+    font-size: 3em;
+  }
+  .plan-price-panel{
+    .plan-price{
+      font-size: 30px;
+    }
+
+  }
+  .plan-title-panel,
+  .plan-price-panel{
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid $upgrade-price-title-panel-color;
+    padding: 10px;
+    color: #d1d1c4;
+  }
+
+  .upgrade-arrow-container{
+    position: relative;
+    .upgrade-prv-arrow,
+    .upgrade-nxt-arrow{
+      display: inline;
+      position: absolute;
+      top:25px;
+    }
+    .upgrade-prv-arrow{
+      left: 0px;
+    }
+    .upgrade-nxt-arrow{
+      right: 0px;
+    }
+  }
+  .upgarde-list-section,.choose-list-section{
+    margin: 0 auto;
+    ul.upgarde-list, ul.choose-list{
+      color:#fff;
+      padding-left:10px;
+      list-style: none;
+      li {
+        padding: 5px;
+        .up-list-container,.choose-list-container{
+          margin-right: 0;
+          margin-left: 0;
+          h3.up-list-title, h3.choose-list-title{
+            margin-top: 0;
+            color: $upgrade-list-title-color;
+            font-size: 18px;
+          }
+          .up-list-content,.choose-list-content{
+            color: $upgrade-list-content-color;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+
+
+
+@media only screen and (min-width : 1023px) {
+  .choose-plan-container {
+    position: relative;
+    .choose-list-section {
+      position: absolute;
+    }
+  }
+  .choose-gold-plan-section {
+    height: 590px;
+  }
+
+  .choose-silver-plan-section, .choose-diamond-plan-section {
+    top: 38px;
+
+  }
+}
+.choose-gold-plan-section{
+  background: #fff;
+  border: 1px solid gray;
+}
+
+
+
+
+.sub-instruction{
+  border: 1px dashed #808080;
+  padding: 20px;
+  margin: 30px 0;
+}
+
+
+@media only screen and (max-width : 320px) {
+
+  .upgrade-plan-section{
+
+    .plan-title-panel{
+      .plan-name{
+        font-size:20px;
+      }
+    }
+    .upgarde-list-section{
+      margin: 0 auto;
+      ul.upgarde-list{
+        li {
+          .up-list-container{
+            h3.up-list-title{
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .fa{
+      font-size: 1.5em;
+    }
+    .upgarde-list-section{
+      ul.upgarde-list{
+        li {
+          .up-list-container{
+            h3.up-list-title{
+              font-size: 15px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+
+@media only screen and (min-width : 1023px) {
+  .sub-plan-section{
+    .purchase-date{
+      float: left;
+    }
+    .end-date{
+      float: right;
+    }
+
+  }
+
+
+}
+
+
+/* Subscription CSS End */

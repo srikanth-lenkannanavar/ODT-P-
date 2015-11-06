@@ -1,0 +1,14 @@
+<div class="container track-map-container">
+    <div class="row" ng-if="!showError">
+        <div class="col-md-12 map-wrap">
+            <div id="map-container"></div>
+        </div>
+    </div>
+    <div class="row track-error-container" ng-if="showError">
+        <div class="text-center">
+            <i class="icon icon-onthedot-icons-13 ur-collection-err-icon"></i>
+            <div class="track-error-mes">Live tracking information is currently not available</div>
+            <div class="track-error-mes-notice">Please try after sometime</div>
+        </div>
+    </div>
+</div>

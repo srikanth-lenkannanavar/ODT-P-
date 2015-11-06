@@ -1,0 +1,204 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+
+@media print  {
+
+    html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0% 6% 0% 5%;
+        visibility: hidden;
+    }
+    .container {
+         visibility: visible;
+        max-width: none!important;
+        width: 100%!important;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .row {
+        margin-left: -1%;
+        margin-left: -1%;
+    }
+    [class*="col-"] {
+        float: left;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    .col-xs-12,
+    .col-sm-12,
+    .col-md-12,
+    .col-lg-12 {
+        width: 100%
+    }
+    .col-xs-11,
+    .col-sm-11,
+    .col-md-11,
+    .col-lg-11 {
+        width: 91.66666667%
+    }
+    .col-xs-10,
+    .col-sm-10,
+    .col-md-10,
+    .col-lg-10 {
+        width: 83.33333333%
+    }
+    .col-xs-9,
+    .col-sm-9,
+    .col-md-9,
+    .col-lg-9 {
+        width: 75%
+    }
+    .col-xs-8,
+    .col-sm-8,
+    .col-md-8,
+    .col-lg-8 {
+        width: 100%
+    }
+    .col-xs-7,
+    .col-sm-7,
+    .col-md-7,
+    .col-lg-7 {
+        width: 58.33333333%
+    }
+    .col-xs-6,
+    .col-sm-6,
+    .col-md-6,
+    .col-lg-6 {
+        width: 50%
+    }
+    .col-xs-5,
+    .col-sm-5,
+    .col-md-5,
+    .col-lg-5 {
+        width: 41.66666667%
+    }
+    .col-xs-4,
+    .col-sm-4,
+    .col-md-4,
+    .col-lg-4 {
+        width: 30.33333333%
+    }
+    .col-xs-3,
+    .col-sm-3,
+    .col-md-3,
+    .col-lg-3 {
+        width: 25%
+    }
+    .col-xs-2,
+    .col-sm-2,
+    .col-md-2,
+    .col-lg-2 {
+        width: 16.66666667%
+    }
+    .col-xs-1,
+    .col-sm-1,
+    .col-md-1,
+    .col-lg-1 {
+        width: 8.33333333%
+    }
+    .print-footer{
+        display: none;
+    }
+    .hdr-banr-container{
+        display: none;
+    }
+    .onlyprint {
+        display: block;
+        margin-bottom: 65px;
+    }
+    .notprint{
+        display: none; 
+    }
+    .right-border {
+        border-right: 1px solid #f6f6ec;
+    }
+    .bottom-border {
+        border-bottom: 1px solid #DCD9D9;
+        /*    padding: 15px;*/
+    }
+    .booking-info-retailer {
+        border:none;
+        border-top: 1px solid #DCD9D9;
+        margin: 0px 30px 40px 0px;
+    }
+
+    .subscript-summary-box {
+        background: #43B02A;
+        padding: 0 0 0 10px; 
+        color: #fff;
+        border: none;
+        height: 70px;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+    .subscript-summary-box .ur-sub-big {
+        width: 68px;
+        font-size: 40px;
+        font-weight: bold;
+        vertical-align: middle;
+        /*color: #43B02A;*/
+        color: #43B02A !important;  
+        height: 68px;
+        text-align: center;
+        background: #ffffff;
+        /* padding: 5px 0px; */
+        line-height: 68px;
+    }
+    .print-delivery{
+        padding-left: 40px;
+    }
+
+    .logo-border img {
+        width: 100%;
+    }
+    .booking-info-retailer {
+        border: none;
+        border-top: 1px solid #DCD9D9;
+        margin: 0px 10px 0px 0px;
+    }
+    .payg-wrap p.para strong {
+        color: #43B02A !important;  
+    }
+    .booking-info p span.data {
+        display: block;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+    .booking-info p {
+        font-weight: 600;
+    }
+
+    .store-title{
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-top: 5px;    
+    }
+    .booking-info p span.data {
+        display: block;
+        font-weight:normal;
+        margin-top: 5px;
+    }
+    .booking-info p span.details {
+        display: block;
+        font-weight: normal;
+        margin-top: -4px;
+    }
+    .border-bottom{
+        border-bottom: 1px solid #DCD9D9; 
+    }
+
+    .booking-info p span.book-amount {
+        margin: -10px 0px;
+        font-size: 40px;
+        color: #43B02A !important;  
+        display: block;
+        font-family: source_sans_proregular;
+        font-weight: normal;
+    }
+
+}

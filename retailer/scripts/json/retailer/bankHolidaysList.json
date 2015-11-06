@@ -1,0 +1,41 @@
+{
+    "data": {
+        "holidays":
+                [{
+                        "date": "2015-08-03T00:00:00",
+                        "name": "New Years Day",
+                        "holidayId": 0
+                    }, {
+                        "date": "2015-12-28T00:00:00",
+                        "name": "Good Friday",
+                        "holidayId": 1
+                    }, {
+                        "date": "2015-04-05T00:00:00",
+                        "name": "Easter Sunday",
+                        "holidayId": 2
+                    }, {
+                        "date": "2015-04-06T00:00:00",
+                        "name": "Easter Monday",
+                        "holidayId": 3
+                    }, {
+                        "date": "2015-08-09T00:00:00",
+                        "name": "Early May bank holiday",
+                        "holidayId": 4
+                    }, {
+                        "date": "2015-08-31T00:00:00",
+                        "name": "Summer bank holiday",
+                        "holidayId": 5
+                    }, {
+                        "date": "2015-12-25T00:00:00",
+                        "name": "Christmas Day",
+                        "holidayId": 6
+                    }, {
+                        "date": "2015-08-06T00:00:00",
+                        "name": "Boxing Day",
+                        "holidayId": 7
+                    }]
+    },
+    "success": {
+        "status": "OK"
+    }
+}

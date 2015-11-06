@@ -1,0 +1,8 @@
+<ul class="nav navbar-nav navbar-nav " ng-class="{'navbar-right': !standAloneMapHeader && !isHomeHdr && !isRetailerHdr }">
+    <li>
+        <a ng-href="{{consumerHomeUrl}}">Are you a shopper?</a>
+    </li>
+
+    <li><a id="loginlink" ng-href="{{loginLink}}">Login</a></li>
+    <li  ng-class="{'highlight-menu': !standAloneMapHeader && !isHomeHdr && !isRetailerHdr,'signup': isHomeHdr || isRetailerHdr  }"><a ng-href="{{homeUrl}}/signup">sign up</a></li>
+</ul>

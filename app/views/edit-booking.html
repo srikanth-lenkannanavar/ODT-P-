@@ -1,0 +1,369 @@
+<div class="container form-page edit-booking inner-page" apply-bg>
+    <div class="row" ng-if="editBookingFailed">
+        <div col-md-12 >
+            <div class="alert alert-danger alert-error">
+                Oops! It appears there was a problem with your booking. Please try again…
+            </div>
+        </div>
+    </div>
+    <h1 class="page-main-title">Edit booking</h1>
+    <h5 class="page-sub-title grey"><span class="line">My item(s) are ready for collection on 
+            <strong><input type='text' ng-model="packageDate" class="package-date" style="display:none" /></strong>
+            <span id="label" >{{packageDate|date: "dd-MM-yyyy"}} -  {{packagecollectionreadyfrom}}</span></span>
+        <a class="btn btn-primary" ng-click="later();">Change</a>
+        <!--<a class="in-dp-ds-caln btn btn-primary" ng-click="later();">Change</a>  -->  
+    </h5>
+    <div class="row">
+        <!--swap right wrap-->
+        <div class="col-sm-12 col-md-3 swap-right">          
+
+            <div class="deliverslot-container">
+                <div class="deliverslot-header">
+                    Delivery slot
+                </div>
+                <div class="row quote-dp-cotainer">
+
+                    <div class="ds-arrow">
+                        <!--{{isPrevArw}}-->
+                        <i ng-if="isPrevArw" class="icon icon-onthedot-icons-25 enabled-dp" ng-click="timeslotCall('prev')"></i>
+                        <i ng-if="!isPrevArw" class="icon icon-onthedot-icons-25 disabled-dp"></i>
+                    </div>
+                    <div class="calendar-wrap">
+
+                        <div class="form-group" >
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' ng-model="deliverydate" readonly class="form-control" />
+                                <span class="input-group-addon in-dp-ds-caln"><span class="icon icon-onthedot-icons-04 "></span>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="ds-arrow right">
+                        <i ng-if="sevenDays" class="icon icon-onthedot-icons-26 enabled-dp" ng-click="timeslotCall('next')"></i>
+                        <i ng-if="!sevenDays" class="icon icon-onthedot-icons-26 disabled-dp" ></i>
+                    </div>
+                </div>
+
+                <div class="time-slot-list-container">
+                    <!--                    <<<<<<< .mine
+                                        <div class="text-danger text-center" ng-if="isTimeslot">
+                                            <pre>Selected time slot:{{bookingRequestArr.timeslotstart| date: "HH:mm" :'UTC'}} - {{bookingRequestArr.timeslotend| date: "HH:mm" :'UTC'}}</pre>
+                                            ======= -->
+                    <div class="text-center" ng-if="isTimeslot">
+                        <p>Selected time slot: {{bookingRequestArr.timeslotstart| uktimefilter}} - {{bookingRequestArr.timeslotend| uktimefilter}}</p>
+
+                    </div>
+                    <div class="deliverslot-footer">
+                        <p class="text-center showmore" ng-if="dsErorrFlag">
+                            No timeslots available
+                        </p>
+                    </div>
+                    <ul class="time-slot-list">
+                        <li  ng-repeat="timeslot in timeslotsArr| limitTo : showMorelimit" ng-class="{active:checkedTimeslot(timeslot.id)}"     >
+                            <div class="delivery-slot-radio " >
+                                <input type="radio" id="radioDs{{$index}}" ng-model="dsRadio.res"   value="{{timeslot.id}}" name="timeSlotHr"   class="css3radio" />
+                                <label  class="toggler_r" for="radioDs{{$index}}" ng-if="bookingRequestArr.timeslotstart==timeslot.starttime">
+                                    <span class="defualt-select" id="{{timeslot.id}}">{{timeslot.starttime| uktimefilter}} - {{timeslot.endtime| uktimefilter}}</span>
+                                </label>
+                                <label  class="toggler_r" for="radioDs{{$index}}" ng-if="bookingRequestArr.timeslotstart!=timeslot.starttime">
+                                    <span id="{{timeslot.id}}">{{timeslot.starttime| uktimefilter}} - {{timeslot.endtime| uktimefilter}}</span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="deliverslot-footer">
+                    <p class="text-center showmore" ng-if="showMoreFlag"  ng-click="showMore()">
+                        Show more slot
+                    </p>
+
+                    <p class="text-center showmore" ng-if="showNoTimeslotsFlag"  >
+                        No timeslots available
+                    </p>
+                </div>
+            </div>
+        </div><!-- /swap right wrap-->
+
+        <!--swap left wrap-->
+        <div class="col-sm-12 col-md-9 swap-left">
+
+            <!--<form  role="form" name="adddrConfirmation" novalidate method="post">-->      
+            <form role="form" name="adddrConfirmation" novalidate method="post" ng-submit="collectionDeliverySave(objects, adddrConfirmation.$valid)">      
+                <!--collection details form section -->             
+                <div class="form-section">
+                    <h5 class="page-sub-title">Collection details </h5>
+                    <!--collect from-->
+                    <div class="form-group">
+                        <label>Collect from</label>
+                        <div ng-class="{'has-error': (adddrConfirmation.Line1Address.$invalid && adddrConfirmation.Line1Address.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.Line1Address.$invalid)}">
+                            <input type="text" name="Line1Address"  ng-model="bookingRequestArr.retailername" class="form-control" placeholder="Retailer or collection point name*" maxlength="60" required>
+                            <p class="error-msg"
+                               ng-if="(adddrConfirmation.Line1Address.$invalid && adddrConfirmation.Line1Address.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine1.$invalid)">This
+                                Oops! Please tell us who we are collecting from</p>
+
+                        </div>
+                    </div><!-- /collect from-->
+                    <!-- first and section line of retailer address-->
+                    <div class="row">
+                        <div class="col-md-12 addr-input-marging">
+                            <div ng-class="{'has-error': (adddrConfirmation.Line2Address.$invalid && adddrConfirmation.Line2Address.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.Line2Address.$invalid)}">
+                                <input type="text" name="Line2Address"  ng-model="bookingRequestArr.retaileraddressline1" class="form-control" placeholder="First and second line of retailer or collection point address *" maxlength="60" required>
+                                <p class="error-msg"
+                                   ng-if="(adddrConfirmation.Line2Address.$invalid && adddrConfirmation.Line2Address.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.Line2Address.$invalid)">This
+                                    Oops! Please enter the first and second line of the retailer or collection point address</p>
+                            </div>
+                        </div>
+                    </div><!-- /first and section line of retailer address-->
+
+                    <!--city and postcode--> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="address-line-3" name="city" ng-model="bookingRequestArr.retailercity" type="text" value="" class="form-control" placeholder="City" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="address-line-4" name="postalCode" ng-model="bookingRequestArr.retailerpostalcode" type="text" class="form-control" placeholder="Postcode" readonly>
+                            </div>
+                        </div>
+                    </div><!--/ city and postcode--> 
+
+                    <!--notification msg-->
+                    <div class="row" ng-if="isEditCollection">    
+                        <div class="col-md-12">                                               
+                            <div class="alert alert-danger">
+                                <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+                                <!--Note! &nbsp; At least one collection reference is mandatory.-->
+                                Sorry! We need your collection reference details
+                            </div>   
+                        </div>
+                    </div><!--/notification msg-->
+
+                    <div ng-repeat="item in itemsArray" id="item" ng-init="myIndex = $index">
+                        <h3 class="form-sub-title">Collection reference {{$index + 1}}  <a ng-click="deleteItem($index)" class="delete-item"><div class="icon icon-onthedot-icons-28"></div></a></h3>
+
+                        <div class="row">
+                            <div class="col-md-6 addr-input-marging">
+                                <div 
+                                    ng-class="{'has-error': (adddrConfirmation.itemDescription{{$index}}.$invalid && adddrConfirmation.itemDescription{{$index}}.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.itemDescription{{$index}}.$invalid) }">
+                                    <input type="text" name="itemDescription{{$index}}"  ng-model="itemsArray[$index].itemDescription" class="form-control" placeholder="Short description of item(s)*" required ng-maxlength="60">
+                                    <p class="error-msg"
+                                       ng-show="(adddrConfirmation.itemDescription{{$index}}.$invalid && adddrConfirmation.itemDescription{{$index}}.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.itemDescription{{$index}}.$invalid)">Oops!
+                                        Please tell us what we are collecting</p>
+
+                                    <!-- <p class="error-msg"  ng-show="adddrConfirmation.itemDescription{{$index}}.$invalid && adddrConfirmation.itemDescription{{$index}}.$dirty">This field is required</p> -->
+                                </div>
+                            </div>
+                            <div class="col-md-6 addr-input-marging">
+                                <div 
+                                    ng-class="{'has-error': adddrConfirmation.itemValue{{$index}}.$invalid && adddrConfirmation.itemValue{{$index}}.$dirty || (adddrConfirmation.$submitted && adddrConfirmation.itemValue{{$index}}.$invalid)}">
+                                    <input type="text" class="quantity form-control" placeholder="Value of item(s) in £*" name="itemValue{{$index}}" id="itemValue{{$index}}" ng-model="itemsArray[$index].itemValue"  maxlength="10" required >
+                                    <p class="error-msg"
+                                       ng-show="(adddrConfirmation.itemValue{{$index}}.$invalid && adddrConfirmation.itemValue{{$index}}.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.itemValue{{$index}}.$invalid)">Oops!
+                                        Please tell us how much your item(s) are worth</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 addr-input-marging min-d-only">
+                                <div ng-class="{'has-error': (adddrConfirmation.recieptNo{{$index}}.$invalid && adddrConfirmation.recieptNo{{$index}}.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.recieptNo{{$index}}.$invalid)}">
+                                    <!--{{obj.recieptNo}}-->
+                                    <input type="text" class="form-control" placeholder="Retailer reference/order number*" name="recieptNo{{$index}}" id="recieptNo{{$index}}" ng-model="itemsArray[$index].recieptNo" ng-blur="recCheck(itemsArray[$index].recieptNo, $index)" maxlength="30" required>
+                                    <div ng-if="iSvalueR">
+                                        <p class="error-msg"
+                                           ng-show="iSvalueR &&(adddrConfirmation.recieptNo{{$index}}.$invalid && adddrConfirmation.recieptNo{{$index}}.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.recieptNo{{$index}}.$invalid)">Oops!
+                                            You need to enter the reference or order number your retailer
+                                            has given you so we can collect it for you</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 addr-input-marging min-d-only">
+                                <div ng-class="{'has-error': adddrConfirmation.cardHolderName{{$index}}.$invalid && adddrConfirmation.cardHolderName{{$index}}.$dirty }">
+                                    <!--<input type="text" class="form-control" placeholder="Enter your name as their in your card *" name="cardHolderName{{$index}}" id="cardHolderName{{$index}}" ng-model="items[$index].cardHolderName" ng-pattern="/^[a-zA-Z]+$/" required>-->
+                                    <input type="text" class="card-string form-control" placeholder="Name as shown on your payment card" name="cardHolderName{{$index}}" id="cardHolderName{{$index}}" ng-model="itemsArray[$index].cardHolderName" maxlength="60">
+                                    <p class="error-msg"  ng-show="adddrConfirmation.cardHolderName{{$index}}.$invalid && adddrConfirmation.cardHolderName{{$index}}.$dirty">Oops! We need your name as it appears on your credit/debit card</p> 
+                                    <!--<p class="error-msg" ng-if="adddrConfirmation.cardHolderName{{$index}}.$dirty && adddrConfirmation.cardHolderName{{$index}}.$error.pattern">Only String is required</p>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="recieptNoUnique && Rindex == $index">
+                            <div class="col-md-12">
+                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                    <!--<button type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                    <!--class="close"-->
+                                    This receipt number already exists 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 upload-photo relative">
+                                <input type="file" class="browse-collection" name="browseCollection{{$index}}" id="browseCollection{{$index}}" ng-model="itemsArray[$index].browseCollection" ng-file-select="onFileSelect($files, $index)"/>
+                                <div class="overflow-h" ng-if="(!itemsArray[$index].browseCollection) && (!itemsArray[$index].isWorking)"><a class="pull-left" collection-upload><i class="icon icon-onthedot-icons-14 icon-label">
+
+                                        </i>&nbsp;&nbsp;Upload your confirmation email or receipt</a><a target="_blank" class="help-icon" href="upload-document" title="Help"><i class="icon icon-onthedot-icons-27 icon-label help"></i></a></div>
+                                <div class="" ng-if="itemsArray[$index].browseCollection">
+                                    <span class="pull-left">{{itemsArray[$index].browseCollection}}</span>
+                                    <a class="cancel-icon" href="#" ng-click="deleteFileModel($index, true)"><i class="icon icon-onthedot-icons-20"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="itemsArray[$index].isWorking">{{itemsArray[$index].progressMessage}}</div><br>
+
+                        <div class="row" ng-if="itemsArray[$index].fileUploadErrorMessage">
+                            <div class="col-md-12 bs-example">
+                                <div class="alert alert-danger alert-error">
+                                    <!--<a href="#" class="close" data-dismiss="alert">&times;</a>&nbsp;&nbsp;-->
+                                    {{itemsArray[$index].fileUploadErrorMessage}}
+                                </div>
+                            </div>
+                        </div>    
+                        <!--                                        </div>-->
+                        <div class="row">
+                            <div class="col-md-12 addr-input-marging">
+                                <textarea class="form-control collection-section" rows="2" placeholder="Other collection information" name="otherInstructions{{$index}}" id="otherInstructions{{$index}}" ng-model="itemsArray[$index].otherInstructions" maxlength="100"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a ng-click="addItem($index)"><div class="fa fa-plus-square"></div>&nbsp;&nbsp;Need to collect more than one order from this retailer? Add another collection reference here…</a>
+                    </div>
+
+                </div><!--/collection details form section -->   
+
+                <!--collection details form section -->             
+                <div class="form-section">
+                    <h5 class="page-sub-title">Delivery details </h5>
+                    <!-- Contact name and contact phone for the delivery -->  
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <div class="addr-input-marging" ng-class="{'has-error': (adddrConfirmation.deliveryReferenceName.$invalid && adddrConfirmation.deliveryReferenceName.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.deliveryReferenceName.$invalid)}">
+                                    <input type="text" class="form-control" placeholder="Contact name for the delivery*" name="deliveryReferenceName" id="deliveryReferenceName" ng-model="objects.deliveryReferenceName" ng-pattern="/^[a-zA-Z0-9\s.\-_']{1,20}$/" maxlength="20" size="20" required >
+                                    <div ng-if="(adddrConfirmation.$submitted || adddrConfirmation.deliveryReferenceName.$touched || (adddrConfirmation.deliveryReferenceName.$dirty && adddrConfirmation.deliveryReferenceName.$invalid))" ng-messages="adddrConfirmation.deliveryReferenceName.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">We need a contact name for the delivery address to make sure 
+                                            we get it to the right person</div>
+                                        <div ng-message="pattern" class="error-msg">Please Enter alpha/numeric, - , '  .</div>
+                                    </div>     
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="addr-input-marging" ng-class="{'has-error': (adddrConfirmation.$submitted && adddrConfirmation.phoneNumber.$invalid) || (adddrConfirmation.phoneNumber.$touched && adddrConfirmation.phoneNumber.$invalid)}">
+                                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" ng-model="objects.phoneNumber" placeholder="Contact phone no. for the delivery*" ng-pattern="/^(7|07)\d{9}$/" restrict-quick-validation required />
+                                    <!--
+                                    <p class="error-msg"
+                                       ng-show="(adddrConfirmation.phoneNumber.$dirty && adddrConfirmation.phoneNumber.$error.required) || (adddrConfirmation.$submitted && adddrConfirmation.phoneNumber.$invalid)">Sorry!
+                                        We need a contact phone no. for the delivery to make sure we
+                                        can call if there is an issue</p>
+                                    <p class="error-msg"
+                                       ng-if="adddrConfirmation.phoneNumber.$dirty && adddrConfirmation.phoneNumber.$error.pattern">Invalid
+                                        phone number</p>
+                                    -->
+                                    <div ng-if="(adddrConfirmation.$submitted || adddrConfirmation.phoneNumber.$touched)"
+                                         ng-messages="adddrConfirmation.phoneNumber.$error" ng-messages-include='views/error-messages.html'>
+                                        <!--<div ng-message="pattern" class="error-msg">Invalid phone number</div>-->
+                                        <div ng-message="pattern" class="error-msg">We need a contact phone no. for the delivery to make sure we can call if there is an issue</div>
+                                        <div ng-message="required" class="error-msg">We need a contact phone no. for the delivery to make sure we can call if there is an issue</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /Contact name and contact phone for the delivery -->  
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div  class="form-group addr-form-group">
+                                <input id="company" name="company" ng-model="objects.address.company" type="text" placeholder="Company name" class="form-control" maxlength="60">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div  class="form-group addr-form-group" ng-class="{'has-error': (adddrConfirmation.addressLine1.$invalid && adddrConfirmation.addressLine1.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine1.$invalid)}">
+                                <input id="address-line-1" name="addressLine1" ng-model="objects.address.address1" type="text" placeholder="First line of address *" class="form-control" maxlength="60" required >
+
+                                <p class="error-msg" ng-if="(adddrConfirmation.addressLine1.$invalid && adddrConfirmation.addressLine1.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine1.$invalid)">
+                                    Oops! Please enter the first line of the address
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div  class="form-group addr-form-group" ng-class="{'has-error': adddrConfirmation.addressLine2.$invalid && adddrConfirmation.addressLine2.$dirty}">
+                                <!--<label for="address-line-1">Address line *</label>-->
+                                <input id="address-line-2" name="addressLine2" ng-model="objects.address.address2" type="text" placeholder="Second line of address" class="form-control" maxlength="60" >
+                                <!-- <p class="error-msg" ng-if="adddrConfirmation.addressLine2.$invalid && adddrConfirmation.addressLine2.$dirty">This field is required</p> -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            <div class="form-group" ng-class="{'has-error': (adddrConfirmation.city.$invalid && adddrConfirmation.city.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.city.$invalid)}">
+                                <input id="address-line-3" name="city" ng-model="objects.address.town" type="text" value="{{posts[0].town}}" class="form-control" placeholder="City*" required>
+                                <p class="error-msg"
+                                   ng-if="(adddrConfirmation.city.$invalid && adddrConfirmation.city.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.city.$invalid)">Town/City
+                                    can't be blank</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="form-group" ng-class="{'has-error': adddrConfirmation.postalCode.$invalid && adddrConfirmation.postalCode.$dirty}">
+                                <input id="address-line-4" name="postalCode" ng-model="bookingRequestArr.postcode" type="text" class="form-control" placeholder="Postcode" readonly required>
+                                <p class="error-msg" ng-if="adddrConfirmation.postalCode.$invalid && adddrConfirmation.postalCode.$dirty">Please enter a valid postal code</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<textarea class="form-control collection-section" rows="2" placeholder="Specific delivery instructions" name="otherInstructions{{$index}}" id="otherInstructions{{$index}}" ng-model="items[$index].otherInstructions" maxlength="100"></textarea>-->
+                            <textarea class="form-control collection-section" rows="2" placeholder="Specific delivery instructions" name="otherInstructions" id="otherInstructions" ng-model="objects.address.otherInstructions" maxlength="100"></textarea>
+                        </div>
+                    </div>
+
+
+                </div><!--collection details form section -->
+
+                <!-- action pane -->
+                <div class="action-pane">
+                    <div class="accept-terms">
+                        <div class="checkbox address-accordion-container"
+                             ng-class="{'has-error': (adddrConfirmation.checkbox1.$invalid && adddrConfirmation.checkbox1.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox1.$invalid)}">
+                            <input type="checkbox" name="checkbox1" id="checkbox1"
+                                   class="css3checkbox ng-pristine ng-untouched ng-valid"
+                                   ng-model="valueCheckBoxAc" required> <label
+                                   class="toggler" for="checkbox1">I confirm that my order does not exceed 20 kgs and 1.2m x 1.0m x 1.0m </label> <br>
+                            <p class="error-msg"
+                               ng-if="(adddrConfirmation.checkbox1.$invalid && adddrConfirmation.checkbox1.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox1.$invalid)">Oops! Please confirm you have checked your item(s) size and weight</p>
+                        </div>
+
+                        <div class="checkbox address-accordion-container"
+                             ng-class="{'has-error': (adddrConfirmation.checkbox2.$invalid && adddrConfirmation.checkbox2.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox2.$invalid)}">
+                            <input type="checkbox" name="checkbox2" id="checkbox2"
+                                   class="css3checkbox ng-pristine ng-untouched ng-valid"
+                                   ng-model="valueCheckBoxTc" required> <label
+                                   class="toggler" for="checkbox2"> I accept the <a
+                                    href="terms-and-conditions" target="_blank">On the
+                                    dot terms and conditions</a>
+                            </label> <br>
+                            <p class="error-msg"
+                               ng-if="(adddrConfirmation.checkbox2.$invalid && adddrConfirmation.checkbox2.$dirty) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox2.$invalid)">Oops! Please confirm that you have accepted our terms and conditions</p>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-blue">Confirm</button>
+                            <button type="button" class="btn btn-primary btn-blue" ng-click="collectionDeliveryGoBack()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div><!-- /swap left wrap-->
+
+
+    </div>
+</div>

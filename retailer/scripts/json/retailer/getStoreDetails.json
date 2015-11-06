@@ -1,0 +1,67 @@
+{
+    "data": {
+        "storeId": "444",
+        "domain": "RTJ",
+        "channel": "RTJ",
+        "retailerName": "Argos",
+        "imageUrl": "images/logos/argos.png",
+        "address": {
+            "firstLine": "60 St. Anns Road",
+            "secondLine": "Harrow",
+            "city": "London",
+            "postCode": "HA1 1JU",
+            "country": null,
+            "state": null
+        },
+        "info": {
+            "storeName": "Argos-Harrow1",
+            "businessPhoneNumber": "0345 6564133",
+            "website": "www.argos.co.uk65",
+            "storeDesc": "Argos is the UK's leading digital retailer, offering more than 33,000 products through online, its growing mobile channels, stores, over the telephone and uniquely, through Argos TV.",
+            "branchEmail": "ram@ram.com",
+            "accountNumber": null,
+            "userName": "admin"
+        },
+        "openingHours": {
+            "FRI": "09:30 - 18:00",
+            "MON": "06:30 - 14:30",
+            "SAT": "09:30 - 18:00",
+            "SUN": "Closed",
+            "THU": "Closed",
+            "TUE": "Closed",
+            "WED": "Closed"
+        },
+        "bankHolidayDetails": {
+            " Summer Bank Holiday": "09:30 - 18:00",
+            "Boxing Day": "09:30 - 18:00",
+            "Christmas Day": "09:30 - 18:00",
+            "Early May Bank Holiday": "09:30 - 18:00",
+            "Easter Monday": "Closed",
+            "Easter Sunday": "Closed",
+            "Good Friday": "Closed",
+            "New Years Day": "Closed"
+        },
+        "isWorkingOnHolidays": 1,
+        "location": {
+            "lat": "51.581163",
+            "lng": "51.581163"
+        },
+        "knowMore": {
+            "likeToBePartnerRetailer": 1,
+            "storeType": 0,
+            "havePortal": 0,
+            "shippingDetail": 1
+        },
+        "serviceCenterCode": null,
+        "branchInStoreTime": 0,
+        "storeOpenTime": null,
+        "storeCloseTime": null
+    },
+    "success": {
+        "status": "OK"
+    },
+    "errors": {
+        "status": "OK"
+    }
+
+}

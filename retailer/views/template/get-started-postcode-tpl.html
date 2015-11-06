@@ -1,0 +1,31 @@
+<form class="form-inline" role="form"  name="postcodeForm" novalidate >
+
+    <div class="">
+        <div class="col-sm-12 col-md-6 text-center padding-b-20 col-md-push-6">
+            <div class="tageline">
+                <h1>Deliveries when you want them</h1>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-md-pull-6">
+            <div class="postcode-div"><input type="text" id="postcode" name="postcode" restrict-quick-validation check-postcode-home ng-model="mydeliveryuser.postCodeValue" required placeholder="Enter your delivery postcode" class="form-control">
+                <button type="submit" class="btn btn-default btn-gradient" ng-click="go('/Booking/Retailers')">Get started</button>
+                <a class="flt btn-gradient" ng-click="findAndUseLocation()">
+                    <img src="images/Icon_location.png" title="Use your current location">
+                    <div class="icon icon-onthedot-icons-01"></div>
+                </a>
+                        <span class="btn btn-default btn-gradient square-btn map" title="Use your current location" ng-click="findAndUseLocation()">
+                            <div class="icon icon-onthedot-icons-01"></div>
+                            <img src="images/map-marker.png" height="18" width="18" title="Use your current location">
+                        </span>
+
+                <div ng-if="(postcodeForm.$submitted || postcodeForm.postcode.$touched )" ng-messages="postcodeForm.postcode.$error" >
+                    <div ng-message="checkPostcode"  class="del-pc-err-mes">Please enter a valid postcode</div>
+                    <div ng-message="required"  class="del-pc-err-mes">Please enter a valid postcode</div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>

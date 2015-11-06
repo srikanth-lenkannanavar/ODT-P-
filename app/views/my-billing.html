@@ -1,0 +1,103 @@
+
+
+
+<div class="container inner-page min-height" apply-bg >
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-main-title">My payment history</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" ng-if="!billings">              
+            <div class="alert alert-info">
+                <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+                <!--  <strong>Note!</strong> -->  You have not made any purchases yet
+            </div>
+        </div>
+    </div>            
+    <!--<table st-table="rowCollection" class="mobile-device-billing-1 table table-striped billing-table" ng-if="billings">-->
+    <table st-table="rowCollection" class="sortable mobile-device-billing-1 table table-striped billing-table" ng-if="billings">
+        <thead>
+            <tr class="row-margin">
+                <th>
+                    Order no.
+                </th>
+                <!--                    <th>
+                                        <a><i class="fa fa-sort"></i> Order date</a>
+                                    </th>-->
+
+                <!--<th>
+                    <span ng-show="orderByField == 'orderid'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort"></i></span></span>
+                    <a href="#" ng-click="orderByField = 'orderid';
+                                reverseSort = !reverseSort">
+                        Order date
+
+                    </a>
+                </th> -->
+
+                <th><a href="" ng-click="doSort(billings)"><i class="fa fa-sort"></i>Order date</a></th>
+                <th>Payment type</th>
+                <th>Booking type</th>
+                <th>Summary</th>
+                <th class="row-margin-data">Total</th>
+            </tr>
+            <tr ng-repeat="billing in billings">
+                <td>{{billing.orderId}}</td>
+                <td>{{billing.createdate}}</td>
+                <td>Real-ex</td>
+                <td>{{billing.displayName}}</td>
+                <td width=350>{{billing.message}}</td>
+                <td class="bill-amount row-margin-data"> £{{billing.amount| number : 2}}</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <table st-table="rowCollection" class="mobile-device-billing table table-responsive table-striped billing-table" >
+        <thead>
+            <tr class="row-margin">
+                <th>
+                    Order no.
+                </th>
+                <th>
+                    <a href=""  ng-click="doSort(billings)"><i class="fa fa-sort"></i>Order date</a>
+                </th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody  ng-repeat="billing in billings">
+            <tr >
+                <td><a href="" class="sm-mybilling">{{billing.orderid}}</a>
+                </td>
+                <td>{{billing.createdate}}</td>
+                <td class="bill-amount">£{{billing.amount| number : 2}}</td>
+            </tr>
+            <tr class="sm-mybilling-open-close">
+                <td colspan="3" class="relative">
+                    <button type="button" class="close sm-mybilling-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="col-50-p">
+                        <dl class="dl-horizontal">
+                            <dt>Payment type:</dt>
+                            <dd>Real-ex</dd>
+
+                            <dt>Summary:</dt>
+                            <dd class="last">{{billing.message}}</dd>
+
+                        </dl>   
+                    </div>
+                    <div class="col-50-p">
+                        <dl class="dl-horizontal">
+                            <dt>Booking type:</dt>
+                            <dd>{{billing.bookingtype}}</dd>
+                        </dl>                               
+                    </div>
+
+                </td>
+            </tr>    
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+<div class="container form-page my-profile edit mar-bot-45 ng-scope" apply-bg="">
+    <div class="global-msg" ng-if="getFailed">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            <span ng-bind="alertMessage"></span>
+        </div>
+    </div>
+    <div>        
+        <section ng-if="userInfo">
+            <div ng-include src="'views/template/edit-profile/user-information.html'"></div>
+        </section>
+        <section ng-if="passwordChange">
+            <div ng-include src="'views/template/edit-profile/change-password.html'"></div>
+        </section>
+        <section ng-if="storeInfo">
+            <div ng-include src="'views/template/edit-profile/store-information.html'"></div>
+        </section>
+        <section ng-if="sOpeningHours">
+            <div ng-include src="'views/template/edit-profile/store-opening-hours.html'"></div>
+        </section>
+        <section ng-if="bOpeningHours">
+            <div ng-include src="'views/template/edit-profile/bank-holiday-opening-hours.html'"></div>
+        </section>
+    </div>
+</div>

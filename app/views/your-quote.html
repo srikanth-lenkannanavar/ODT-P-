@@ -1,0 +1,283 @@
+<div class="container form-page" apply-bg>
+    <div class="row" ng-if="noTimeSlots">
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                Sorry that day seems to be really popular and all our drivers are busy. Please choose another day.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div id="map-container"></div>
+            <div class="map-info" >
+                Your On the dot collection zone includes retailers within 5 miles from your chosen delivery postcode
+            </div>
+        </div>
+        <div class="col-md-7 reset-padding right-col relative">
+            <!-- pagination steps -->
+            <div class="pagination-steps">
+                <ul>
+                    <li class="circle1">
+                        <div class="completed-step" title="Choose retailer" ng-click="go('/Booking/Retailers/')">1</div>
+                    </li>
+                    <li class="circle2">
+                        <div class="selected-step" title="Choose delivery timeslot">2</div>
+                    </li>
+                    <li class="circle3">
+                        <div title="Confirm and book">3</div>
+                    </li>
+                </ul>
+            </div><!-- /pagination steps -->
+            <div class="delivery-controls">
+                <ul class="delivery-info list-unstyled">
+                    <li>
+                        Collect from
+                        <span ng-if="retailerpostcode">{{retailerpostcode|codeFilter}}</span>
+                    </li>
+                    <li>
+                        Deliver to
+                        <span ng-if="userpostcode">{{userpostcode|codeFilter}}</span>
+                    </li>
+                    <li>
+                        Store opening hours
+                        <span ng-if="retailerstoreopentime && retailerstoreclosetime" id="storeTime">{{retailerstoreopentime + " - " + retailerstoreclosetime}}</span>
+                    </li>
+                </ul><!-- /delivery info -->
+            </div><!-- /delivery details  -->
+
+            <div class="quote-wrap">
+                <div ng-show="GetQuoteFailed">
+                    <div class="alert alert-danger alert-error">
+                        Get Quote Amount Failed
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-lg-6 col-md-8 inline reset-padding">My item(s) are ready for collection by On the dot</label>
+                            <div class="col-lg-6 col-md-4 reset-padding">
+                                <select  class="form-control later-now" ng-model="pickuptime" id="pt" ng-change="later()"ng-options=" pickuptimeOption for pickuptimeOption in pickuptimeOptions" class="form-control pickup-sel-field">
+                                </select>
+                                <span id="label" ng-click="hideText();"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- quote wrap -->
+            <div class="your-quote-container clearfix">
+                <div class="row">
+                    <div class="col-lg-4 col-md-5 swap-right">
+                        <div class="deliverslot-container nomargin">
+                            <div class="deliverslot-header">
+                                1 hour delivery timeslots
+                            </div>
+
+                            <div class="row quote-dp-cotainer">
+
+                                <div class="ds-arrow">
+                                    <i ng-if="!isPrevDisabled" class="icon icon-onthedot-icons-25 enabled-dp" ng-click="timeslotCall('prev')"></i>
+                                    <i ng-if="isPrevDisabled" class="icon icon-onthedot-icons-25 disabled-dp"></i>
+                                </div>
+                                <div class="calendar-wrap">
+
+                                    <div class="form-group" >
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' ng-model="deliverydate" readonly class="form-control" />
+                                            <span class="input-group-addon in-dp-ds-caln"><span class="icon icon-onthedot-icons-04 "></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="ds-arrow right">
+                                    <i ng-if="sevenDays" class="icon icon-onthedot-icons-26 enabled-dp" ng-click="timeslotCall('next')"></i>
+                                    <i ng-if="!sevenDays" class="icon icon-onthedot-icons-26 disabled-dp" ></i>
+                                </div>
+                            </div>
+
+                            <div class="time-slot-list-container">
+                                <div class="deliverslot-footer" ng-if="dsErorrFlag">
+                                    <p class="text-center showmore" ng-if="dsErorrFlag && !showMoreFlag">
+                                        No timeslots available
+                                    </p>
+                                </div>
+
+                                <ul class="time-slot-list">
+                                    <li  ng-repeat="timeslot in timeslotsArr| limitTo : showMorelimit " ng-class="{active:checkedTimeslot(timeslot.id)}"     >
+                                        <div class="delivery-slot-radio " >
+                                            <input type="radio" id="radioDs{{$index}}" ng-model="dsRadio.res"   value="{{timeslot.id}}" name="timeSlotHr"   class="css3radio" />
+                                            <label  class="toggler_r" for="radioDs{{$index}}">
+                                                <span id="{{timeslot.id}}"  data-start="{{timeslot.starttime}}" data-end="{{timeslot.endtime}}">{{timeslot.starttime| uktimefilter}} - {{timeslot.endtime| uktimefilter}}</span>
+
+                                            </label>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="deliverslot-footer">
+                                <p class="text-center showmore" ng-if="showMoreFlag"  ng-click="showMore()">
+                                    Show more slots
+                                </p>
+
+                                <p class="text-center showmore" ng-if="showNoTimeslotsFlag"  >
+                                    No timeslots available
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-8 col-md-7 swap-left">
+                        <!--<div ng-if="userLogged && isValidSubscription && zone == 'within'">-->
+                        <div ng-if="userLogged && isValidSubscription && zone == 'within'">
+                            <div class="quote-price-section">
+                                <h2 class="page-sub-title">Your {{displayname}} SUBSCRIPTION</h2>
+                                <p>Expiry date: {{subscriptionenddate}}</p>
+
+                                <!--<div class="subscript-summary-box  clearfix" ng-if="remainingbookingsforsubscription == 1">-->
+                                <div class="subscript-summary-box  clearfix" ng-if="remainingbookingsforsubscription == 1">
+                                    <!--<span class="big-number">{{remainingbookingsforsubscription}}</span> You are left with <span class="ur-sub-big">{{remainingbookingsforsubscription}}</span> delivery out of <span class="ur-sub-big">{{totalbookingsforsubscription}}</span>-->
+                                    <!--<div ng-if="remainingbookingsforsubscription == 1">  <span class="ur-sub-big" >{{remainingbookingsforsubscription}}</span> you still have {{remainingbookingsforsubscription}} of your {{totalbookingsforsubscription}} delivery left </div>-->
+
+                                    <div class="ur-sub-big pull-left">{{remainingbookingsforsubscription}}
+                                    </div>
+                                    <div class="subscribe-info-box">
+                                        Good news! You still have {{remainingbookingsforsubscription}} out of {{totalbookingsforsubscription}} deliveries left in your bundle
+                                    </div>
+                                </div>
+
+                                <div class="subscript-summary-box  clearfix" ng-if="remainingbookingsforsubscription > 1">
+                                    <div class="ur-sub-big pull-left">{{remainingbookingsforsubscription}}</div>
+                                    <div class="subscribe-info-box ">Good news! You still have {{remainingbookingsforsubscription}} out of {{totalbookingsforsubscription}} deliveries left in your bundle</div>
+                                </div>
+
+                                <div class="subscription-btn-align">
+                                    <button class="btn btn btn-primary" ng-click="saveTimeSlot()">Book</button>
+                                    <button class="btn btn-default" ng-click="go('/Booking/Retailers/')">Go back</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div ng-if="userLoggedOut || !isValidSubscription || zone != 'within'" class="col-md-7 quote-price-container">-->
+                        <div ng-if="userLoggedOut || !isValidSubscription || zone != 'within'" class="quote-price-container">
+                            <div class="quote-price-section">
+
+                                <h2 class="page-sub-title">Your collection for <span class="lowercase">{{quoteDate}}</span></h2>
+
+                                <div class="row" ng-if="zone != 'within'">
+                                    <div class="ur-collection-err clearfix">
+                                        <div class="col-lg-2 col-md-3 col-xs-2 pad-top-5">
+                                            <i class="icon icon-onthedot-icons-13 ur-collection-err-icon"></i>
+                                        </div>
+                                        <div class="col-lg-10 col-md-9 col-xs-10 pad-top-5 remove-boot-pad-lh">
+                                            <p ng-if="zone != 'within'">Your collection point is out of your eligible zone.
+                                                You cannot use your subscription (if any) for this transaction.</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="btb-section">
+                                    <!--<span id="quotebuttonspan" style="display:none">-->
+                                    <span id="quotebuttonspan" style="display:none">
+                                        <button class="btn btn-primary" ng-click="bookNow()">Book now  &pound; <span id="quoteAmount"></span></button>
+                                    </span>
+                                    <!--<span ng-if="isValidSubscription">-->
+                                    <span>
+                                        <button class="btn btn-default" ng-click="go('/Booking/Retailers/')">Go back</button>
+                                    </span>
+                                </div>
+
+                                <div class="mar-top-30" >
+                                    <div class="clearfix">
+                                        <div class="icon-wrapper">
+                                            <i class="icon icon-onthedot-icons-22 ur-collection-info-icon"></i>
+                                        </div>
+                                        <div style="margin-left:35px;">
+                                            <p>If you are lucky enough to have one of our promo codes, you can use this at the checkout.</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--<div class="quote-hr-line" ng-if="!isValidSubscription && zone == 'within'">-->
+
+                            <div class="quote-rounded-circle" ng-if="!isValidSubscription && zone == 'within'" >
+                                OR
+                            </div>
+
+
+                            <div class="quote-sub-module clearfix" ng-if="!isValidSubscription && zone == 'within'" >
+                                <div class="y-not-buy">Why not buy one of our money-saving bundles?</div>
+                                <div class="y-not-exp">Just make sure to use them within 6 months or they expire.</div>
+                                <div class="subscript-box clearfix">
+                                    <ul ng-repeat="data in subscriptions">
+                                        <li class="clearfix">
+                                            <div class="pull-left subscript-box-field">
+                                                <input type="radio" ng-if="data.subscriptionname == 'silver'" name="subscription" id="radioss{{$index}}"  class="css3radio" checked value={{data.subscriptionname}}>
+                                                <input type="radio" ng-if="data.subscriptionname != 'silver'" name="subscription" id="radioss{{$index}}" class="css3radio" value={{data.subscriptionname}}>
+                                                <label  class="sub-offer toggler_r" for="radioss{{$index}}">
+                                                    <span class="offer-label">{{data.displayname}}</span>
+
+                                                    <!--<i class="icon icon-onthedot-icons-22 icon-label help" ng-click="showmodal( $index, 'template.html', 'YourQuoteCtrl')"></i>-->
+                                                </label>
+                                                <!--<span class="sub-module-info" >i</span>-->
+                                                <p class="quote-sub-mes">
+                                                    {{data.jobtotal| currency:"&pound;"}} for {{data.noofdeliveries}} deliveries ({{data.subscriptiondetails| currency:"&pound;"}} per delivery)
+                                                </p>
+                                            </div>
+                                            <div class="pull-right subscript-box-field">
+                                                <label for="silverAmt" class="quote-sub-amt">{{data.jobtotal| currency:"&pound;"}}</label>
+                                            </div>
+
+                                        </li>
+
+                                    </ul>
+                                    <div>
+                                        <button class="btn btn-default btn-info mar-right-15" ng-click="paymentPage()">Buy a bundle and book</button>
+                                        <!--<button class="btn btn-default" ng-click="go('/Booking/Retailers/')">Go Back</button>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Template for silver subscription popup-->
+<script type="text/ng-template" id="template.html">
+
+    <div class="modal-body" >
+    <div class="subscription-plan">
+    <ul>
+    <li class="plan-name" > {{subscription.subscriptionname}} Plan</li>
+    <li class="plan-price"><span>{{subscription.cost | currency:"&pound;"}} </span>per {{subscription.subscriptiondurationinmonths}} months</li>
+    <li>{{subscription.noofdeliveries}} Delivery Per month</li>
+    <li>Pickup {{subscription.pickupbetweenstarttime |  date:'h:mma'}} and  {{subscription.pickupbetweenendtime |  date:'h:mma'}}</li>
+    <li>Delivered  {{subscription.deliverybetweenstarttime |  date:'h:mma'}}  and  {{subscription.deliverybetweenendtime |date:'h:mma'}}</li>
+    <li>Secure and Convenient</li>
+    <li>First Delivery Free</li>
+    </ul>
+    </div>
+    </div>
+    <div class="modal-footer" >
+    <button type="button" class="btn btn-primary" ng-click="paymentPage()">Try for free</button>
+    <button class="btn btn-default" ng-click="hidemodal()"><i>Close</i>
+    </button>
+    </div>
+</script>

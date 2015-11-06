@@ -1,0 +1,15 @@
+<div class="modal-content" play-video>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()"><span aria-hidden="true">&times;</span></button>
+  <div class="modal-body">
+    <video id="video1" class="video-js vjs-default-skin" controls preload="none" width="720" height="405"
+    poster="images/poster-retailer.png" data-setup="{}">
+        <source ng-src="{{videoPath(homeUrl,'/images/videos/onthedot_consumer.mp4')}}" type='video/mp4' />
+        <source src="" type='video/webm' />
+        <source src="" type='video/ogg' />
+        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+        <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+    </video>
+  </div>
+
+</div>

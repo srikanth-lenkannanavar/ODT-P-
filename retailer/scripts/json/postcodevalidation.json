@@ -1,0 +1,13 @@
+{
+  
+        "data": {
+            "isServiced": true,
+            "postcode": "ha11ju",
+			"servicecentercode":"WO-SD",
+            "uuid": "xxx"
+        },
+        "success": {
+            "status": "ok"
+        }
+    
+}

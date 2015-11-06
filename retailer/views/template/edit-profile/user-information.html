@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-main-title">
+            edit user information
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-10">
+        <form role="form" name="saveUserInfo" novalidate method="post" ng-submit="updateUserProfile(saveUserInfo.$valid)">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': saveUserInfo.firstName.$invalid && saveUserInfo.firstName.$touched }">
+
+                        <input type="text" class="form-control" name="firstName" id="firstName" ng-model="retailerRegisterObjR.firstName" placeholder="First name *" required restrict-spec-characters />
+
+                        <div ng-messages="saveUserInfo.firstName.$touched && saveUserInfo.firstName.$error"  ng-messages-include='views/error-messages.html'>
+                            <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>     
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lastName" id="llastName"  ng-model="retailerRegisterObjR.lastName"  placeholder="Last name" restrict-spec-characters>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" ng-class="{'has-error': (saveUserInfo.regEmail.$dirty && saveUserInfo.regEmail.$invalid) || (saveUserInfo.$submitted && saveUserInfo.regEmail.$invalid) || (saveUserInfo.regEmail.$touched && saveUserInfo.regEmail.$invalid) }">
+
+                        <input type="email" class="form-control" name="regEmail" ng-model="retailerRegisterObjR.regEmail" id="regEmail" placeholder="Email address" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" required ng-maxlength="80" readonly onfocus="this.blur()" >
+                        <div ng-if="(saveUserInfo.$submitted || saveUserInfo.regEmail.$touched || (saveUserInfo.regEmail.$dirty && saveUserInfo.regEmail.$invalid))" ng-messages="saveUserInfo.regEmail.$error" ng-messages-include='views/error-messages.html'>
+                            <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                            <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                            <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters length</div>
+                        </div>                    
+
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <!--<div class="col-xs-8 col-sm-10 col-md-9 col-lg-10">-->
+                <div class="col-md-12">
+                    <div class="form-group" ng-class="{'has-error': (saveUserInfo.phoneNo.$invalid && saveUserInfo.phoneNo.$touched) || (saveUserInfo.phoneNo.$invalid && saveUserInfo.$submitted)}">
+                        <div class="input-group">
+                            <span class="input-group-addon">+44</span>
+                            <input type="text" class="form-control" name="phoneNo" ng-model="retailerRegisterObjR.currentPhoneNumber" id="currentPhoneNumber" placeholder="Mobile number *" ng-pattern="/^(7|07)\d{9}$/" restrict-quick-validation required restrict-alphabets />
+                            <span class="input-group-addon voucher-addon" ng-if="phoneNoValidatedStatus"><i class="fa fa-check"></i></span>
+                        </div>
+                        <div ng-if="(saveUserInfo.phoneNo.$touched || saveUserInfo.$submitted)" ng-messages="saveUserInfo.phoneNo.$error"  ng-messages-include='views/error-messages.html'>
+                            <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                            <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                        </div>
+                        <!--<div class="mar-top-10 myprof-phone" ng-if="!phoneNoValidatedStatus">
+                            <div class="clearfix">
+                                <div class="icon-wrapper">
+                                    <i class="icon icon-onthedot-icons-13 ur-collection-err-icon"></i>
+                                </div>
+                                <div class="error-msg">Please make sure you validate your account</div>
+                            </div>
+                        </div>-->
+                        <div class="form-info">This number will be used to send an activation code to validate your registration.</div>
+                    </div>
+                </div>
+                <!--<div class="col-xs-4 col-sm-2 col-md-3 col-lg-2 text right" ng-if="!phoneNoValidatedStatus || phoneNoValidatedStatus == false">
+                    <div class="form-group" ng-class="{'has-error': saveUserInfo.phoneNo.$invalid && saveUserInfo.phoneNo.$dirty}">
+                        <a  class="btn btn-default btn-primary" ng-disabled="saveUserInfo.phoneNo.$error.pattern || saveUserInfo.phoneNo.$error.required"  ng-click="validateMob()">Validate</a>
+                    </div>
+                </div>-->
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <input type="hidden" ng-model="scimId">
+                    <input type="hidden" ng-model="userName">
+                    <input type="hidden" ng-model="currentPhoneNumber">
+                    <button type="submit" class="btn btn-default btn-primary">Save</button>
+                    <a class="btn btn-default" ng-href="{{homeUrl}}/my-profile">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

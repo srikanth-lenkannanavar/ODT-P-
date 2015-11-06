@@ -1,0 +1,522 @@
+<div class="container form-page address-confirmation" apply-bg>
+    <div class="row">
+        <div class="col-md-5 reset-padding">
+            <div id="map-container"></div>
+            <div class="map-info" >
+                Your On the dot collection zone includes retailers within 5 miles from your chosen delivery postcode
+            </div>
+        </div>
+        <div class="col-md-7 reset-padding right-col relative">
+            <!-- pagination steps -->
+            <div class="pagination-steps">
+                <ul>
+                    <li class="circle1">
+                        <div class="completed-step" ng-click="go('/Booking/Retailers/')">1</div>
+                    </li>
+                    <li class="circle2">
+                        <div class="completed-step" ng-click="collectionDeliveryGoBack()">2</div>
+                    </li>
+                    <li class="circle3">
+                        <div class="selected-step" ng-click="">3</div>
+                    </li>
+                </ul>
+            </div>
+            <!-- /pagination steps -->
+            <div class="delivery-controls">
+                <ul class="delivery-info list-unstyled">
+                    <li>Collect from<span>{{bookingRequestArr.retailerpostalcode|codeFilter}}</span>
+                    </li>
+                    <li>Deliver to<span>{{bookingRequestArr.postcode|codeFilter}}</span>
+                    </li>
+                    <li>Store opening hours<span
+                            ng-if="bookingRequestArr[storetime.opentime] && bookingRequestArr[storetime.closetime]">{{bookingRequestArr[storetime.opentime]}}
+                            - {{bookingRequestArr[storetime.closetime]}}</span>
+                    </li>
+                    <li>Package ready from<span>{{bookingRequestArr.packagecollectionreadydate|
+                            date: "dd/MM/yyyy"}}
+                            {{bookingRequestArr.packagecollectionreadyfrom}}</span>
+                    </li>
+                    <li>Date of delivery<span>{{bookingRequestArr.deliveryDate|
+                            date: "dd/MM/yyyy"}} &nbsp;{{bookingRequestArr.timeslotstart|
+                            uktimefilter}} - {{ bookingRequestArr.timeslotend| uktimefilter}}</span>
+                    </li>
+                </ul>
+                <!-- /delivery info -->
+            </div>
+            <!-- /right column -->
+            <h2 class="form-title relative">
+                Just a few more details about your delivery
+                <div class="addr-amount"
+                     ng-show="bookingRequestArr.quoteamount != '0.0'">
+                    <span class="block text-right" style="font-size:14px;">Price</span>
+                    <span>&#163; {{bookingRequestArr.quoteamount}}</span>
+                </div>
+            </h2>
+            <form role="form" name="adddrConfirmation" novalidate
+                  ng-controller="AddressConfirmationCtrl" method="post"
+                  ng-submit="collectionDeliverySave(obj, adddrConfirmation.$valid)"  scrollto-first>
+                <div class="clearfix">
+                    <div class="col-md-12 address-accordion-container">
+
+                        <accordion close-others="" class=""> <accordion-group
+                                class="address-zone-conatiner" is-open="status.isFirstOpen"
+                                is-disabled="status.isFirstDisabled"> <accordion-heading>
+                                    <span class="icon icon-onthedot-icons-24"
+                                          ng-class="{'icon-onthedot-icons-23': status.isFirstOpen, 'icon-onthedot-icons-24': !status.isFirstOpen}"></span>
+                                    Collection details </accordion-heading>
+                                <p>
+                                    <strong>{{bookingRequestArr.retailername}}</strong>
+                                    <br>
+                                    <!--<span ng-show="bookingRequestArr.retailerBranchName">{{bookingRequestArr.retailerBranchName}},</span>-->
+                                    <span ng-show="bookingRequestArr.retaileraddressline1">{{bookingRequestArr.retaileraddressline1}},</span> 
+                                    <span ng-show="bookingRequestArr.retailercity">{{bookingRequestArr.retailercity}},</span>
+                                    {{bookingRequestArr.retailerpostalcode|codeFilter}}
+                                </p>
+                                <div class="row" ng-if="isCollection">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger">
+                                            <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+                                            Sorry! We need your collection reference details
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-repeat="item in items" id="item{{item.id}}"
+                                     ng-init="myIndex = $index">
+                                    <h3 class="form-sub-title">
+                                        Collection reference {{$index + 1}} <a
+                                            ng-click="deleteItem($index)" class="delete-item"><div
+                                                class="icon icon-onthedot-icons-28"></div></a>
+                                    </h3>
+                                    <div class="row">
+                                        <div class="col-md-6 addr-input-marging">
+                                            <div
+                                                ng-class="{'has-error': (adddrConfirmation.itemDescription{{$index}}.$invalid && adddrConfirmation.itemDescription{{$index}}.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.itemDescription{{$index}}.$invalid) }">
+                                                <input type="text" name="itemDescription{{$index}}"
+                                                       ng-model="items[$index].itemDescription" class="form-control"
+                                                       maxlength="60" placeholder="Short description of item(s)*"
+                                                       required>
+                                                <p class="error-msg"
+                                                   ng-show="(adddrConfirmation.itemDescription{{$index}}.$invalid && adddrConfirmation.itemDescription{{$index}}.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.itemDescription{{$index}}.$invalid)">Oops!
+                                                    Please tell us what we are collecting
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 addr-input-marging">
+                                            <div
+                                                ng-class="{'has-error': adddrConfirmation.itemValue{{$index}}.$invalid && adddrConfirmation.itemValue{{$index}}.$touched || (adddrConfirmation.$submitted && adddrConfirmation.itemValue{{$index}}.$invalid)}">
+                                                <input type="text" class="quantity form-control"
+                                                       placeholder="Value of item(s) in £*"
+                                                       name="itemValue{{$index}}" id="itemValue{{$index}}"
+                                                       ng-model="items[$index].itemValue" maxlength="10" required>
+                                                <p class="error-msg"
+                                                   ng-show="(adddrConfirmation.itemValue{{$index}}.$invalid && adddrConfirmation.itemValue{{$index}}.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.itemValue{{$index}}.$invalid)">Oops!
+                                                    Please tell us how much your item(s) are worth</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 addr-input-marging min-d-only">
+                                            <div
+                                                ng-class="{'has-error': (adddrConfirmation.recieptNo{{$index}}.$invalid && adddrConfirmation.recieptNo{{$index}}.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.recieptNo{{$index}}.$invalid)}">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Retailer reference/order number*"
+                                                       name="recieptNo{{$index}}" id="recieptNo{{$index}}"
+                                                       ng-model="items[$index].recieptNo" maxlength="30" required ng-blur="recCheck(items[$index].recieptNo, $index)">
+                                                <div ng-if="iSvalueR">
+                                                    <p class="error-msg"
+                                                       ng-show="(adddrConfirmation.recieptNo{{$index}}.$invalid && adddrConfirmation.recieptNo{{$index}}.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.recieptNo{{$index}}.$invalid)">Oops!
+                                                        You need to enter the reference or order number your retailer
+                                                        has given you so we can collect it for you</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 addr-input-marging  min-d-only">
+                                            <div
+                                                ng-class="{'has-error': (adddrConfirmation.cardHolderName{{$index}}.$invalid && adddrConfirmation.cardHolderName{{$index}}.$touched) || (adddrConfirmation.$submitted && cardHolderName{{$index}}.$invalid)}">
+                                                <input type="text" class="card-string form-control"
+                                                       placeholder="Name as shown on your payment card"
+                                                       name="cardHolderName{{$index}}" id="cardHolderName{{$index}}"
+                                                       maxlength="60" ng-model="items[$index].cardHolderName">
+                                                <p class="error-msg"
+                                                   ng-show="(adddrConfirmation.cardHolderName{{$index}}.$invalid && adddrConfirmation.cardHolderName{{$index}}.$touched) || (adddrConfirmation.$submitted && cardHolderName{{$index}}.$invalid)">Oops!
+                                                    We need your name as it appears on your credit/debit card</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="recieptNoUnique && Rindex == $index">
+                                        <div class="col-md-12">
+                                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                                <!--<button type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                                <!--class="close"-->
+                                                Oops! This receipt number already exists...
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-10 upload-photo relative">
+                                            <input type="file" class="browse-collection"
+                                                   name="browseCollection{{$index}}"
+                                                   id="browseCollection{{$index}}"
+                                                   ng-model="items[$index].browseCollection"
+                                                   ng-file-select="onFileSelect($files, $index)" />
+                                            <div class="overflow-h" ng-if="(!items[$index].browseCollection) && (!items[$index].isWorking)">
+                                                <a class="pull-left" collection-upload><i
+                                                        class="icon icon-onthedot-icons-14 icon-label"></i>&nbsp;&nbsp;Upload
+                                                    your confirmation email or receipt</a><a target="_blank"
+                                                                                         class="help-icon" href="upload-document" title="Help"><i
+                                                        class="icon icon-onthedot-icons-27 icon-label help"></i></a>
+                                            </div>
+                                            <div ng-if="items[$index].isWorking">{{items[$index].progressMessage}}</div>
+                                            <div ng-if="items[$index].browseCollection">
+                                                {{items[$index].browseCollection}}<br>
+                                                <a href=""><span><img ng-click="deleteFileModel($index, true)"
+                                                                      src="images/close-icon.png" width="15" height="15"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" ng-if="items[$index].fileUploadErrorMessage">
+                                        <div class="col-md-12 bs-example">
+                                            <div class="alert alert-danger alert-error">
+                                                <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+                                                {{items[$index].fileUploadErrorMessage}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 addr-input-marging">
+                                            <textarea class="form-control collection-section" rows="2"
+                                                      placeholder="Other collection information"
+                                                      name="otherInstructions{{$index}}"
+                                                      id="otherInstructions{{$index}}"
+                                                      ng-model="items[$index].otherInstructions" maxlength="100"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a ng-click="addItem($index)"><div class="fa fa-plus-square"></div>&nbsp;&nbsp;Need
+                                        to collect more than one order from this retailer? Add another
+                                        collection reference here…</a>
+                                </div>
+                            </accordion-group> <accordion-group is-open="status.isSecondOpen">
+                                <accordion-heading> <!--<span class="icon icon-onthedot-icons-24" ng-class="{'icon-onthedot-icons-23': status.isFirstOpen, 'icon-onthedot-icons-24': !status.isFirstOpen}"></span>-->
+                                    <span class="icon icon-onthedot-icons-24"
+                                          ng-class="{'icon-onthedot-icons-23': status.isFirstOpen, 'icon-onthedot-icons-24': !status.isFirstOpen}"></span>
+                                    Delivery details <!--<span class="icon icon-onthedot-icons-11 afloat-right"></span>-->
+                                </accordion-heading>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="addr-input-marging"
+                                                 ng-class="{'has-error': (adddrConfirmation.deliveryReferenceName.$invalid && adddrConfirmation.deliveryReferenceName.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.deliveryReferenceName.$invalid)}">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Contact name for the delivery*"
+                                                       name="deliveryReferenceName" id="deliveryReferenceName"
+                                                       ng-model="obj.deliveryReferenceName"
+                                                       ng-pattern="/^[a-zA-Z0-9\s.\-_']{1,20}$/" maxlength="20" size="20" chrome-scroll-fix
+                                                       required>
+                                                <div ng-if="(adddrConfirmation.$submitted || adddrConfirmation.deliveryReferenceName.$touched || (adddrConfirmation.deliveryReferenceName.$touched && adddrConfirmation.deliveryReferenceName.$invalid))" ng-messages="adddrConfirmation.deliveryReferenceName.$error" ng-messages-include='views/error-messages.html'>
+                                                    <div ng-message="required" class="error-msg">We need a contact name for the delivery address to make sure
+                                                        we get it to the right person</div>
+                                                    <div ng-message="pattern" class="error-msg">Please Enter alpha/numeric , - , '  .</div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="addr-input-marging"
+                                                 ng-class="{'has-error': (adddrConfirmation.$submitted && adddrConfirmation.phoneNumber.$invalid) || (adddrConfirmation.phoneNumber.$touched && adddrConfirmation.phoneNumber.$invalid)}">
+                                                <!--<label for="phoneNo">Phone Number *</label>-->
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">+44</span> <input type="text"
+                                                                                                      class="form-control" name="phoneNumber" id="phoneNumber"
+                                                                                                      ng-model="obj.phoneNumber"
+                                                                                                      placeholder="Contact phone no. for delivery*"
+                                                                                                      ng-pattern="/^(7|07)\d{9}$/" maxlength="11" size="11" restrict-quick-validation required />
+                                                </div>
+                                                <!--<div class="phone-ex">eg: 07222 555555 &nbsp;(or) &nbsp; (07222) 555555&nbsp; (or)&nbsp; +44 7222 555 555 </div>-->
+                                                <div ng-if="(adddrConfirmation.$submitted || adddrConfirmation.phoneNumber.$touched)"
+                                                     ng-messages="adddrConfirmation.phoneNumber.$error" ng-messages-include='views/error-messages.html'>
+                                                    <!--<div ng-message="pattern" class="error-msg">Invalid phone number</div>-->
+                                                    <div ng-message="pattern" class="error-msg">We need a contact phone no. for the delivery to make sure we can call if there is an issue</div>
+                                                    <div ng-message="required" class="error-msg">We need a contact phone no. for the delivery to make sure we can call if there is an issue</div>
+                                                </div>
+                                            </div>
+                                            <!--                                            <div ng-if="obj.phoneNumber" class="savephone">
+                                                                <input type="checkbox">Save this phone number
+                                                            </div>-->
+                                        </div>
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                            <div class="input-group col-xs-12 col-sm-12 col-md-12 addr-input-marging min-d-only">
+                                                <label for="" id="basic-addon1">Select address for
+                                                    {{bookingRequestArr.postcode|codeFilter}}</label>
+                                                <!--<span class="input-group-addon" id="basic-addon1"> </span>-->
+                                                <!--<select typeahead   ="post as post.address1 +'  '+ post.address2 +'  '+ post.twon +'  '+ post.county +'  '+ post.postcode for post in posts | filter:$viewValue | limitTo:10" ng-model="selected" class="form-control"></select>-->
+                                                <!--<select ng-options="post as post.address1 +'  '+ post.address2 +'  '+ post.twon +'  '+ post.county +'  '+ post.postcode for post in posts | filter:$viewValue | limitTo:100" ng-model="obj.selected" class="form-control"></select>-->
+                                                <!--<div ng-class="{'has-error': (adddrConfirmation.addressLine.$invalid && adddrConfirmation.addressLine.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine.$invalid)}">-->
+                                                <div>
+                                                    <input type="text" name="addressLine" ng-model="addressTemp" typeahead="post as post.address1 +'  '+ post.address2 +'  '+ post.town +'  '+ post.postcode +' '+ post.company for post in posts | filter:$viewValue | limitTo:20" class="form-control addre-type addressmanually" placeholder="Type address*" typeahead-on-select="focusOut(addressTemp)">
+                                                </div>
+<!--                                                <p class="error-msg" ng-show="(adddrConfirmation.addressLine.$invalid && adddrConfirmation.addressLine.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine.$invalid)">
+                                                    This field is required
+                                                </p>-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row addr-hide-show-margin" ng-show="obj.selected">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group addr-form-group">
+                                                <!--<div ng-init="addressTemp = obj.address.company "></div>-->
+
+                                                <input id="company" name="company" 
+                                                       ng-model="obj.address.company" type="text" maxlength="60"
+                                                       placeholder="Company name" class="form-control">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group"
+                                                 ng-class="{'has-error': (adddrConfirmation.addressLine1.$invalid && adddrConfirmation.addressLine1.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine1.$invalid)}">
+                                                <!--<label for="address-line-1">Address line *</label>-->
+                                                <input id="address-line-1" name="addressLine1" 
+                                                       ng-model="obj.address.address1" type="text"
+                                                       placeholder="First line of address*" class="form-control enteraddress"
+                                                       maxlength="60" required>
+                                                <p class="error-msg"
+                                                   ng-if="(adddrConfirmation.addressLine1.$invalid && adddrConfirmation.addressLine1.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.addressLine1.$invalid)">
+                                                    Oops! Please enter the first line of the address</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group"
+                                                 ng-class="{'has-error': adddrConfirmation.addressLine2.$invalid && adddrConfirmation.addressLine2.$touched}">
+                                                <!--<label for="address-line-1">Address line *</label>-->
+                                                <input id="address-line-2" name="addressLine2" 
+                                                       ng-model="obj.address.address2" type="text"
+                                                       placeholder="Second line of address" class="form-control enteraddress"
+                                                       maxlength="60">
+                                                <p class="error-msg"
+                                                   ng-if="adddrConfirmation.addressLine2.$invalid && adddrConfirmation.addressLine2.$touched">
+                                                    This field is required</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': (adddrConfirmation.city.$invalid && adddrConfirmation.city.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.city.$invalid)}">
+                                                <!--<label for="address-line-3">Town / City *</label></br>-->
+                                                <input id="address-line-3" name="city"
+                                                       ng-model="obj.address.town" type="text" 
+                                                       value="{{posts[0].town}}" class="form-control enteraddress"
+                                                       placeholder="City*" maxlength="60" required>
+                                                <p class="error-msg"
+                                                   ng-if="(adddrConfirmation.city.$invalid && adddrConfirmation.city.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.city.$invalid)">Oops! Please enter a town/city</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': adddrConfirmation.postalCode.$invalid && adddrConfirmation.postalCode.$touched}">
+                                                <!--<label for="address-line-4">Postal Code *</label></br>-->
+                                                <input id="address-line-4" name="postalCode"
+                                                       ng-model="bookingRequestArr.postcode" type="text"
+                                                       class="form-control" placeholder="Postal Code" readonly
+                                                       required>
+                                                <p class="error-msg"
+                                                   ng-if="adddrConfirmation.postalCode.$invalid && adddrConfirmation.postalCode.$touched">Please
+                                                    enter a valid postal code</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="!obj.selected">
+                                    <div class="form-group">
+                                        <div class="col-md-12 upload-photo">
+                                            <!--<input d="box1" type="checkbox" ng-model="obj.selected" >-->
+                                            <a class="enteraddress" href="" ng-click="enterAddress()">Enter the address
+                                                manually</a>
+
+                                            <!--                                            <input id="box1"type="checkbox" ng-model="obj.selected" />
+                                                            <label for="box1"> <a href="">Enter Address Manually</a></label>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!--<textarea class="form-control collection-section" rows="2" placeholder="Specific delivery instructions" name="otherInstructions{{$index}}" id="otherInstructions{{$index}}" ng-model="items[$index].otherInstructions" maxlength="100"></textarea>-->
+                                    <textarea class="form-control collection-section" rows="2"
+                                              placeholder="Specific delivery instructions"
+                                              name="otherInstructions" id="otherInstructions"
+                                              ng-model="obj.otherInstructions" maxlength="100"></textarea>
+                                </div>
+                            </accordion-group> </accordion>
+                    </div>
+                </div>
+                <div
+                    class="addr-container address-accordion panel-default reset-padding-desktop"  ng-if="!isVoucherUsed">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label>Have you got one of our special promo codes?</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="relative">
+
+                                <input type="text" class="form-control " name="voucherCode"
+                                       ng-model="voucher.code" placeholder="Promo code" />
+                                <!--
+                                <span class="input-group-addon voucher-addon" ng-if="isVoucherValid" ><i class="fa fa-check"></i></span>-->
+                                <span class="input-group-addon voucher-addon"
+                                      ng-if="isVoucherValid"><i class="fa fa-check"></i></span>
+                            </div>
+
+
+                            <div ng-if="!isVoucherValid">
+                                <div class="error-msg" ng-if="voucherMsg">{{voucherMsg}}</div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 voucher-action">
+                            <div class="pull-left" ng-if="!isVoucherValid">
+                                <!--
+                                <a href="javascript:void(0)" ng-click="voucherRedeem()">
+                                    <i class="fa fa-gift"></i>
+                                </a>
+                                -->
+                                <!--<a href="javascript:void(0)" class="vouch-redeem-text" ng-click="voucherRedeem()">Redeem</a>-->
+                                <a href="#" class="btn btn-default btn-primary" role="button"
+                                   ng-click="voucherRedeem()"><i class="fa fa-gift"></i>
+                                    Redeem</a>
+                            </div>
+                            <div class="pull-left cancel-sec" ng-if="isVoucherValid">
+                                <a href="javascript:void(0)" class="btn vouch-cancel-text"
+                                   ng-click="voucherCancel()"> <i class="fa fa-times"></i>
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="addr-container clearfix reset-padding-desktop">
+    <div class="checkbox address-accordion-container">
+        <input type="checkbox" id="checkbox1" class="css3checkbox" ng-model='valueCheckBoxAcAddr'/>
+        <label class="toggler" for="checkbox1">
+            I confirm my item(s) is no more than 20 kgs and 1.8m x 1.5m x 1.1m
+        </label>
+    </div>
+    <div class="checkbox address-accordion-container">
+        <input type="checkbox" id="checkbox2" class="css3checkbox" ng-model='valueCheckBoxTcAddr' />
+        <label class="toggler" for="checkbox2">
+            I accept the <a href="accept-terms-condition.html" target="_blank">On the dot terms and conditions</a>
+        </label>
+    </div>
+    <div class="action-pane">
+        <button type="button" class="btn btn-default btn-primary" ng-click="collectionDeliverySave(obj)" ng-disabled="adddrConfirmation.$invalid || valueCheckBoxAcAddr == false || valueCheckBoxTcAddr == false || isCollection == true">SAVE &amp; CONTINUE </button>
+        <button type="button" class="btn btn-default" ng-click="collectionDeliveryGoBack()">Go back</button>
+    </div>
+</div>-->
+
+                <div class="action-pane">
+                    <div class="accept-terms">
+                        <div class="checkbox address-accordion-container"
+                             ng-class="{'has-error': (adddrConfirmation.checkbox1.$invalid && adddrConfirmation.checkbox1.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox1.$invalid)}">
+                            <input type="checkbox" name="checkbox1" id="checkbox1"
+                                   class="css3checkbox ng-pristine ng-untouched ng-valid"
+                                   ng-model="valueCheckBoxAc" required> <label
+                                   class="toggler" for="checkbox1">I confirm that my order does not exceed 20 kgs and 1.2m x 1.0m x 1.0m</label> <br>
+                            <p class="error-msg"
+                               ng-if="(adddrConfirmation.checkbox1.$invalid && adddrConfirmation.checkbox1.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox1.$invalid)">Oops! Please confirm you have checked your item(s) size and weight</p>
+                        </div>
+
+                        <div class="checkbox address-accordion-container"
+                             ng-class="{'has-error': (adddrConfirmation.checkbox2.$invalid && adddrConfirmation.checkbox2.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox2.$invalid)}">
+                            <input type="checkbox" name="checkbox2" id="checkbox2"
+                                   class="css3checkbox ng-pristine ng-untouched ng-valid"
+                                   ng-model="valueCheckBoxTc" required> <label
+                                   class="toggler" for="checkbox2"> I accept the <a
+                                    href="terms-and-conditions" target="_blank">On the
+                                    dot terms and conditions</a>
+                            </label> <br>
+                            <p class="error-msg"
+                               ng-if="(adddrConfirmation.checkbox2.$invalid && adddrConfirmation.checkbox2.$touched) || (adddrConfirmation.$submitted && adddrConfirmation.checkbox2.$invalid)">Oops! Please confirm that you have accepted our terms and conditions</p>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <!--<pre>{{adddrConfirmation.$submitted}}</pre>-->
+                            <!--<pre>{{adddrConfirmation.$valid}}</pre>-->
+                            <button type="submit" class="btn btn-primary" ng-disabled="isConfirm" ng-if="!isVoucherValid"><i ng-if="isConfirm" class="fa fa-refresh fa-spin"></i> Confirm</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="isConfirm" ng-if="isVoucherValid"><i ng-if="isConfirm" class="fa fa-refresh fa-spin"></i> Book now for free</button>
+                            <button type="button" class="btn btn-default" ng-click="collectionDeliveryGoBack()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="file-upload.html">
+    <div class="modal-body file-upload">
+    <h3>Attach your reciept</h3>
+    <tabset>
+    <tab heading="Copy & Paste your email">
+
+    <div class="form-group">
+    <textarea class="form-control" rows="5" placeholder=""></textarea>
+    </div>
+    </tab>
+    <tab heading="Upload Docs/Images">
+
+    <input type="file" ng-file-select="onFileSelect($files)" multiple accept="image/*">
+    <div class="button" ng-file-select="onFileSelect($files)" data-multiple="true"></div>
+    <div class="drop-box" ng-file-drop="onFileSelect($files)" ng-file-drop-available="dropSupported=true" ng-file-drag-over-class="drop-box-hover"
+    ng-show="dropSupported"  ng-file-drag-over-delay="100">drop files here</div>
+    <div ng-file-drop-available="dropSupported=true"
+    ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+
+    </tab>
+
+    </tabset>
+
+    </div>
+    <div class="modal-footer" >
+    <button type="button" class="btn btn-primary">Save</button>
+    <button class="btn btn-default" ng-click="hidemodal()"><i>Close</i>
+    </button>
+    </div>
+</script>
+
+
+
+<div class="container" style="display: none">
+    <h1>Please do not refresh. We are redirecting you to payment page</h1>
+    <form method="POST" id="getquotepaymentform"
+          action="https://hpp.sandbox.realexpayments.com/pay">
+        <input type="hidden" name="MERCHANT_ID" value="{{merchantId}}">
+        <input type="hidden" name="ORDER_ID" value="{{orderId}}"> <input
+            type="hidden" name="ACCOUNT" value="{{subaccount}}"> <input
+            type="hidden" name="AMOUNT" value="{{amount}}"> <input
+            type="hidden" name="CURRENCY" value="{{currency}}"> <input
+            type="hidden" name="TIMESTAMP" value="{{timestamp}}"> <input
+            type="hidden" name="SHA1HASH" value="{{sha1hash}}"> <input
+            type="hidden" name="AUTO_SETTLE_FLAG" value="1"> <input
+            type="hidden" name="MERCHANT_RESPONSE_URL"
+            value="{{MERCHANT_RESPONSE_URL}}"> <input type="hidden"
+            name="COMMENT1" value="{{COMMENT1}}"> <input type="hidden"
+            name="COMMENT2" value="{{COMMENT2}}"> <input type="hidden"
+            name="WORKFLOW" value="{{WORKFLOW}}"> <input type="hidden"
+            name="PROD_ID" value="{{PROD_ID}}"> <input type="hidden"
+            name="USER" value="{{USER}}"> <input type="hidden"
+            name="UUID" value="{{UUID}}">
+        </div>

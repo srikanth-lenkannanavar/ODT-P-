@@ -1,0 +1,786 @@
+<div class="container form-page register-page mar-bot-45" apply-bg>
+    <div class="row ">
+        <div class="col-md-12  reset-padding-desktop">
+            <h1 class="page-main-title">
+                Sign up
+            </h1>
+        </div>
+    </div>
+    <div class="row postcode-signup-div">   
+        <div class="col-md-6">
+            <div class="input-group">
+                <h2 class="main-para">Check to see On the dot is currently operating in your area</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row postcode-signup-div pad-bot-25" >
+        <form class="" role="form"  name="postcodeForm" novalidate>
+            <div class="col-md-3  col-xs-10 col-sm-10 div-postcode" style="margin-bottom: 200px;" ng-if="isGo">
+                <div class="input-group">
+                    <input id="postcode" name="postCodeValue" restrict-quick-validation check-postcode ng-model="mydeliveryuser.postCodeValue" required 
+                           class="form-control bdr-input" type="text" placeholder="Postcode"/>    
+                    <div class="input-group-addon btn btn-default btn-green square-btn" title="Go" ng-click="updateDefault(mydeliveryuser.postCodeValue)">
+                        <span>Go</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3  col-xs-10 col-sm-10 div-postcode "ng-if="!isGo">
+                <div class="input-group">
+                    <input id="postcode" ng-model="postCodeValue" name="postCodeValue" check-postcode
+                           class="form-control bdr-input" type="text" placeholder="Postcode" readonly/>
+                    <div class="input-group-addon btn btn-default btn-green square-btn" title="Go" ng-click="edit()">
+                        <span class="icon icon-onthedot-icons-06"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3  col-xs-2 col-sm-2 div-map" ng-if="isGo">
+                <div class="mapmark-wrap">
+                    <a tabindex="0" class="btn btn-default btn-green bdr-input square-btn map" tooltip role="button" data-toggle="popover" title="Use your current location" ng-click="findAndUseLocation()" data-content="Please check your browser's location settings!" data-placement="bottom">
+                        <div class="icon icon-onthedot-icons-01"></div>
+                    </a>
+                </div>
+            </div>            <div class="clearfix"></div>
+            <div ng-messages="postcodeForm.postCodeValue.$error" ng-messages-include='views/error-messages.html'>
+                    <div ng-message="checkPostcode" class="del-pc-err-mes error-msg">Oops! You have entered an invalid postcode. Please try again…</div>
+            </div>
+        </form>
+    </div>
+    <div class="mar-bot-45" ng-if="isPostCodeServiceable">
+        <div class="row mar-top-50 mar-bot-50">
+            <div class="col-md-3  col-xs-12 reset-padding-desktop-left">
+                <div class="sc-nw-container sc-first">
+                    <a id="fbloginlink" href="/MyDeliveryPortal/samlsso?return=home&fidp=fb">
+                        <div class="sc-icon-box sc-fb sc-fb-icon-box pull-left">
+                            <i class="fa fa-facebook text-uppercase bold "></i>
+                        </div>
+                        <div class="sc-name-box sc-fb">
+                            Sign up with Facebook
+                        </div>
+                    </a>            </div>
+            </div>
+            <div class="col-md-3 reset-padding-desktop col-xs-12 reset-padding-desktop-right">
+                <div class="sc-nw-container">
+                    <a id="fbloginlink" href="/MyDeliveryPortal/samlsso?return=home&fidp=google">
+                        <div class="sc-icon-box sc-google sc-fb-icon-box pull-left">
+                            <i class="fa fa-google text-uppercase bold"></i>
+                        </div>
+                        <div class="sc-name-box sc-google">
+                            Sign up with Google
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> 
+        <div class="row mar-bot-25">
+            <div class="col-md-8 login-or-line" >
+                <div class="or-label">Or</div>
+            </div>
+        </div>
+        <form role="form" name="retailerRegister" novalidate  method="post" ng-submit="registerRetailerSave(retailerRegister.$valid)">
+            <div class="row">
+                <div class="col-md-8 reset-padding-desktop">
+                    <h2 class="page-sub-title">User information</h2>     
+                    <div ng-show="UserRegSuccess">
+                        <div class="alert alert-success">
+                            <strong>Great! You have now signed up to On the dot</strong>
+                        </div>
+                    </div>
+                    <div ng-show="UserRegFailed">
+                        <div class="alert alert-danger alert-error">
+                            <strong>Sorry! It appears there is a problem with your registration. Please check your details
+                                and try again…</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{
+                                'has-error'
+                                : (retailerRegister.$submitted && retailerRegister.firstName.$invalid) || (retailerRegister.firstName.$touched && retailerRegister.firstName.$invalid) }">
+                                <input type="text" class="form-control " size=32 name="firstName"ng-model="firstName" placeholder="First name *" required ng-maxlength="32" >
+                                <div ng-if="(retailerRegister.$submitted || retailerRegister.firstName.$touched)" ng-messages="retailerRegister.firstName.$error" ng-messages-include='views/error-messages.html'>
+                                    <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="secondName"ng-model="secondName"
+                                       placeholder="Last name" maxlength="30">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group" ng-class="{
+                        'has-error'
+                        :  (retailerRegister.$submitted && retailerRegister.email.$invalid) || (retailerRegister.email.$touched && retailerRegister.email.$invalid) }">
+                        <input type="email" class="form-control" name="email"ng-model="email" ng-blur="verifyEmail()" ng-focus="clearErrorMsg()" placeholder="Email address *" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" ng-maxlength="80" required>
+                        <div ng-if="(retailerRegister.$submitted || retailerRegister.email.$touched)" ng-messages="retailerRegister.email.$error" ng-messages-include='views/error-messages.html'>
+                            <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                            <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters length.</div>
+                            <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                        </div>
+                        <p class="error-msg" ng-if="invalidEmail">Oops! You have used that email address already. Please login or use an alternative email address to sign up</p>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="form-group" ng-class="{
+                                'has-error'
+                                :  (retailerRegister.$submitted && retailerRegister.password.$invalid) || (retailerRegister.password.$touched && retailerRegister.password.$invalid) }">
+                                <input id="password" type="password" ng-minlength="6" class="form-control" name="password"ng-model="password" ng-pattern="/^((?=.*\d)(?=.*[a-zA-Z])(?=.*[a-zA-Z@#$%]).{6,})$/" placeholder="Password *" required>
+                                <div ng-if="(retailerRegister.$submitted || retailerRegister.password.$touched)" ng-messages="retailerRegister.password.$error" ng-messages-include='views/error-messages.html'>
+                                    <div ng-message="minlength" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                    <div ng-message="pattern" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                    <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="form-group" ng-class="{
+                                'has-error'
+                                : (retailerRegister.$submitted && retailerRegister.cnfpassword.$invalid) || (retailerRegister.cnfpassword.$touched && retailerRegister.cnfpassword.$invalid) }">
+                                <input type="password" ng-minlength="5" class="form-control" name="cnfpassword"ng-model="cnfpassword" compare-to="password" placeholder="Confirm password *" required>
+                                <div ng-if="(retailerRegister.$submitted || retailerRegister.cnfpassword.$touched)" ng-messages="retailerRegister.cnfpassword.$error" ng-messages-include='views/error-messages.html'>
+                                    <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                    <div ng-message="compareTo" class="error-msg">Oops! Please confirm your password</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="form-group" ng-class="{
+                        'has-error'
+                        : (retailerRegister.$submitted && retailerRegister.phoneNo.$invalid) || (retailerRegister.phoneNo.$touched && retailerRegister.phoneNo.$invalid) }">
+                        <div class="input-group">
+                            <span class="input-group-addon">+44</span>
+                            <input type="text" class="form-control" name="phoneNo"ng-model="phoneNo" id="phoneNo" placeholder="Mobile number *" ng-pattern="/^(7|07)\d{9}$/"   restrict-quick-validation required />
+                            <span class="input-group-addon" ng-if="isPhoneValidate"><i class="fa fa-check"></i></span>
+                        </div>
+                        <div>This number will be used to send an activation code to validate your registration.</div>
+                        <div ng-if="(retailerRegister.$submitted || retailerRegister.phoneNo.$touched)" ng-messages="retailerRegister.phoneNo.$error" ng-messages-include='views/error-messages.html'>
+                            <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                            <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <h2 class="page-sub-title">Store Address</h2>
+                            <div class="form-group" ng-class="{
+                                                     'has-error'
+                                                     : (retailerRegister.storeName.$invalid && retailerRegister.storeName.$touched) || (retailerRegister.$submitted && retailerRegister.storeName.$invalid)}">
+                                <input type="text" class="form-control " size=30 maxlength=30 name="storeName"ng-model="storeName" placeholder="Store name *" required>
+                                <p class="error-msg" ng-if="(retailerRegister.storeName.$invalid && retailerRegister.storeName.$touched) || (retailerRegister.$submitted && retailerRegister.storeName.$invalid)">
+                                    Oops! This field cannot be empty</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <ui-select ng-model="person.selected">
+                                    <ui-select-match placeholder="Please select an address">{{$select.selected.address1 + ' ' + $select.selected.address2 + ' ' + $select.selected.twon + ' ' + $select.selected.county + ' ' + $select.selected.postcode}}</ui-select-match>
+                                    <ui-select-choices repeat="post in posts | propsFilter: {address1: $select.search, address2: $select.search, postcode: $select.search}">
+                                        <div ng-bind-html="post.address1+' '+post.address2+' '+post.twon +' '+post.county +' '+post.postcode  | highlight: $select.search" ng-click="addressSelected()"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group" ng-if="!manuallySelected">
+                                <a class="enteraddress" href="" ng-click="enterAddress()">Enter the address manually</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <div class="row addr-hide-show-margin" ng-if="manuallySelected">                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group"
+                                                 ng-class="{
+                                                     'has-error'
+                                                     : (retailerRegister.addressLine1.$invalid && retailerRegister.addressLine1.$touched) || (retailerRegister.$submitted && retailerRegister.addressLine1.$invalid)}">
+                                                <!--<label for="address-line-1">Address line *</label>-->
+                                                <input id="address-line-1" name="addressLine1" 
+                                                       ng-model="addressOfRetailer.address1" type="text"
+                                                       placeholder="First line of address*" class="form-control enteraddress"
+                                                       maxlength="60" required>
+                                                <p class="error-msg"
+                                                   ng-if="(retailerRegister.addressLine1.$invalid && retailerRegister.addressLine1.$touched) || (retailerRegister.$submitted && retailerRegister.addressLine1.$invalid)">
+                                                    Oops! Please enter the first line of the address</p>
+                                            </div>                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group"
+                                                 ng-class="{
+                                                     'has-error'
+                                                     : retailerRegister.addressLine2.$invalid && retailerRegister.addressLine2.$touched}">
+                                                <!--<label for="address-line-1">Address line *</label>-->
+                                                <input id="address-line-2" name="addressLine2" 
+                                                       ng-model="addressOfRetailer.address2" type="text"
+                                                       placeholder="Second line of address" class="form-control enteraddress"
+                                                       maxlength="60">
+                                                <p class="error-msg"
+                                                   ng-if="retailerRegister.addressLine2.$invalid && retailerRegister.addressLine2.$touched">
+                                                    This field is required</p>
+                                            </div>                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': (retailerRegister.city.$invalid && retailerRegister.city.$touched) || (retailerRegister.$submitted && retailerRegister.city.$invalid)}">
+                                                <!--<label for="address-line-3">Town / City *</label></br>-->
+                                                <input id="address-line-3" name="city"
+                                                       ng-model="addressOfRetailer.town" type="text" 
+                                                       value="{{posts[0].town}}" class="form-control enteraddress"
+                                                       placeholder="City*" maxlength="60" required readonly>
+                                                <p class="error-msg"
+                                                   ng-if="(retailerRegister.city.$invalid && retailerRegister.city.$touched) || (retailerRegister.$submitted && retailerRegister.city.$invalid)">Oops! Please enter a town/city</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': retailerRegister.postalCode.$invalid && retailerRegister.postalCode.$touched}">
+                                                <input id="address-line-4" name="postalCode"
+                                                       ng-model="addressOfRetailer.postcode" type="text"
+                                                       class="form-control" placeholder="Postal Code" readonly
+                                                       required>
+                                                <p class="error-msg"
+                                                   ng-if="retailerRegister.postalCode.$invalid && retailerRegister.postalCode.$touched">Please
+                                                    enter a valid postal code</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>          
+                    </div>            
+                    <div class="">   
+                        <h2 class="page-sub-title">Store information</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <textarea class="form-control store-section" rows="5" name="comment"ng-model="comment"
+                                          placeholder="Short discription about your store and type of products" maxlength="250"
+                                          id="otherInstructions"
+                                          ng-maxlength="250">                            </textarea>
+                                <p class="pull-right">{{250 - comment.length}}/250</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group upload-logo-div">
+                                <div class="icon icon-onthedot-icons-11 upload-logo-img">                            </div>
+                                <span class="upload-logo-img">
+                                    ADD STORE /BRAND LOGO<br>
+                                    <p>JPG,GIF or PNG of Max size 1MB</p>
+                                </span>
+                                <input type="file" class="form-control upload-logo" name="logo"ng-model="logo"
+                                       placeholder="ADD STORE /BRAND LOGO" maxlength="30">
+                            </div>
+                        </div>
+                    </div>                <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control storephonenumber" name="storePhoneNumber"ng-model="storePhoneNumber"
+                                       placeholder="Store contact number" maxlength="30">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="storeWebsite"ng-model="storeWebsite"
+                               placeholder="Website" maxlength="30">
+                    </div>                <div class="">   
+                        <h2 class="page-sub-title">Store opening hours</h2>
+                    </div>                <div class="form-group hidden-sm hidden-xs">                    <table id="retailerTable" class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th><label for="address-search">Day</label></th>
+                                    <th><label for="address-search">Open </label></th>
+                                    <th><label for="address-search">Close</label></th>
+                                    <th></th>
+                                    <th>Day</th>
+                                    <th>Open</th>
+                                    <th>Close</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember1" name="chkDayRemember1" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember1">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Tuesday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember2" name="chkDayRemember2" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember2">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember3" name="chkDayRemember3" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember3">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Thursday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember4" name="chkDayRemember4" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember4">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember5" name="chkDayRemember5" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember5">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Saturday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember6" name="chkDayRemember6" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember6">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember7" name="chkDayRemember7" class="css3checkbox">
+                                            <label class="toggler" for="chkDayRemember7">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td></td>
+                                    <td>                                </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>                        </tbody>
+                        </table>                </div>                <div class="form-group hidden-lg hidden-md">
+                        <table id="retailerTable" class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Day</th>
+                                    <th>Open</th>
+                                    <th>Close</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember1" name="chkDayRemember1" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember1">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember2" name="chkDayRemember2" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember2">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember3" name="chkDayRemember3" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember3">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember4" name="chkDayRemember4" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember4">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember5" name="chkDayRemember5" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember5">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember6" name="chkDayRemember6" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkDayRemember6">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="address-search">Sunday</label></td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkDayRemember7" name="chkDayRemember7" class="css3checkbox">
+                                            <label class="toggler" for="chkDayRemember7">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true"ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true"ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>       
+                            </tbody>
+                        </table>
+                    </div>    
+                    <div class="form-group">
+                        <div class="">   
+                            <label for="address-search">
+                                Would you also like to offer this services on bank holidays?
+                            </label>
+                        </div>
+                        <input type="radio" id="radioDs1" ng-model="dsRadio.res"   value="Yes" name="timeSlotHr"   class="css3radio" ng-click="bankholiday('Yes')" />
+                        <label class="toggler_r radio-custom" for="radioDs1">
+                            <span>Yes </span>
+                        </label>                    <input type="radio" id="radioDs2" ng-model="dsRadio.res"  checked value="No" name="timeSlotHr" class="css3radio" ng-click="bankholiday('No')"/>
+                        <label  class="toggler_r radio-custom" for="radioDs2">
+                            <span>No </span>
+                        </label>    
+                    </div>
+                    <div class="form-group hidden-sm hidden-xs" ng-if="isBankholiay">                    <table id="retailerTable" class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Bank holiday</th>
+                                    <th>Open</th>
+                                    <th>Close</th>
+                                    <th></th>
+                                    <th>Bank holiday</th>
+                                    <th>Open</th>
+                                    <th>Close</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>New year's day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember1" name="chkBankHDayRemember1" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember1">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Early May Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember2" name="chkBankHDayRemember2" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember2">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Good Friday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember3" name="chkBankHDayRemember3" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember3">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Spring Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember4" name="chkBankHDayRemember4" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember4">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Easter Sunday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember5" name="chkBankHDayRemember5" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember5">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Summer Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember6" name="chkBankHDayRemember6" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember6">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Easter Monday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember7" name="chkBankHDayRemember7" class="css3checkbox">
+                                            <label class="toggler" for="chkBankHDayRemember7">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td>Christmas Day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember8" name="chkBankHDayRemember8" class="css3checkbox" >
+                                            <label class="toggler" for="chkBankHDayRemember8">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>                            <tr>
+                                    <td>Boxing Day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember9" name="chkBankHDayRemember9" class="css3checkbox">
+                                            <label class="toggler" for="chkBankHDayRemember9">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                    <td></td>
+                                    <td>                                </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>        
+                            </tbody>
+                        </table> 
+                    </div>    
+                    <div class="form-group hidden-md hidden-lg" ng-if="isBankholiay">      
+                        <table id="retailerTable" class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Bank holiday</th>
+                                    <th>Open</th>
+                                    <th>Close</th>                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>New year's day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember1" name="chkBankHDayRemember1" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember1">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>                            </tr>
+                                <tr>
+                                    <td>Early May Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember2" name="chkBankHDayRemember2" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember2">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Good Friday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember3" name="chkBankHDayRemember3" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember3">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Spring Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember4" name="chkBankHDayRemember4" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember4">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Easter Sunday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember5" name="chkBankHDayRemember5" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember5">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr> <tr>   <td>Summer Bank Holiday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember6" name="chkBankHDayRemember6" class="css3checkbox" checked="true">
+                                            <label class="toggler" for="chkBankHDayRemember6">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Easter Monday</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember7" name="chkBankHDayRemember7" class="css3checkbox">
+                                            <label class="toggler" for="chkBankHDayRemember7">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr> <tr>  <td>Christmas Day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember8" name="chkBankHDayRemember8" class="css3checkbox" >
+                                            <label class="toggler" for="chkBankHDayRemember8">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>
+                                </tr>                            <tr>
+                                    <td>Boxing Day</td>
+                                    <td>
+                                        <div class="rem-flt">
+                                            <input type="checkbox" id="chkBankHDayRemember9" name="chkBankHDayRemember9" class="css3checkbox">
+                                            <label class="toggler" for="chkBankHDayRemember9">
+                                            </label>         
+                                        </div>
+                                    </td>
+                                    <td><select name="shopopen" class="form-control" ng-required="true" ng-model="shopopen" ng-change="shopclosecalc(shopopen);" required ng-options="time as time for time in times" ></select></td>
+                                    <td><select name="shopclose" class="form-control" ng-required="true" ng-model="shopclose" required ng-options="time as time for time in closetimes"></select></td>                            </tr>                        </tbody>
+                        </table>       
+                    </div>            
+                    <div class="form-group">
+                        <div class="">   
+                            <label for="address-search">Search for an address
+                                Would you also like to be an onthedot.co.uk partner retailer and let the customer organise their own deliveries from you?
+                                <br>
+                                <a href="">What dose this mean?</a>
+                            </label>                    </div>
+                        <input type="radio" id="partner1" ng-model="dsRadio.partner"   value="Yes" name="partner"   class="css3radio" />
+                        <label  class="toggler_r radio-custom" for="partner1">
+                            <span>Yes </span>
+                        </label>
+                        <input type="radio" id="partner2" ng-model="dsRadio.partner"  checked value="No" name="partner"   class="css3radio"/>
+                        <label  class="toggler_r radio-custom" for="partner2">
+                            <span>No </span>
+                        </label>     
+                    </div>
+                    <div class="">   
+                        <h2 class="page-sub-title">Tell us a little more about you</h2>
+                        <label for="address-search">Are you</label>
+                    </div>           
+                    <div class="form-group">
+                        <input type="radio" id="areyou1" ng-model="dsRadio.areyou"   value="single_store" name="areyou"   class="css3radio" />
+                        <label  class="toggler_r radio-custom" for="areyou1">
+                            <span>A single store </span>
+                        </label>
+                        <input type="radio" id="areyou2" ng-model="dsRadio.areyou"  checked value="multiple_store" name="areyou"   class="css3radio"/>
+                        <label  class="toggler_r radio-custom" for="areyou2">
+                            <span>Multiple store </span>
+                        </label>
+                    </div>
+                    <div class="">   
+                        <label for="address-search">Do you have a website </label>
+                    </div>                <div class="form-group">
+                        <input type="radio" id="website1" ng-model="dsRadio.website" checked value="yesWebsiteNoPurchase" name="website"   class="css3radio" />
+                        <label  class="toggler_r" for="website1">
+                            <span>Yes,but customer cannot purchase on line </span>
+                        </label>
+                        <br>
+                        <input type="radio" id="website2" ng-model="dsRadio.website" value="yesPurchase" name="website"   class="css3radio"/>
+                        <label  class="toggler_r" for="website2">
+                            <span>Yes,but customer can purchase on line </span>
+                        </label>
+                        <br>
+                        <input type="radio" id="website3" ng-model="dsRadio.website" value="noWebsite" name="website"   class="css3radio"/>
+                        <label  class="toggler_r" for="website3">
+                            <span>No,we do not have a wibsite </span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-primary">Sign up</button>
+                    <div class="already-registered mar-top-15">If you already have an On the dot account <a
+                            href="/MyDeliveryPortal/samllogin?return=home">login</a></div>
+                </div>
+            </div>  
+        </form>
+
+    </div>
+</div>

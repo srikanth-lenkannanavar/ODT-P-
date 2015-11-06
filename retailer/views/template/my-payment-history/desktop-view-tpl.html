@@ -1,0 +1,94 @@
+<div class="table-wrap table-responsive hidden-xs my-delivery-container">
+    <div >
+        <div class="alert alert-info" ng-if="myDeliveriesSuccess == 'ok' && myDeliveries.length == 0">You have not made any purchases yet</div>
+    </div>
+
+    <table class="table" ng-if="myDeliveriesSuccess == 'ok' && myDeliveries.length > 0" >
+        <thead>
+        <tr class="row-margin">
+            <th>Order no.</th>
+            <th><a href="" ng-click="doSort(userdelivery)"><i class="fa fa-sort"></i>Order date</a></th>
+            <th>Delivery timeslot</th>
+            <th>Deliver to</th>
+            <th>Booking type</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat-start="myDelivery in myDeliveries">
+            <td width=10%>
+                <otd-my-delivery-collapse data-toggle="collapse" data-is-open="false" data-target="#triggerCollapse"  data-index="{{$index}}"  ></otd-my-delivery-collapse>
+                <span class="my-del-ord-no">{{myDelivery.reference}}</span>
+                <div class="pad-left-20">{{myDelivery.consumer.consumerReference}}</div>
+
+            </td>
+            <td width=10%>{{myDelivery.orderDate | ISO8601Parse : "UK" : "DD-MM-YYYY"}}</td>
+            <td width=15%>
+                <span>{{myDelivery.timeSlot.endTime | ISO8601Parse : "UK" : "DD-MM-YYYY"}}</span>
+                <div>{{myDelivery.timeSlot.startTime | ISO8601Parse : "UK" : "HH:mm"}} - {{myDelivery.timeSlot.endTime | ISO8601Parse : "UK" : "HH:mm"}}</div>
+            </td>
+            <td width=20%>
+                <div class="my-del-add-section">
+
+
+                    <p ng-if="myDelivery.consumer.name.length > 0">{{myDelivery.consumer.name}},</p>
+
+                    <p>
+                        <span ng-if="myDelivery.consumer.address.firstLine.length  > 0" >{{myDelivery.consumer.address.firstLine}}</span>
+                        <span ng-if="myDelivery.consumer.address.seconeLine.length  > 0">{{myDelivery.consumer.address.seconeLine}}</span>
+                        <span ng-if="myDelivery.consumer.address.firstLine.length  > 0 || myDelivery.consumer.address.seconeLine.length  > 0" >,</span>
+                    </p>
+                    <p>{{myDelivery.consumer.address.city}} {{myDelivery.consumer.address.postalCode}}</p>
+
+                    <p ng-if="myDelivery.consumer.address.phoneNo.length > 0">{{myDelivery.consumer.address.phoneNo}}</p>
+                </div>
+            </td>
+            <td width=10%>
+                <div class="word-break-all">
+                    {{myDelivery.bookingType}} {{myDelivery.amount.total | currency : "&pound;"}}
+                </div>
+            </td>
+            <td width="5%">{{myDelivery.status}}</td>
+            <td width="30%" class="action">
+                <a class="table-btn locate btn btn-default" href=""  ng-if="myDelivery.status == 'Allocated to driver'" title="Live track"><i class="icon icon-marker" ng-click="track()"></i></a>
+                <a class="table-btn edit btn btn-default" href="" ng-if="myDelivery.status == 'Booked'" ng-click="editBooking()" title="Edit booking"><i class="icon icon-edit"></i></a>
+                <a class="table-btn delete btn btn-default" href="" ng-if="myDelivery.status == 'Booked'" title="Cancel booking" ng-click="confirmCancellation()"><i class="icon icon-delete"></i></i></a>
+            </td>
+        </tr>
+
+        <tr class="row-margin collapse" id="triggerCollapse{{$index}}" ng-repeat-end>
+            <td colspan="3">
+
+                <div class="relative">
+                    <div class="arrow-up"></div>
+                    <div>
+                        <div><label >Store opening hours</label></div>
+                        <div ng-if="myDelivery.store.openingTime.length > 0 && myDelivery.store.closingTime.length > 0">{{myDelivery.store.openingTime}} - {{myDelivery.store.closingTime}}</div>
+                    </div>
+                    <div ng-if="myDelivery.pod.length > 0">
+                        <div><label>POD</label></div>
+                        <div> <span ng-if="myDelivery.consumer.name.length > 0"> {{myDelivery.consumer.name}} |</span> {{myDelivery.podDate | ISO8601Parse : "UK" : "DD-MM-YYYY HH:mm"}} </div>
+                    </div>
+                </div>
+
+
+
+
+            </td>
+            <td colspan="2">
+                <div>
+                    <div><label>Item(s) ready from</label></div>
+                    <div >{{myDelivery.item.itemsReadyDate | ISO8601Parse : "UK" : "DD-MM-YYYY"}} | {{myDelivery.item.itemsReadyFrom}} </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div><label>Specific delivery instructions</label></div>
+                <div>{{myDelivery.specificDeliveryInstructions}}</div>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>

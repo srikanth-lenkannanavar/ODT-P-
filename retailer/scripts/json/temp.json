@@ -1,0 +1,134 @@
+{
+    "data":
+            {
+                "bookingType": "PAYG",
+                "orderType": null,
+                "orderNo": "17397817",
+                "orderReferenceNo": "17397817",
+                "orderDate": null,
+                "status": "Amended",
+                "trackingUrl": null,
+                "pod": null,
+                "podDate": null,
+                "podTime": null,
+                "supplierId": null,
+                "subscriptionName": "",
+                "voucherCode": null,
+                "accountNumber": "MYD00001",
+                "amount": {
+                    "total": "5.79",
+                    "vat": "1.16"
+                },
+                "store":
+                        {
+                            "storeId": "925104d4-343a-4fd0-b31e-9711cbde1fb3",
+                            "retailerName": "Editbooking",
+                            "imageUrl": null,
+                            "address":
+                                    {
+                                        "firstLine": "1 Rama Apartments",
+                                        "secondLine": "17 St. Anns Road",
+                                        "city": "HARROW",
+                                        "state": null,
+                                        "postCode": "HA1 1JU",
+                                        "country": null
+                                    },
+                            "info":
+                                    {
+                                        "storeName": "Editbooking",
+                                        "mobileNumber": "7890789789",
+                                        "businessPhoneNumber": "7890789789",
+                                        "website": "",
+                                        "storeDesc": "test",
+                                        "userName": "Editbooking",
+                                        "branchEmail": "editbooking@city.com",
+                                        "branchInStoreTime": null,
+                                        "collectionLeadTime": null,
+                                        "serviceCenterCode": "WO-SD",
+                                        "accountType": null,
+                                        "accountNumber": null,
+                                        "openTime": null,
+                                        "closeTime": null,
+                                        "openingHours":
+                                                {
+                                                    "FRI": "09:30 - 18:00",
+                                                    "MON": "09:30 - 18:00",
+                                                    "SAT": "09:30 - 18:00",
+                                                    "SUN": "Closed",
+                                                    "THU": "09:30 - 18:00",
+                                                    "TUE": "09:30 - 18:00",
+                                                    "WED": "09:30 - 18:00"
+                                                },
+                                        "bankHolidayDetails":
+                                                {
+                                                    "Boxing Day": "Closed",
+                                                    "Christmas Day": "Closed",
+                                                    "Early May Bank Holiday": "Closed",
+                                                    "Easter Monday": "Closed",
+                                                    "Easter Sunday": "Closed",
+                                                    "Good Friday": "Closed",
+                                                    "New Years Day": "Closed",
+                                                    "Spring Bank Holiday": "Closed",
+                                                    "Summer Bank Holiday": "Closed"
+                                                },
+                                        "service": null
+                                    },
+                            "location":
+                                    {
+                                        "lat": "51.580972",
+                                        "lng": "51.580972"
+                                    },
+                            "knowMore":
+                                    {
+                                        "likeToBePartnerRetailer": 1,
+                                        "storeType": 0,
+                                        "havePortal": 2,
+                                        "shippingDetail": 0,
+                                        "instruction": null
+                                    }
+
+                        },
+                "timeslot":
+                        {
+                            "timeslotId": "29827-5ahlkum4yhog",
+                            "startTime": "2015-09-11T13:00:00Z",
+                            "endTime": "2015-09-11T14:00:00Z",
+                            "expireSat": null
+                        },
+                "consumer":
+                        {
+                            "name": "editbooking555@city.com",
+                            "email": "sada555555@dd.dd",
+                            "instruction": "Special delivery",
+                            "webhook": null,
+                            "mobileNumber": "7999999999",
+                            "address":
+                                    {
+                                        "firstLine": "@@@@@@@@@@@@@@@@@",
+                                        "secondLine": "&&&&&&&&&&&&&&&&&&&&&&&",
+                                        "city": "HARROW",
+                                        "state": null,
+                                        "postCode": "HA11JU",
+                                        "country": ""
+                                    },
+                            "postCode": null
+                        },
+                "item":
+                        {
+                            "referenceNo": "",
+                            "itemContentCount": null,
+                            "totalValue": "2",
+                            "weight": 0,
+                            "height": null,
+                            "length": null,
+                            "description": null,
+                            "readyAt": "09:00",
+                            "deliveryDate": "2015-09-11T00:00:00Z"
+                        }
+            },
+    "success":
+            {
+                "status": "ok"
+            }
+
+}

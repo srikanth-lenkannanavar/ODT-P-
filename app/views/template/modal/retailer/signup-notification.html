@@ -1,0 +1,45 @@
+<div class="modal-header alert-header">        
+    <div class="row">
+        <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">
+            <div class="icon icon-onthedot-icons-13 color-red"></div>                   
+        </div>
+        <div class="col-md-9 col-xs-9 reset-padding-left">
+            <h1 class="modal-main-title">Sorry!<br> We are not there yet</h1>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+    </div>
+
+</div>
+
+<form id="modal-get-quote-notification" class="form" role="form" novalidate name="getSignUpeNotification">
+    <div class="modal-body alert-body">
+        <div class="row">
+            <div class="col-md-3 col-xs-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-md-9  col-xs-9 reset-padding-left">
+                <p>Please provide your email address so that you can be the first to know when we are delivering to your postcode.</p> 
+                <div ng-class="{'has-error': (addRetailers.$submitted && getSignUpeNotification.retailerEmail.$invalid) || (getSignUpeNotification.retailerEmail.$touched && getSignUpeNotification.retailerEmail.$invalid) }">
+                    <input type="email" class="form-control" name="retailerEmail" ng-model="retailerEmail" placeholder="Email address" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" required >
+                </div>
+                <div ng-if="(addRetailers.$submitted || (getSignUpeNotification.retailerEmail.$touched && getSignUpeNotification.retailerEmail.$invalid))" ng-messages="getSignUpeNotification.retailerEmail.$error" ng-messages-include='views/error-messages.html'>
+                    <!--<div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>-->
+
+                    <div ng-message="pattern" class="error-msg" id="divCommError">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                </div>               
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer alert-footer go-right-modal-btn">
+        <div class="row">
+            <div class="col-xs-1 col-sm-3 col-md-3 alert-icon reset-padding-right">                          
+            </div>
+            <div class="col-xs-11 col-sm-9 col-md-9 reset-padding-left">
+                <button class="btn btn-primary btn-medium-modal" ng-disabled="getSignUpeNotification.$invalid" ng-click="quoteNotifySubmit()">Submit</button>
+                <button class="btn btn-primary btn-medium-modal" ng-click="retDistHideModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,450 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Dec 29, 2014, 5:05:25 PM
+    Author     : srikanthl
+*/
+/*.field-description {
+    span {
+        float: left;
+        margin: 0px 20px 5px 0px;
+        width: 166px;
+    }
+}
+div.page-sub-title{
+    color: #86CDDC;
+    font-size: 2em;
+    margin: 4px;
+}
+.collection-section{
+    margin: 10px 0px 0px 0px;
+}
+.well-container{
+    background-color: #FAFAFB;
+    border-radius:15px;
+}
+
+.col-md-6{
+    margin: 10px 0px 10px 0px;
+}*/
+
+/* addr css*/
+strong >a {
+  text-decoration: underline;
+}
+.addr-header{
+  border-top: 1px solid #ccc;
+}
+/* Delivery Zone Style Begin */
+.addr-container{
+  margin: 0px 25px 0px 25px;
+  padding:15px 0;
+}
+
+div.page-sub-title{
+  color: #86CDDC;
+  font-size: 20px;
+  // margin: 10px 0px -10px 20px;
+  border-bottom: 1px solid #ccc;
+
+}
+.row-margin{
+  margin-bottom: 20px;
+}
+
+.fa-plus-circle{
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.addr-input-marging{
+  margin-bottom: 20px;
+}
+/*reduces margin bottom value only for desktop*/
+.addr-input-marging.min-d-only {
+  margin-bottom: 10px;
+}
+
+.savephone{
+  margin-top: -20px;
+
+}
+.upload-photo{
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+}
+
+.addr-hide-show-margin{
+  margin-top: 5px;
+  padding: 0px 15px;
+
+}
+.addr-fa-image{
+  margin-top: -25px;
+}
+/*.addr-term{
+    margin:-20px 0px 0px 5px;
+}*/
+.addr-steps{
+  width: 102px;
+  display: block;
+  height: 27px;
+  background: url('../images/bg_quote_step_tepIndicator.png') no-repeat center 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.addr-steps ul{
+  list-style: none;
+}
+
+
+.addr-steps .steps-num-list li{
+  list-style: none;
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  margin: -1px 0 0 18px;
+  color: #fff;
+  border-radius: 10px;
+  width: 20px;
+  height: auto;
+  text-align: center;
+}
+
+.addr-steps .steps-num-list li.circle1{
+  background: #F0F0E1;
+  /*border: 1px solid #A1D600;*/
+}
+
+
+.addr-steps .steps-num-list li.circle2{
+  background: #F0F0E1;
+  /*border: 1px solid #4FC6DD;*/
+}
+
+
+.addr-steps .steps-num-list li.circle3{
+  background: #ebe46a;
+  /*border: 1px solid #E3E3D4;*/
+}
+
+
+.addr-steps .number-container {
+  display: block;
+  height: 30px;
+  margin: 5px 0 0 -55px;
+  position: absolute;
+  width: 204px;
+}
+
+.addr-setps-container{
+  float:right;
+}
+
+
+.addr-delivery-add-row-container{
+  float:left;
+}
+
+.del-postcode,.del-postcode-addon{
+  color:#49B5CC;
+  border: 1px solid #49B5CC;
+
+}
+
+.del-postcode-addon{
+  background-color: #49B5CC;
+}
+
+
+.retailer-content
+{
+  padding:20px;
+  display:none;
+}
+.show-panel{
+  display: none;
+  width: 100%;
+  background-color: #f7f7f7;
+
+}
+#flip img{
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+
+.retailer-logo img{
+  cursor: pointer;
+  /*width: 150px;*/
+  height: auto;
+  /*padding: 25px 10px;*/
+  /* border-bottom: 1px solid #ccc;*/
+}
+
+/*
+.retailer-logo-container{
+  border:1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  width: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+*/
+.back-arrow, .next-arrow{
+  display: block !important;
+  width: 13px;
+  height: 25px;
+}
+
+.retailer-logo{
+  background-color: #fff;
+  margin: 0px;
+  /*border-bottom: 1px solid #ccc;*/
+}
+.remove-border-bot{
+  margin-bottom: 0 !important;
+}
+.retailer-logo-container .location li{
+  display: block;
+  clear: both;
+}
+
+.retailer-logo-container .location li a{
+    text-decoration: none;
+    color: #43B02A;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+.retailer-logo-container .location li a:hover {
+  color: #ED8B00;
+  text-decoration:none;
+}
+.retailer-logo-container .location {
+  padding:0;
+  margin:15px;
+}
+.navbar-toggle {
+  margin-top: 13px;
+}
+/* Retailer Accordion Style Begin */
+.address-accordion  .panel-default > .panel-heading{
+  background-color: #FAFAFA !important;
+}
+
+.address-accordion  .panel-default{
+  border-color:transparent;
+  // border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+}
+.address-accordion .panel{
+  box-shadow:none;
+}
+
+.address-accordion .panel-body{
+  padding-top: 0;
+}
+
+.address-accordion  .panel-body{
+  background-color: #FAFAFA !important;
+}
+.address-block{
+  /*border-bottom: 1px solid #ddd;*/
+  position: relative;
+}
+a.add-man{
+  text-decoration: underline;
+  color: #49B5CC;
+}
+
+.address-accordion .panel-group .panel-heading + .panel-collapse > .panel-body{
+  border-top: 1px solid #FAFAFA;
+}
+
+.address-accordion  .fa-chevron-circle-up, .address-accordion  .fa-chevron-circle-down{
+  color: #49B5CC;
+}
+
+.address-accordion-container{
+  padding-left: 0px;
+  padding-right: 0px;
+
+}
+
+.retailer-accord-title{
+  color:#49B5CC;
+  font-size: 16px;
+}
+
+
+/* Retailer Accordion Style End */
+
+
+.addr-amount{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    font-size: 10px;
+    text-align: center;
+}
+.addr-amount > span{
+    font-size: 28px;
+    color: #60BA48;
+    font-weight: bold;
+}
+.panel{
+  /*border: 0px solid transparent;*/
+}
+.panel-group {
+  margin-bottom: 0px;
+}
+
+.add-term{
+  margin-top: 10px;
+}
+
+.col-md-12.address-accordion-container > label {
+  margin: 0 0 0 15px;
+}
+.field-description span{
+  float: left;
+  margin-right: 25px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.input-lg, .form-horizontal .form-group-lg .form-control{
+  height: 30px;
+  /* padding: 10px 16px; */
+  font-size: 15px;
+  /* line-height: 1.33; */
+  border-radius: 4px;
+  margin: -8px 0px;
+}
+/*According to New disign*/
+/*input[type=checkbox] { display:none; }  to hide the checkbox itself
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  color:#49B5CC;
+}
+
+input[type=checkbox] + label:before { content: "\f096"; }  unchecked icon
+input[type=checkbox] + label:before { letter-spacing: 10px; }  space between checkbox and label
+
+input[type=checkbox]:checked + label:before { content: "\f14a"; }  checked icon
+input[type=checkbox]:checked + label:before { letter-spacing: 10px; }  allow space for check mark */
+
+.error-msg {
+  color: #E83624;
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+  /* margin: 8px; */
+  margin: 5px 0 0 0;
+}
+
+a.delete-item {
+  float: right;
+  margin-right: 0;
+  color: #EF5350;
+  margin-top: 3px
+}
+a.delete-item:hover {
+    color: #C62828;
+}
+a.delete-item .icon {
+    font-size: 12px;
+}
+
+.address-confirmation .panel:nth-child(2) {
+    border-bottom: 1px solid #e3e3e3;     
+}
+
+.hr-add {
+  /*-moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;*/
+  /*border-color: #EEEEEE -moz-use-text-color #FFFFFF;*/
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 10px -16px 10px -16px;
+  color: #44cde0;
+}
+
+input.input-lg.form-control.addre-type {
+  margin-top: 0px;
+}
+
+
+.browse-collection{
+  position: absolute;
+  margin-left: -9999px;
+}
+
+.voucher-container{
+  padding: 5px;
+  a{
+    color:#49B5CC;
+  }
+  .cancel-sec{
+    a{
+      i{
+        color:red;
+      }
+    }
+  }
+}
+
+.addr-container.address-accordion.panel-default {
+  border-color: transparent;
+  border-bottom: 1px solid #e8e8e8;
+  border-radius: 0;
+  margin-bottom: 10px;
+  border-top: none;
+}
+
+.redeem-sec,.cancel-sec{
+  padding-left: 0;
+}
+
+.voucher-addon{
+  i{
+    color:#60BA48 !important;
+  }
+
+}
+
+.voucher-addon{
+  background: #fff;
+}
+.rem-add-lf-brdr{
+  border-right: none;
+}
+
+a.vouch-redeem-text,a.vouch-cancel-text{
+  text-decoration: none;
+  text-transform: uppercase;
+}
+a.vouch-cancel-text:hover {
+    color: #d87f00;
+}
+
+
+.form-page .form-title {
+    margin-top: 40px;
+}
+
+.form-page .panel-default > .panel-heading .panel-title {
+  /*padding: 10px 0;*/
+}

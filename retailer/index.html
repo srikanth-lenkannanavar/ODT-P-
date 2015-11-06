@@ -1,0 +1,183 @@
+<!doctype html>
+<html class="no-js" ng-app="app">
+    <head>
+        <base href="/retailer/">
+        <title ng-bind="title"></title>
+        <meta charset="utf-8">
+        <meta name="description" content="{{description}}">
+        <meta name="keywords" content="{{keywords}}">
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <link rel="shortcut icon" type="image/x-icon" href="images/icons/otd_icon_16.png">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link href="styles/owl.carousel.css" rel="stylesheet">
+        <link href="styles/owl.transitions.css" rel="stylesheet">
+        <link href="styles/owl.theme.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="styles/style.css?v=1.0">-->
+        <link rel="stylesheet" href="styles/style.css?v=1.0">
+        <link href="styles/print.css" rel="stylesheet" type="text/css" media="print"/>
+        <link rel="stylesheet" href="styles/animate.css">
+        <link rel="stylesheet" href="styles/dropzone.css?v=1.0">
+        <link rel="stylesheet" href="styles/bootstrap-datetimepicker.css?v=1.0">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+        <div class="global-msg ng-scope static">
+            <div class="alert alert-danger">
+                <p>You are using an unsupported version of Internet Explorer. For best results, use IE10 and above. <a target="_blank" href="http://www.microsoft.com/en-in/download/details.aspx?id=39232"> Click here</a> to upgrade your browser.</p>
+            </div>
+        </div>
+        <![endif]-->
+        <div ng-show="loadingDiv" class="loading-div">
+            <img src="images/ts-loader.GIF" />
+        </div>
+        <div ng-controller="HeaderCtrl">
+            <div ng-include src="'views/template/header-tpl.html'"></div>
+            <div id="ng-view" ng-view=""></div>
+            <div ng-include src="'views/template/footer-tpl.html'"></div>
+        </div>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+        -->
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5SXQ88"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({'gtm.start':
+                                    new Date().getTime(), event: 'gtm.js'});
+                        var f = d.getElementsByTagName(s)[0],
+                                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src =
+                                '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', 'GTM-5SXQ88');</script>
+        <!-- End Google Tag Manager -->
+        <!-- build:js(.) scripts/oldieshim.js -->
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <![endif]-->
+        <!-- endbuild -->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/angular-file-upload/angular-file-upload-shim.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!--<script src="bower_components/angular/angular.js"></script>-->
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/momentjs/min/moment.min.js"></script>
+        <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="bower_components/lodash/lodash.min.js"></script>
+        <script src="bower_components/Angular-Postcode-Validation-Service/postcodevalidationService.js"></script>
+        <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+        <script src="bower_components/stacktrace-js/dist/stacktrace.js"></script>
+        <script src="bower_components/angulartics/dist/angulartics.min.js"></script>
+        <script src="bower_components/angulartics/dist/angulartics-gtm.min.js"></script>
+        <script src="scripts/select.js"></script>
+        <!--<script src="scripts/angulartics/angulartics.js"></script>-->
+        <!--<script src="scripts/angulartics/angulartics-gtm.js"></script>-->
+        <!--
+        <script src="scripts/newrelic-timing.js"></script>
+        <script src="scripts/newrelic-timing-angular.js"></script>    -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> -->
+        <!--<script src="scripts/all.min.js"></script>-->
+        <!--  <script src="scripts/map.js"></script>
+         <script src="scripts/ui-map.js"></script>   -->
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/lib/dropzone.js"></script>
+        <script src="scripts/lib/numeric-validation.js"></script>
+        <!--Controllers Start-->
+        <script src="scripts/controllers/main.js?v=1.0"></script>
+        <script src="scripts/controllers/delivery-zone.js?v=1.0"></script>
+        <script src="scripts/controllers/payment-success.js?v=1.0"></script>
+        <script src="scripts/controllers/payment-success1.js"></script>
+        <script src="scripts/controllers/my-payment-history.js"></script>
+        <script src="scripts/controllers/your-quote.js?v=1.0"></script>
+        <script src="scripts/controllers/my-deliveries.js?v=1.0"></script>
+        <script src="scripts/controllers/my-subscription.js?v=1.0"></script>
+        <script src="scripts/controllers/address-confirmation.js?v=1.0"></script>
+        <script src="scripts/controllers/booking-confirmation.js?v=1.0"></script>
+        <script src="scripts/controllers/user-registration.js?v=1.0"></script>
+        <script src="scripts/controllers/my-profile.js?v=1.0"></script>
+        <script src="scripts/controllers/edit-profile.js?v=1.0"></script>
+        <script src="scripts/controllers/subscribe-book.js?v=1.0"></script>
+        <script src="scripts/controllers/subscribes.js?v=1.0"></script>
+        <script src="scripts/controllers/track-map-ctrl.js"></script>
+        <script src="scripts/controllers/header-ctrl.js"></script>
+        <script src="scripts/controllers/copy-paste.js"></script>
+        <script src="scripts/controllers/edit-booking.js"></script>
+        <script src="scripts/controllers/are-you-a-retailer.js"></script>
+        <script src="scripts/controllers/get-in-touch-retailer.js"></script>
+        <script src="scripts/controllers/get-in-touch-consumer.js"></script>
+        <script src="scripts/controllers/timeformatfilter.js?v=1.0"></script>
+        <script src="scripts/controllers/forgotpassword.js"></script>
+        <script src="scripts/controllers/book-new-delivery-ctrl.js"></script>
+        <script src="scripts/controllers/my-deliveries.js"></script>
+        <script src="scripts/controllers/edit-booking.js"></script>
+
+        <!-- Retailer  Controllers Start-->
+        <script src="scripts/controllers/signup.js"></script>
+        <!-- Retailer  Controllers End-->
+        <!-- Modal  Controllers Start-->
+        <script src="scripts/controllers/modal/modal-ctrl.js?v=1.0"></script>
+        <script src="scripts/controllers/modal/signup-notification.js"></script>
+        <script src="scripts/controllers/modal/signup-edit-notification.js"></script>
+        <!-- Modal  Controllers End-->
+        <!--Controllers End-->
+        <!-- Directives Start-->
+        <script src="scripts/directives/your-quote.js?v=1.0"></script>
+        <script src="scripts/directives/common-directives.js?v=1.0"></script>
+        <!-- Directives End-->
+        <!-- Filter Begins-->
+        <script src="scripts/filters/custom-filters.js"></script>
+        <!-- Filter Ends-->
+        <!-- Services Start-->
+        <script src="scripts/services/geocodeservice.js"></script>
+        <script src="scripts/services/restservice.js"></script>
+        <script src="scripts/services/modalservice.js"></script>
+        <script src="scripts/services/envconfiguration.js"></script>
+        <script src="scripts/services/your-quote-service.js"></script>
+        <script src="scripts/services/common-service.js"></script>
+        <script src="scripts/services/my-payment-service.js"></script>
+        <script src="scripts/services/voucher-service.js"></script>
+        <script src="scripts/services/timeslot-services.js"></script>
+        <script src="scripts/services/booking-services.js"></script>
+        <!--<script src="scripts/services/error-service.js"></script>-->
+        <script src="scripts/services/address-confirmation-service.js"></script>
+        <script src="scripts/services/photourlservice.js"></script>
+        <script src="scripts/services/colrefdocservice.js"></script>
+        <script src="scripts/services/moment-timezone-with-data.js"></script>
+        <script src="https://platform.twitter.com/widgets.js"></script>
+        <!-- Services End-->
+        <!--<script src="scripts/templates/otd-tpls-min.js"></script>-->
+    </body>
+</html>

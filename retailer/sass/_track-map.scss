@@ -1,0 +1,40 @@
+/*
+.track-map-container-wrap {
+    margin-bottom: 40px;
+}
+*/
+
+.track-map-container #map-container, .track-map-container .map-wrap {
+    /*height: auto;*/
+    margin-bottom: 40px;
+    margin: 0;
+    display:block;
+}
+
+/*.track-map-container #map-container>div, .track-map-container #map-container>iframe {
+    height: 450px;
+}*/
+
+.track-map-row{
+  padding: 0 !important;
+}
+
+.track-error-mes{
+  color: #43B02A;
+  font-size: 26px;
+}
+
+.track-error-mes-notice{
+  color: #686868;
+}
+
+.track-error-container{
+  margin: 40px 0;
+}
+
+@media screen and (max-width: 767px) {
+    .track-map-container #map-container, .track-map-container .map-wrap {
+        height: 250px;
+        margin-bottom: 40px;
+    }
+}

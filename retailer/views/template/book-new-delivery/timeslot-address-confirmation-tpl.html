@@ -1,0 +1,279 @@
+
+<accordion close-others="" class="book-new-delivery-accordion"  >
+    <accordion-group  is-open="status.isChooseTimeslotPanelOpen" is-disabled="status.isFirstDisabled">
+        <!--<pre>Form check: {{chooseTimeslot.$valid}}</pre>-->
+        <!--<pre>Form submit check: {{chooseTimeslot.$submitted}}</pre>-->
+        <!--<pre><div><pre>{{bookNow.price}}</pre></div></pre>-->
+        <!--<pre>{{timeslotDateLabel}}</pre>-->
+        <!--<pre>{{tsRadio}}</pre>-->
+        <form  role="form" name="chooseTimeslot" novalidate >
+            <accordion-heading >
+
+                <div class="row choose-ts-summary-header" ng-if="isBookNowClicked">
+                    <div class="col-xs-10 col-sm-10 col-md-10">
+
+                        <div class="row" ng-if="!subscriptions.isActive || (subscriptions.isActive && voucher.valid) || zone === 'adhoc'">
+                            <div class="col-md-5">Your collection for {{timeslotDateLabel}}</div>
+                            <div class="col-md-3">
+
+                                <label class="choose-ts-price">{{bookNowPrice | currency : "&pound;"}}</label>
+                                <p class="choose-ts-summary-vat">{{bookNowTotal | currency:"&pound;"}} incl VAT</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 class="choose-ts-summary-sel-ts">Selected delivery timeslot</h2>
+                                <label class="choose-ts-summary-date-label">
+                                    <span class="choose-ts-sel-date">{{timeslotDate}}</span> | <span class="choose-ts-sel-time">{{bookNowStartTime | ISO8601Parse : "UK" : "HH:mm" }}-{{bookNowEndTime  | ISO8601Parse : "UK" : "HH:mm"}}</span></label>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="(subscriptions.isActive && !voucher.valid) && zone !== 'adhoc'">
+                            <div class="col-md-8">
+                                Your collection for {{timeslotDateLabel}}
+                                <div>
+                                    <div class="bundle-header clearfix">
+                                        <div class="ur-sub-big">{{subscriptions.remainingbookingsforsubscription}}</div>
+                                        <div class="bundle-box" >
+                                           <p >Good news!</p>
+                                            <p > You still have {{subscriptions.remainingbookingsforsubscription}} out of {{subscriptions.totalbookingsforsubscription}} deliveries left in your bundle</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h2 class="choose-ts-summary-sel-ts">Selected delivery timeslot</h2>
+                                <label class="choose-ts-summary-date-label">
+                                    <span class="choose-ts-sel-date">{{timeslotDate}}</span> | <span class="choose-ts-sel-time">{{bookNowStartTime | ISO8601Parse : "UK" : "HH:mm" }}-{{bookNowEndTime  | ISO8601Parse : "UK" : "HH:mm"}}</span></label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <span class="icon  icon-down-arrow pull-right" ></span>
+                    </div>
+                </div>
+
+                <div ng-if="!isBookNowClicked">Choose a timeslot <span class="icon pull-right" ng-class="{'icon-up-arrow': status.isChooseTimeslotPanelOpen, 'icon-down-arrow': !status.isChooseTimeslotPanelOpen}"></span> </div>
+
+            </accordion-heading>
+            <!--<accordion-heading ng-if="chooseTimeslot.$valid && chooseTimeslot.$submitted">-->
+
+                <!--<span class="icon icon-up-arrow pull-right" ng-class="{'icon-down-arrow': status.isChooseTimeslotPanelOpen, 'icon-up-arrow': !isChooseTimeslotPanelOpen}"></span>-->
+            <!--</accordion-heading>-->
+
+            <section >
+                 <div ng-include src="'views/template/book-new-delivery/choose-timeslot-tpl.html'"></div>
+            </section>
+         </form>
+
+    </accordion-group>
+    <!--<accordion-group  is-open="status.isConfirmDelAddrsOpen" ng-if="isChooseTimeslotComplete">-->
+    <!--<pre>-->
+        <!--{{isHideConfirmDelivery}}-->
+    <!--</pre>-->
+    <accordion-group  is-open="status.isConfirmDelAddrsOpen" ng-if="isShowConfirmDelivery">
+        <accordion-heading >
+            <div class="clearfix">
+                <span class="confirm-del-add-title">Confirm delivery address</span> <span class="icon icon-up-arrow pull-right" ng-class="{'icon-down-arrow': !status.isChooseTimeslotPanelOpen, 'icon-up-arrow': status.isChooseTimeslotPanelOpen}"></span>
+            </div>
+
+        </accordion-heading>
+
+
+        <div >
+            <form  role="form" name="confirmDelAdd" novalidate ng-submit="saveConfirmDelAdd(confirmDelAdd.$valid)" scrollto-first>
+                <div class="row">
+                    <div class="col-md-12  col-lg-12">
+                        <div class="form-group" >
+                            <input  name="refNameId" ng-model="confirmAdd.refNameId" maxlength="20" ng-maxlength="20" placeholder="Customer reference"  type="text" class="form-control" >
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group"  >
+
+                            <div class="input-group">
+                                <span class="input-group-addon">&pound;</span>
+                                <input  name="itemValue" placeholder="Value of item(s)"  ng-model="confirmAdd.itemValue" type="text" maxlength="10" ng-maxlength="10" item-value  class="form-control" >
+                            </div>
+
+
+
+                            <div class="item-value-validation-box" ng-if="confirmAdd.itemValue > 1000">
+                                <div class="warning-icon-box">
+                                    <i class="icon  icon-warning" ></i>
+                                </div>
+                                <div class="warning-content-box error-msg">
+                                    Opps! the value of your goods is over our limit of &pound; 1000. Please refer to our terms of business for more
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group"  ng-class="{'has-error': (confirmDelAdd.customerName.$dirty && confirmDelAdd.customerName.$invalid) || (confirmDelAdd.$submitted && confirmDelAdd.customerName.$invalid) || (confirmDelAdd.customerName.$touched && confirmDelAdd.customerName.$invalid) }">
+                            <input  name="customerName" ng-model="confirmAdd.customerName"   placeholder="Customer name *" maxlength="30" ng-maxlength="30" type="text" class="form-control" required>
+                            <div ng-if="(confirmDelAdd.$submitted || confirmDelAdd.customerName.$touched || (confirmDelAdd.customerName.$dirty && confirmDelAdd.customerName.$invalid))" ng-messages="confirmDelAdd.customerName.$error" >
+                                <div ng-message="required" class="error-msg">Oops! Please enter Customer name</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group"  ng-class="{'has-error': (confirmDelAdd.$submitted && confirmDelAdd.emailAdd.$invalid) || (confirmDelAdd.emailAdd.$touched && confirmDelAdd.emailAdd.$invalid) }">
+                            <input name="emailAdd" ng-model="confirmAdd.emailAdd" type="email" class="form-control" placeholder="Email address "
+                                   ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/"
+                                   ng-maxlength="80"  >
+                            <div ng-if="(confirmDelAdd.$submitted || confirmDelAdd.emailAdd.$touched )"
+                                 ng-messages=" confirmDelAdd.emailAdd.$error" >
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email
+                                    address. Please try again…
+                                </div>
+                                <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters
+                                    length.
+                                </div>
+
+                            </div>
+                            <div>
+                                If your customer provides an email address, they will receive a link enabling them to track their order.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group"  ng-class="{'has-error': (confirmDelAdd.$submitted && confirmDelAdd.mobPhone.$invalid) || (confirmDelAdd.mobPhone.$touched && confirmDelAdd.mobPhone.$invalid) }">
+                            <div class="input-group">
+                                <span class="input-group-addon">+44</span>
+                                <input type="text" class="form-control quantity" name="mobPhone" ng-model="confirmAdd.phoneNo"
+                                       placeholder="Mobile phone *" ng-pattern="/^(7|07)\d{9}$/" maxlength="11"   restrict-quick-validation restrict-alphabets required />
+                            </div>
+                            <!--<div>If your customer provides a mobile phone number, they will receive SMS updates</div>-->
+                            <div ng-if="(confirmDelAdd.$submitted || confirmDelAdd.mobPhone.$touched )"
+                                 ng-messages="confirmDelAdd.mobPhone.$error" >
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile
+                                    number. Please try again…
+                                </div>
+                                <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile
+                                    number. Please try again…
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group"  >
+                            <label>Address for {{mydeliveryuser.postCodeValue | codeFilter}}</label>
+                            <ui-select ng-model="address.selected" ng-hide="address.selected.address1.length > 0 || address.selected.address2.length > 0 || manuallySelected">
+                                    <ui-select-match placeholder="Please select an address">{{$select.selected.address1 + ' ' + $select.selected.address2 + ' ' + $select.selected.town + ' ' + $select.selected.county }}</ui-select-match>
+                                    <ui-select-choices repeat="post in posts | propsFilter: {address1: $select.search, address2: $select.search, postcode: $select.search}">
+                                        <div ng-bind-html="post.address1+' '+post.address2+' '+post.town +' '+post.county  | highlight: $select.search" ng-click="addressSelected()"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                        </div>
+                        <div ng-if="!manuallySelected"><a class="enteraddress" href="" ng-click="enterAddress()">Enter the address manually</a></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+
+                        <div class="form-group" ng-if="manuallySelected || confirmDelAdd.$submitted" ng-class="{'has-error': (confirmDelAdd.$submitted && confirmDelAdd.firstLineAdd.$invalid) || (confirmDelAdd.firstLineAdd.$touched && confirmDelAdd.firstLineAdd.$invalid) }" >
+                            <input  name="firstLineAdd" ng-model="address.selected.address1" ng-maxlength="60"  placeholder="First line of address *" type="text" class="form-control" required>
+                            <div ng-if="(confirmDelAdd.$submitted || confirmDelAdd.firstLineAdd.$touched || (confirmDelAdd.firstLineAdd.$dirty && confirmDelAdd.firstLineAdd.$invalid))" ng-messages="confirmDelAdd.firstLineAdd.$error" >
+                                <div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>
+                                <div ng-message="required" class="error-msg">Oops! Please enter first line of address</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group" ng-if="manuallySelected || confirmDelAdd.$submitted" ng-class="{'has-error': (confirmDelAdd.$submitted && confirmDelAdd.secondLineAdd.$invalid) || (confirmDelAdd.secondLineAdd.$touched && confirmDelAdd.secondLineAdd.$invalid) }">
+
+                            <input  name="secondLineAdd" ng-model="address.selected.address2"  placeholder="Second line of address" type="text" class="form-control">
+                            <!--<div ng-if="(confirmDelAdd.$submitted || confirmDelAdd.secondLineAdd.$touched || (confirmDelAdd.secondLineAdd.$dirty && confirmDelAdd.secondLineAdd.$invalid))" ng-messages="confirmDelAdd.secondLineAdd.$error" >-->
+                                <!--<div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>-->
+                                <!--<div ng-message="required" class="error-msg">Oops! Please enter Second line of address</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="manuallySelected || confirmDelAdd.$submitted">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group" ng-class="{'has-error': (confirmDelAdd.city.$invalid && confirmDelAdd.city.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.city.$invalid)}">
+                            <input id="address-line-3" name="city"
+                                   ng-model="posts[0].town" type="text"
+                                   class="form-control enteraddress"
+                                   placeholder="City*" maxlength="60" required readonly>
+                            <div class="error-msg" ng-if="(confirmDelAdd.city.$invalid && confirmDelAdd.city.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.city.$invalid)">Oops! Please enter a town/city</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6" ng-if="manuallySelected || confirmDelAdd.$submitted">
+                        <div class="form-group" ng-class="{'has-error': (confirmDelAdd.postalCode.$invalid && confirmDelAdd.postalCode.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.postalCode.$invalid)}">
+                            <input id="address-line-4" name="postalCode"
+                                   ng-model="posts[0].postcode" type="text"
+                                   class="form-control" placeholder="Postal Code *" readonly
+                                   required check-postcode>
+                            <div class="error-msg" ng-if="(confirmDelAdd.postalCode.$invalid && confirmDelAdd.postalCode.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.postalCode.$invalid)">Please
+                                enter a valid postal code</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <textarea name="deliveryInstruction" class="form-control" maxlength="100" ng-model="confirmAdd.deliveryInstruction" rows="2" placeholder="Specific delivery instructions"></textarea>
+                        <div> {{100 - confirmAdd.deliveryInstruction.length}} character(s) remaining.</div>
+                    </div>
+
+                </div>
+
+
+               <div class="checkbox" ng-if="confirmAdd.itemValue > 1000">
+                   <input type="checkbox" id="checkboxConfirmValue"  name="chkConfirmValue" ng-model="chkConfirmValue" class="css3checkbox"   required />
+                   <label class="toggler" for="checkboxConfirmValue">
+                       <div class="check-sub-text">I accept  that my item  will only be covered up to the value of &pound;1000</div>
+                    </label>
+                   <div class="error-msg" ng-if="(confirmDelAdd.chkConfirmValue.$invalid && confirmDelAdd.chkConfirmValue.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.chkConfirmValue.$invalid)">Oops! Please confirm you have checked your terms & condition.</div>
+                </div>
+
+
+
+                <div class="checkbox" >
+
+                    <input type="checkbox" id="checkboxConfirm" name="chkConfirm"  class="css3checkbox " ng-model="chkConfirm"   required />
+                    <label class="toggler" for="checkboxConfirm">
+                        <div class="check-sub-text">I confirm that my order does not exceed 20 kgs and 1.2m X 1.0m X 1.0m</div>
+                    </label>
+
+                    <div class="error-msg" ng-if="(confirmDelAdd.chkConfirm.$invalid && confirmDelAdd.chkConfirm.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.chkConfirm.$invalid)">Oops! Please confirm you have checked your item(s) size and weight</div>
+                </div>
+
+
+                <div class="checkbox">
+                    <input type="checkbox" id="checkboxTc" name="chkTermsCond" class="css3checkbox" name="chkTermsCond" ng-model="chkTermsCond" required />
+                    <label class="toggler" for="checkboxTc">
+                        <div class="check-sub-text">I accept the On the dot <a href="terms-and-conditions" target="_blank">terms and conditions</a></div>
+                    </label>
+                    <div class="error-msg" ng-if="(confirmDelAdd.chkTermsCond.$invalid && confirmDelAdd.chkTermsCond.$touched) || (confirmDelAdd.$submitted && confirmDelAdd.chkTermsCond.$invalid)">Oops! Please confirm that you have accepted our terms and conditions</div>
+                </div>
+
+                <button type="submit" class="btn btn-default btn-primary" ng-if="bookingType === 'Subscription' || bookingType === 'Voucher'"  ng-disabled="bookBtnDisabled" >
+                    Confirm
+                </button>
+                <button class="btn btn-default btn-primary" ng-if="bookingType == 'PAYG'" ng-disabled="bookBtnDisabled">Confirm &amp; pay</button>
+            </form>
+
+
+
+        </div>
+
+    </accordion-group>
+</accordion>
+

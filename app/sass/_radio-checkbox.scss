@@ -1,0 +1,117 @@
+/* #### checkbox buttons #### */
+input[type="checkbox"].css3checkbox {
+  display: none;
+}
+
+label.toggler {
+  /* checkbox label */
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  /* space to the left of label text */
+  padding-top: 2px;
+  margin-bottom: 1em;
+  /* bottom spacing */
+  cursor: pointer;
+}
+
+label.toggler::before {
+  /* flat box */
+  content: '';
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid $check-box-border;
+  /*background: #B1E5EF;
+  -webkit-box-shadow: 0 0 3px #BFDEFC inset;
+  */
+  box-shadow: 0 0 3px #BFDEFC inset;
+  left: 0;
+  top: 1px;
+}
+
+.check-sub-text {
+    line-height: 1;
+}
+
+label.toggler::after {
+  /* check mark inside flat box*/
+  content: '\f00c';
+  /* fontAwesome icon font unicode. See http://fortawesome.github.io/Font-Awesome/cheatsheet/ for others */
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  font: bold 9px FontAwesome;
+  color: #43B02A;
+  width: 0;
+  /* hide check mark initially */
+  text-shadow: 0 0 2px #eee;
+  overflow: hidden;
+}
+
+input[type="checkbox"]:checked + label.toggler::after {
+  /* check mark when checkbox is checked */
+  -webkit-transition: width 0.2s;
+  transition: width 0.2s;
+  /* CSS3 transition on width property */
+  width: 25px;
+  /* expand check mark to show it. Value should reflect that of container box */
+}
+
+/* #### radio buttons #### */
+input[type="radio"].css3radio {
+  display: none;
+}
+
+label.toggler_r {
+  /* radio label */
+  /*display: block;*/
+  position: relative;
+  padding-left: 32px;
+  /* space to the left of label text */
+  padding-top: 2px;
+  margin-bottom: 1em;
+  /* bottom spacing */
+  cursor: pointer;
+}
+
+label.toggler_r::before {
+  /* outer round circle */
+  content: '';
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  /*background: #B1E5EF;*/
+  border: 1px solid $app-green;
+  -webkit-box-shadow: 0 0 3px #BFDEFC inset;
+  box-shadow: 0 0 3px #BFDEFC inset;
+  border-radius: 25px;
+  left: 0;
+  top: 4px;
+}
+
+label.toggler_r::after {
+  /* inner dark circle */
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 15px;
+  left: 5px;
+  top: 9px;
+  overflow: hidden;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  /* CSS3 transition on dark circle */
+}
+
+
+input[type="radio"]:checked + label.toggler_r::after {
+  /* inner dark circle when radio is selected */
+  /*background: #1B4977;*/
+  background: $app-green;
+  -webkit-box-shadow: 1px 1px 5px white;
+  box-shadow: 1px 1px 5px white;
+}

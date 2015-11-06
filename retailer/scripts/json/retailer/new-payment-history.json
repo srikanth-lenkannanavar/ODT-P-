@@ -1,0 +1,66 @@
+{"data": {
+    "store": {
+        "id": "123",
+        "openingTime": null,
+        "closingTime": null,
+        "retailerName": null,
+        "imageUrl": null,
+        "address": null
+    },
+    "payments": [
+        {
+            "user": "john@gmail.com",
+            "orderid": "017286592402",
+            "displayname": null,
+            "message": "Success",
+            "authcode": "657874524",
+            "pasref": "dfgs467dhg",
+            "sha1hash": "",
+            "comment1": "",
+            "comment2": "",
+            "flow": "",
+            "result": "",
+            "checksumstatus": "",
+            "bookingtype": "Single Delivery",
+            "amount": "8.95",
+            "createdate": 1437646375589,
+            "updatedDate": 1437646375589,
+            "successurl": null,
+            "failureurl": null,
+            "quoteamount": "6.95",
+            "vatamount": "1.23",
+            "orderDate": "2015-07-23T10:12:55Z",
+            "domain": "RTJ",
+            "channel": "RTJ",
+            "storeid": "123"
+        },
+        {
+            "user": "john@gmail.com",
+            "orderid": "017286592401",
+            "displayname": null,
+            "message": "Success",
+            "authcode": "657874524",
+            "pasref": "dfgs467dhg",
+            "sha1hash": "",
+            "comment1": "",
+            "comment2": "",
+            "flow": "",
+            "result": "",
+            "checksumstatus": "",
+            "bookingtype": "Single Delivery",
+            "amount": "8.95",
+            "createdate": 1437624760946,
+            "updatedDate": 1437624760946,
+            "successurl": null,
+            "failureurl": null,
+            "quoteamount": "6.95",
+            "vatamount": "1.23",
+            "orderDate": "2015-07-23T04:12:40Z",
+            "domain": "RTJ",
+            "channel": "RTJ",
+            "storeid": "123"
+        }
+    ]
+}, "success": {
+    "status": "ok"
+} }

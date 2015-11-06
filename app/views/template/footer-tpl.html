@@ -1,0 +1,112 @@
+<div class="container print-footer" ng-if="!standAloneMapHeader">
+    <!--
+    <div class="row" ng-if="footerImg">
+        <div class="col-md-12 remove-boot-pad-lh">
+            <a ng-href="{{footerLink}}"> <img ng-src="{{footerImg}}"  class="img-responsive" alt=""/></a>
+        </div>
+    </div>
+    -->
+    <div class="row" ng-if="isFooter">
+        <div class="col-md-12 remove-boot-pad-lh">
+            <a ng-href="{{footerLink}}">
+                <div class="foot-bg" ng-class="footerClass"></div>
+            </a>
+        </div>
+    </div>
+    <!--
+    <div class="row footer-container">
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <ul>
+                <li><a ng-href="{{homeUrl}}/how-it-works">How it works</a></li>
+                <li><a ng-href="{{homeUrl}}/where-we-deliver">Where we deliver</a></li>
+                <li><a ng-href="{{homeUrl}}/what-it-costs">What it costs</a></li>
+                <li><a ng-href="{{homeUrl}}/about-us">About us</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <ul>
+                <li><a ng-href="{{homeUrl}}/faqs">FAQs</a></li>
+                <li><a ng-href="{{homeUrl}}/get-in-touch">Get in touch</a></li>
+                <li><a ng-href="{{homeUrl}}/press">Press</a></li>
+                <li><a href="http://www.onthedot.co.uk/blog/" target="_blank">Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <ul>
+                <li><a ng-href="{{homeUrl}}/terms-and-conditions">Terms &amp; conditions</a></li>
+                <li><a ng-href="{{homeUrl}}/privacy-policy">Privacy policy</a></li>
+                <li><a ng-href="{{homeUrl}}/cookies">Cookies</a></li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3 share-wrap">
+            <ul>
+                <li>Join us</li>
+                <li>
+                    <ul class="social-links">
+                        <li><a target="_blank" href="https://www.facebook.com/onthedotuk"><span class="icon icon-onthedot-icons-38"></span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/onthedotuk"><span class="icon icon-onthedot-icons-37"></span></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/company/onthedotuk"><span class="icon icon-onthedot-icons-39"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    -->
+    <div class="row footer-container">
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <h1 class="footer-title">On the dot</h1>
+            <ul>
+                <li><a ng-href="{{consumerHomeUrl}}/about-us">About us</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/press">Press</a></li>
+                <li><a href="http://www.onthedot.co.uk/blog/" target="_blank">Blog</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/privacy-policy">Privacy policy</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/cookies">Cookies</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <h1 class="footer-title">Shopper</h1>
+            <ul>
+                <li><a ng-href="{{consumerHomeUrl}}">Home</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/how-it-works">How it works</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/where-we-deliver">Where we deliver</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/what-it-costs">What it costs</a></li>
+                <!--<li><a ng-href="{{consumerHomeUrl}}/onthedot-consumer-offering">Consumer offering</a></li>-->
+                <li><a ng-href="{{consumerHomeUrl}}/faqs">FAQs</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/get-in-touch">Get in touch</a></li>
+                <li><a ng-href="{{consumerHomeUrl}}/terms-and-conditions">Terms &amp; Conditions</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <h1 class="footer-title">Retailer</h1>
+            <ul>
+                <li><a ng-href="{{retailerHomeUrl}}">Home</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/portal">Retailer Portal - No integration</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/integration-with-our-open-api">Integration with our open API</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/onthedot-consumer-offering">Sign up as a Partner Retailer</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/faqs">FAQs</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/get-in-touch">Get in touch</a></li>
+                <li><a ng-href="{{retailerHomeUrl}}/terms-and-conditions">Terms &amp; conditions</a></li>
+
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 share-wrap">
+            <h1 class="footer-title">Developer</h1>
+            <ul>
+                <!--<li><a ng-href="#">Register</a></li>-->
+                <li><a ng-href="http://developers.onthedot.com/">API Documentation</a></li>
+                <li><h1 class="footer-title footer-join-us">Join us</h1></li>
+                <li>
+                    <ul class="social-links">
+                        <li><a target="_blank" href="https://www.facebook.com/onthedotuk"><span class="icon icon-onthedot-icons-38"></span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/onthedotuk"><span class="icon icon-onthedot-icons-37"></span></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/company/onthedotuk"><span class="icon icon-onthedot-icons-39"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,154 @@
+<!--<div class="modal-body">
+    <form id="modal-form-later" class="form" role="form" name="packageReady">
+        <div class="row">
+            <div class="col-md-10 col-xs-10">
+                <h1 class="modal-main-title">
+                    Collection details
+                </h1>
+            </div>
+            <div class="col-md-2 col-xs-2">
+                <h1 class="modal-close-x" ng-click="changeHidemodal()">X</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Collection Date*</label></br>
+
+                    <div class="form-group" date-collection>
+                        <div class='input-group date' id='datetimepicker2'>
+                            <input type='text' ng-model="editDeliveryObj.packageDate" is-open="dpOpen()" class="form-control"/>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Item ready from*</label></br>
+                    <select name="packagefrom" class="form-control" ng-required="true" ng-model="editDeliveryObj.packagefrom" required>
+                        <option value="">{{editDeliveryObj.packagefrom}}</option>
+                        <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
+                    </select>
+
+                    <p class="error-msg"></p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div ng-if="retailerType == 'Manual' " class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Shop Opening time*</label></br>
+                    <select name="shopopen" class="form-control" ng-required="true" ng-model="editDeliveryObj.shopopen"
+                            ng-change="shopclosecalc(shopopen);" required>
+                        <option value="">09:30</option>
+                        <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
+                    </select>
+
+                    <p class="error-msg"></p>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Shop Closing time*</label></br>
+                    <select name="shopclose" class="form-control" ng-required="true" ng-model="editDeliveryObj.shopclose" required>
+						<option value="">18:30</option>
+                        <option ng-repeat="closetime in closetimes" value="{{closetime}}">{{closetime}}</option>
+                    </select>
+
+                    <p class="error-msg"></p>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div class="modal-footer go-right-modal-btn">
+    <button type="button" class="btn btn-primary" ng-click="saveEditData(editDeliveryObj)"
+            ng-disabled="packageReady.packagefrom.$error.required || packageReady.date.$error.required || packageReady.$pristine">
+        Save
+    </button>
+    </form>
+    
+    <button class="btn btn-default" ng-click="changeHidemodal()"><i>Close</i>
+    </button>
+    
+</div>-->
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+        <h1 class="modal-main-title">Collection details</h1>        
+</div>
+<form id="modal-form-later" class="form" role="form" name="packageReady">
+    <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Collection Date*</label></br>
+
+                        <div class="form-group" date-collection>
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' ng-model="editDeliveryObj.packageDate" is-open="dpOpen()" class="form-control"/>
+                                <span class="input-group-addon in-dp-ds-caln"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Item ready from*</label></br>
+                        <select name="packagefrom" class="form-control" ng-required="true" ng-model="editDeliveryObj.packagefrom" required>
+                            <option value="">{{editDeliveryObj.packagefrom}}</option>
+                            <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
+                        </select>
+
+                        <p class="error-msg"></p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div ng-if="retailerType == 'Manual' " class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Shop Opening time*</label></br>
+                        <select name="shopopen" class="form-control" ng-required="true" ng-model="editDeliveryObj.shopopen"
+                                ng-change="shopclosecalc(shopopen);" required>
+                            <option value="">{{editDeliveryObj.shopopen}}</option>
+                            <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
+                        </select>
+
+                        <p class="error-msg"></p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Shop Closing time*</label></br>
+                        <select name="shopclose" class="form-control" ng-required="true" ng-model="editDeliveryObj.shopclose" required>
+                            <option value="">{{editDeliveryObj.shopclose}}</option>
+                            <option ng-repeat="closetime in closetimes" value="{{closetime}}">{{closetime}}</option>
+                        </select>
+
+                        <p class="error-msg"></p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <div class="modal-footer go-right-modal-btn">
+        <button type="button" class="btn btn-primary" ng-click="saveEditData(editDeliveryObj)"
+            ng-disabled="packageReady.packagefrom.$error.required || packageReady.date.$error.required">Save</button>
+    </div>
+</form>
+
+

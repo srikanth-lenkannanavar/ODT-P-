@@ -1,0 +1,43 @@
+<h2 class="page-sub-title">User information</h2>
+<div class="row section relative">
+   <div class="button-fleft">
+        <a class="btn btn-default" ng-href="{{homeUrl}}/edit-profile/user-info">Edit</a>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="element">
+            <i class="icon icon-retailer"></i>
+            {{firstName}} {{lastName}}
+        </div>
+        <div class="element mar-bot-min">
+            <i class="icon icon-envelope"></i>
+            {{regEmail}}
+        </div>
+        <div class="element nomargin">
+            <i class="fa fa-phone"></i>
+            <span ng-if="phoneNo">+44 {{currentPhoneNumber}}</span> <span ng-if="!phoneNo">+44 {{currentPhoneNumber}}</span>
+            
+            <!--if phone number validated success -->
+            <i ng-if="phoneNoValidatedStatus" class="icon mar-left-50 icon-tick validated"></i>
+            
+            <!--if phone number validated failure -->
+            <span ng-if="!phoneNoValidatedStatus || phoneNoValidatedStatus == false"><button class="btn btn-primary mar-left-50" ng-click="validateMob()">Validate</button></span>
+            <div ng-if="!phoneNoValidatedStatus" class="mar-top-10 mar-left-25 myprof-phone ng-scope">
+                <div class="clearfix">
+                    <div class="icon-wrapper">
+                        <i class="icon icon-warning ur-collection-err-icon"></i>
+                    </div>
+                    <div class="error-msg">Please make sure you validate your account</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="element" ng-if="UserTypeLogin">
+            <i class="icon icon-passwod"></i>
+            <a ng-href="{{homeUrl}}/edit-profile/change-password">Change password</a>
+        </div>   
+    </div>
+    <div class="col-lg-2">
+    </div>    
+</div>

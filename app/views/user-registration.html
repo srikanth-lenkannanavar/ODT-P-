@@ -1,0 +1,204 @@
+<div class="container form-page register-page" apply-bg>
+    <div class="row ">
+        <div class="col-md-12  reset-padding-desktop">
+            <h1 class="page-main-title">
+                Sign up
+            </h1>
+
+        </div>
+
+    </div>
+
+    <div class="row ">
+
+        <div class="col-md-3  col-xs-12 reset-padding-desktop-left">
+            <div class="sc-nw-container sc-first">
+                <a id="fbloginlink" href="/MyDeliveryPortal/samlsso?return=home&fidp=fb">
+                    <div class="sc-icon-box sc-fb sc-fb-icon-box pull-left">
+                        <i class="fa fa-facebook text-uppercase bold "></i>
+                    </div>
+                    <div class="sc-name-box sc-fb">
+                        Sign up with Facebook
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-md-3 reset-padding-desktop col-xs-12 reset-padding-desktop-right">
+            <div class="sc-nw-container">
+                <a id="fbloginlink" href="/MyDeliveryPortal/samlsso?return=home&fidp=google">
+                    <div class="sc-icon-box sc-google sc-fb-icon-box pull-left">
+                        <i class="fa fa-google text-uppercase bold"></i>
+                    </div>
+                    <div class="sc-name-box sc-google">
+                        Sign up with Google
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 reset-padding-desktop  text-center reg-instruction">
+            Please enter your details below to sign up
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 reset-padding-desktop">
+            <form role="form" name="userRegister" novalidate ng-controller="UserRegistrationCtrl" method="post"
+                  ng-submit="registerUser(userRegister.$valid)">
+
+                <div ng-show="UserRegSuccess">
+                    <div class="alert alert-success">
+                        <strong>Great! You have now signed up to On the dot</strong>
+                    </div>
+                </div>
+                <div ng-show="UserRegFailed">
+                    <div class="alert alert-danger alert-error">
+                        <strong>Sorry! It appears there is a problem with your registration. Please check your details
+                            and try again…</strong>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 ">
+
+                        <div class="form-group"
+                             ng-class="{'has-error': (userRegister.$submitted && userRegister.firstName.$invalid) || (userRegister.firstName.$touched && userRegister.firstName.$invalid) }">
+
+                            <input type="text" class="form-control " size=30 maxlength=30 name="firstName"
+                                   ng-model="firstName" placeholder="First name *" required>
+
+                            <div ng-if="(userRegister.$submitted || userRegister.firstName.$touched)"
+                                 ng-messages="userRegister.firstName.$error"
+                                 ng-messages-include='views/error-messages.html'>
+                                <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="secondName" ng-model="secondName"
+                                   placeholder="Last name" maxlength="30">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="clearfix"></div>
+
+                <div class="form-group"
+                     ng-class="{'has-error':  (userRegister.$submitted && userRegister.email.$invalid) || (userRegister.email.$touched && userRegister.email.$invalid) }">
+
+                    <input type="email" class="form-control" name="email" ng-model="email" ng-blur="verifyEmail()"
+                           ng-focus="clearErrorMsg()" placeholder="Email address *"
+                           ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/"
+                           ng-maxlength="80" required>
+
+
+                    <div ng-if="(userRegister.$submitted || userRegister.email.$touched )"
+                         ng-messages="userRegister.email.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email
+                            address. Please try again…
+                        </div>
+                        <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters
+                            length.
+                        </div>
+                        <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid email
+                            address. Please try again…
+                        </div>
+                    </div>
+                    <!-- <p class="error-msg" ng-if="validEmail">Valid Email</p> -->
+                    <p class="error-msg" ng-if="invalidEmail">Oops! You have used that email address already. Please
+                        login or use an alternative email address to sign up</p>
+
+                </div>
+
+
+                <div class="form-group"
+                     ng-class="{'has-error':  (userRegister.$submitted && userRegister.password.$invalid) || (userRegister.password.$touched && userRegister.password.$invalid) }">
+                    <input id="password" type="password" ng-minlength="6" class="form-control" name="password"
+                           ng-model="password"
+                           ng-pattern="/^((?=.*\d)(?=.*[a-zA-Z])(?=.*[a-zA-Z@#$%]).{6,})$/"
+                           placeholder="Password *" required>
+                    <!--<p class="error-msg" ng-if="userRegister.password.$error.minlength && userRegister.password.$dirty">Password must have a minimum length of 5 alphanumeric.</p>-->
+                    <!--<p class="error-msg" ng-hide="userRegister.password.$pristine" ng-if="!userRegister.password.$error.minlength && userRegister.password.$error.required">This field is required</p>-->
+                    <!--<p class="error-msg" ng-show="!userRegister.password.$error.minlength && userRegister.password.$error.pattern">Yay</p>-->
+                    <div ng-if="(userRegister.$submitted || userRegister.password.$touched )"
+                         ng-messages="userRegister.password.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="minlength" class="error-msg">Sorry! Your password must be a minimum of six
+                            characters and a combination of letters and numbers
+                        </div>
+                        <div ng-message="pattern" class="error-msg">Sorry! Your password must be a minimum of six
+                            characters and a combination of letters and numbers
+                        </div>
+                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': (userRegister.$submitted && userRegister.cnfpassword.$invalid) || (userRegister.cnfpassword.$touched && userRegister.cnfpassword.$invalid) }">
+                    <input type="password" ng-minlength="5" class="form-control" name="cnfpassword"
+                           ng-model="cnfpassword" compare-to="password" placeholder="Confirm password *" required>
+
+                    <div ng-if="(userRegister.$submitted || userRegister.cnfpassword.$touched )"
+                         ng-messages="userRegister.cnfpassword.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                        <div ng-message="compareTo" class="error-msg">Oops! Please confirm your password</div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-group"
+                     ng-class="{'has-error': (userRegister.$submitted && userRegister.phoneNo.$invalid) || (userRegister.phoneNo.$touched && userRegister.phoneNo.$invalid) }">
+
+                    <!--<input type="text" class="form-control" name="phoneNo" ng-model="phoneNo" required ng-pattern="/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/" placeholder="Phone Number *" >-->
+
+                    <!--<div ng-messages="userRegister.phoneNo.$dirty && userRegister.phoneNo.$error"  ng-messages-include='views/error-messages.html'>-->
+                    <!--<div ng-message="pattern" class="error-msg">Please Enter a valid phone number.</div>-->
+                    <!--</div>-->
+
+                    <div class="input-group">
+                        <span class="input-group-addon">+44</span>
+                        <input type="text" class="form-control" name="phoneNo" ng-model="phoneNo" id="phoneNo"
+                               placeholder="Mobile number *" ng-pattern="/^(7|07)\d{9}$/"   restrict-quick-validation required />
+                        <span class="input-group-addon" ng-if="isPhoneValidate"><i class="fa fa-check"></i></span>
+                    </div>
+                    <div>This number will be used to send an activation code to validate your registration.</div>
+
+
+                    <div ng-if="(userRegister.$submitted || userRegister.phoneNo.$touched )"
+                         ng-messages="userRegister.phoneNo.$error" ng-messages-include='views/error-messages.html'>
+                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile
+                            number. Please try again…
+                        </div>
+                        <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile
+                            number. Please try again…
+                        </div>
+                    </div>
+                    <!--
+                    <p class="error-msg" ng-if="userRegister.phoneNo.$error.number && userRegister.phoneNo.$dirty">Please enter a valid telephone number</p>
+                    <p class="error-msg" ng-if="userRegister.phoneNo.$dirty &&  userRegister.phoneNo.$error.pattern">Please Enter a valid phone number.</p>
+                    -->
+
+                    <!--<p class="error-msg" ng-hide="userRegister.phoneNo.$pristine" required ng-if="!userRegister.phoneNo.$error.number && userRegister.phoneNo.$error.required" pattern="^\s*([0-9a-zA-Z]+)\s*$" ng-pattern-restrict>This field is required</p>-->
+                </div>
+
+                <!--<button type="submit" class="btn btn-default btn-primary" ng-disabled="userRegister.$pristine || userRegister.$invalid || userRegister.$error.required || userRegister.cnfpassword.$error.pwmatch">Sign up</button>-->
+                <button type="submit" class="btn btn-default btn-primary">Sign up</button>
+                <div class="already-registered mar-top-15">If you already have an On the dot account <a
+                        href="/MyDeliveryPortal/samllogin?return=home">login</a></div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

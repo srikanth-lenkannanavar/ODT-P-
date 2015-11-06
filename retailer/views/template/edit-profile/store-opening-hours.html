@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-main-title">
+            edit store opening hours
+        </h1>
+    </div>
+</div>
+<form role="form" name="saveStoreInfo" novalidate method="post" ng-submit="updateStoreInformation(saveStoreInfo.$valid)" scrollto-first>
+<div class="row">
+    <div class="col-md-10 col-lg-8">
+       
+            <div class="bank-holidays-list opening-hours-list">
+                <div class="table-splitted" ng-repeat="(key, values) in setData" ng-init="i=$index">
+                    <table id="retailerTable" class="table table-striped table-responsive no-left-border">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Day</th>
+                                <th class="text-center">Open</th>
+                                <th class="text-center">Close</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr height="49" ng-repeat="value in values" ng-class-odd="'odd'" ng-class-even="'even'" ng-init="j=$index">
+                                <td ng-if="value.name">{{value.name}}</td>
+                                <td ng-if="value.name">
+                                    <div class="rem-flt">
+                                        <input type="checkbox" id="{{value.name.replace(' ', '')}}checkbox" name="{{value.name.replace(' ', '')}}checkbox" class="css3checkbox" ng-model="value.availability" checked="true" ng-model="availability[$index]">
+                                        <label class="toggler" for="{{value.name.replace(' ', '')}}checkbox">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td ng-if="value.name">
+                                    <span ng-init='value.oTimes=openTimes'></span>
+                                    <div class="form-group"> 
+                                        <select name="{{value.name.replace(' ', '')}}ShopOpen" class="form-control" ng-model="value.opentime" ng-options="time as time for time in value.oTimes" ng-disabled="!value.availability" ng-change="shopclosecalc(closeTimes, i, j, value.opentime, value.closetime);"></select>
+                                    </div>
+                                </td>
+                                <td ng-if="value.name">
+                                    <span ng-init='value.cTimes=closeTimes'></span>
+                                    <div class="form-group" ng-class="{'has-error' : saveStoreInfo.$submitted && saveStoreInfo.{{value.name.replace(' ', '')}}ShopClose.$invalid }">
+                                        <select name="{{value.name.replace(' ', '')}}ShopClose" class="form-control" ng-model="value.closetime" ng-options="time as time for time in value.cTimes" ng-disabled="!value.availability" required check-store-close-time open-time="value.opentime">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <!--<div class="error float" ng-if="saveStoreInfo.$submitted" ng-messages="saveStoreInfo.{{value.name.replace(' ', '')}}ShopClose.$error"  ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                    </div>-->
+                                    <div class="error float" ng-if="(saveStoreInfo.$submitted || saveStoreInfo.closeTime.$touched || (saveStoreInfo.closeTime.$dirty && saveStoreInfo.closeTime.$invalid))" ng-messages="saveStoreInfo.{{value.name.replace(' ', '')}}ShopClose.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="checkStoreCloseTime" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                        <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                    </div>
+                                </td>
+                                <td colspan="4" ng-if="!value.name">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-default btn-primary">Save</button>
+        <a class="btn btn-default" ng-href="{{homeUrl}}/my-profile">Cancel</a>
+    </div>
+</div>
+</form>

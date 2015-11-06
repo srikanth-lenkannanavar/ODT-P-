@@ -1,0 +1,652 @@
+<div class="container form-page register-page mar-bot-45" apply-bg>
+    <h1 class="page-main-title">Sign up</h1>
+    <div class="postcode-signup-div">
+        <h2 class="main-para">Check to see if On the dot is currently operating in your area</h2>
+        <form class="" role="form" name="postcodeForm" novalidate ng-submit="updateDefault(mydeliveryuser.postCodeValue, postcodeForm.$valid)">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-xs-10 col-sm-11" ng-if="isGo">
+                    <div class="input-group">
+                       <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    :  (postcodeForm.$submitted && postcodeForm.password.$invalid) || (postcodeForm.postcode.$touched && !postcodeForm.$valid) }" elem-ready>
+                            <input autofocus="autofocus" type="text" id="postcode" name="postcode" check-postcode-home ng-model="mydeliveryuser.postCodeValue" required class="block-letters form-control bdr-input" type="text" placeholder="Enter your store post code" />
+                        </div>
+                        <div class="input-group-addon btn btn-default btn-green square-btn" style="padding:0">
+                            <button type="submit" class="btn btn-default btn-gradient">Go</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4  col-xs-2 col-sm-1 pad-left-0" ng-if="isGo">
+                    <div class="input-group">
+                        <div class="mapmark-wrap">
+                            <a tabindex="0" class="btn btn-default btn-green bdr-input square-btn map" tooltip role="button" data-toggle="popover" title="Use your current location" ng-click="findAndUseLocation()" data-content="Please check your browser's location settings!" data-placement="bottom">
+                                <div class="icon icon-map-o"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3  col-xs-10 col-sm-10" ng-if="!isGo">
+                    <div class="input-group">
+                        <input id="postcode" ng-model="mydeliveryuser.postCodeValue" name="postCodeValue" check-postcode class="block-letters form-control bdr-input" type="text" placeholder="Enter your store post code" required readonly/>
+                        <div class="input-group-addon btn btn-default btn-green square-btn" title="Edit" ng-click="edit()">
+                            <span class="icon icon-edit"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="(postcodeForm.$submitted || postcodeForm.postcode.$touched)" ng-messages="postcodeForm.postcode.$error" >
+                <div ng-message="checkPostcode"  class="del-pc-err-mes">Oops! You have entered an invalid postcode. Please try again…</div>
+                <div ng-message="required"  class="del-pc-err-mes">Please enter a valid postcode</div>
+            </div>
+        </form>
+    </div>
+    <div class="global-msg transist-up" ng-if="ifSocialRegisterNewUser">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                &times;
+            </button>
+            <span>Oops! We do not find an user with this email id. Please sign up here</span>
+        </div>
+    </div>
+
+
+
+    <!--<div class="row mar-bot-100" ng-if="isGoTemp">
+        <div class="mar-bot-50">
+        </div>
+    </div>-->
+    <!--    <pre>{{"isPostCodeServiceable" + "=" + isPostCodeServiceable}}</pre>
+        <pre>{{"isGoTemp" + "=" + isGoTemp}}</pre>
+        <pre>{{"isGo" + "=" + isGo}}</pre>-->
+    <div class="mar-bot-45" ng-if="isPostCodeServiceable"><!-- ng-if="isPostCodeServiceable" -->
+        <!--<div ng-if="ifSocialRegisterSuccess" class="">
+            <div class="alert alert-success">
+                <strong>You are about to create an account with Onthedot.com! Please fill in the below form to complete sign up.</strong>
+            </div>
+        </div>
+
+        <div ng-if="ifSocialRegisterFailed" class="">
+            <div class="alert alert-warning">
+                <strong>Oops! You have used this email address already. Please login or use an alternative email address to sign up.</strong>
+            </div>
+        </div>
+        <div ng-show="UserRegSuccess">
+            <div class="alert alert-success">
+                <strong>Great! You have now signed up to On the dot</strong>
+            </div>
+        </div>
+        <div ng-show="UserRegFailed">
+            <div class="alert alert-danger alert-error">
+                <strong>Sorry! It appears there is a problem with your registration. Please check your details
+                    and try again…</strong>
+            </div>
+        </div>-->
+
+        <div class="global-msg">
+            <div class="alert alert-success alert-dismissable transist-up" ng-if="ifSocialRegisterSuccess">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>You are about to create an account with On the dot! Please fill in the below form to complete sign up.</span>
+            </div>
+            <div class="alert alert-danger alert-dismissable" ng-if="ifSocialRegisterFailed">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>Oops! You have used this email address already. Please login or use an alternative email address to sign up.</span>
+            </div>
+            <!--<div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>Oops! We do not find an user with this email id. Please check your email id or try again later.</span>
+            </div>-->
+            <div class="alert alert-success alert-dismissable" ng-show="UserRegSuccess">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>Great! You have now signed up to On the dot, as a retailer! Redirecting you to my profile...</span>
+            </div>
+            <div class="alert alert-danger alert-dismissable" ng-show="UserRegFailed">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>Sorry! It appears there is a problem with your registration. Please check your details and try again…</span>
+            </div>
+            <div class="alert alert-danger alert-dismissable" ng-if="ifPostcodeError">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <span>Oops! Something went wrong or try again later</span>
+            </div>
+        </div>
+        <div ng-if="!ifSocialRegisterSuccess">
+            <div class="row sc-nw-container">
+                <div class="col-md-9 col-lg-7">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <a id="fbloginlink" class="anchor-social fb" href="/MyDeliveryPortal/samlsso?return=home&fidp=fb">
+                                <div class="sc-icon-box sc-fb sc-fb-icon-box pull-left text-center">
+                                    <i class="fa fa-facebook text-uppercase bold "></i>
+                                </div>
+                                <div class="sc-name-box sc-fb">
+                                    Sign up with Facebook
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <a id="" class="anchor-social gplus" href="/MyDeliveryPortal/samlsso?return=home&fidp=google">
+                                <div class="sc-icon-box sc-google sc-fb-icon-box pull-left text-center">
+                                    <i class="fa fa-google text-uppercase bold"></i>
+                                </div>
+                                <div class="sc-name-box sc-google">
+                                    Sign up with Google
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-lg-8">
+                    <div class="login-or-line"><div class="or-label">Or</div></div>
+                </div>
+            </div>
+        </div>
+
+        <form role="form" name="retailerRegister" novalidate method="post" ng-submit="registerRetailerSave(retailerRegister.$valid)" scrollto-first abc>
+
+
+            <!--<div class="dropzone">
+              <input name="file" type="file" multiple />
+            </div>-->
+            <div class="row">
+                <div class="col-md-9 col-lg-8">
+                    <!--user information section-->
+                    <div class="section">
+                        <h2 class="page-sub-title">User information</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    : (retailerRegister.$submitted && retailerRegister.firstName.$invalid) || (retailerRegister.firstName.$touched && retailerRegister.firstName.$invalid) }">
+                                    <input type="text" class="form-control " size=32 maxlength="32" name="firstName" ng-model="retailerRegisterObj.firstName" placeholder="First name *" required ng-maxlength="32" restrict-spec-characters>
+                                    <div ng-if="(retailerRegister.$submitted || retailerRegister.firstName.$touched)" ng-messages="retailerRegister.firstName.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter your first name</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" size=32 name="secondName" ng-model="retailerRegisterObj.secondName" placeholder="Last name" maxlength="32" restrict-spec-characters>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{
+                                    'has-error'
+                                            :  (retailerRegister.$submitted && retailerRegister.email.$invalid) || (retailerRegister.email.$touched &&  retailerRegister.email.$invalid) }">
+                            <input type="email" class="form-control" name="email" ng-model="retailerRegisterObj.email" ng-blur="verifyEmail(retailerRegister.email.$valid)" ng-change="clearErrorMsg()" placeholder="Email address *" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" ng-maxlength="80" required ng-disabled="ifSocialRegisterSuccess">
+                            <div ng-if="(retailerRegister.$submitted || retailerRegister.email.$touched)" ng-messages="retailerRegister.email.$error" ng-messages-include='views/error-messages.html'>
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email address. Please try again…</div>
+                                <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters length.</div>
+                                <div ng-message="required" class="error-msg">Please enter a valid email address</div>
+                            </div>
+                            <p class="error-msg" ng-if="invalidEmail">Oops! You have used that email address already. Please login or use an alternative email address to sign up</p>
+                        </div>
+                        <div class="row" ng-if="!ifSocialRegisterSuccess">
+                            <div class="col-md-6 ">
+                                <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    :  (retailerRegister.$submitted && retailerRegister.password.$invalid) || (retailerRegister.password.$touched && retailerRegister.password.$invalid) }">
+                                    <input id="password" type="password" ng-minlength="6" class="form-control" name="password" ng-model="retailerRegisterObj.password" ng-pattern="/^((?=.*\d)(?=.*[a-zA-Z])(?=.*[a-zA-Z@#$%]).{6,})$/" placeholder="Password *" required>
+                                    <div ng-if="(retailerRegister.$submitted || retailerRegister.password.$touched)" ng-messages="retailerRegister.password.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="minlength" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                        <div ng-message="pattern" class="error-msg">Sorry! Your password must be a minimum of six characters and a combination of letters and numbers</div>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    : (retailerRegister.$submitted && retailerRegister.cnfpassword.$invalid) || (retailerRegister.cnfpassword.$touched&& retailerRegister.cnfpassword.$invalid) }">
+                                    <input type="password" ng-minlength="5" class="form-control" name="cnfpassword" ng-model="retailerRegisterObj.cnfpassword" compare-to="retailerRegisterObj.password" placeholder="Confirm password *" required>
+                                    <div ng-if="(retailerRegister.$submitted || retailerRegister.cnfpassword.$touched)" ng-messages="retailerRegister.cnfpassword.$error" ng-messages-include='views/error-messages.html'>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter a password</div>
+                                        <div ng-message="compareTo" class="error-msg">Oops! Password does not match. Please try again.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{
+                                    'has-error'
+                                            : (retailerRegister.$submitted && retailerRegister.phoneNo.$invalid) || (retailerRegister.phoneNo.$touched&& retailerRegister.phoneNo.$invalid) }">
+                            <div class="input-group">
+                                <span class="input-group-addon">+44</span>
+                                <input type="text" class="form-control" name="phoneNo" ng-model="retailerRegisterObj.phoneNo" id="phoneNo" placeholder="Mobile number *" ng-pattern="/^(7|07)\d{9}$/" restrict-quick-validation required restrict-alphabets />
+                                <span class="input-group-addon" ng-if="isPhoneValidate"><i class="fa fa-check"></i></span>
+                            </div>
+                            <div ng-if="(retailerRegister.$submitted || retailerRegister.phoneNo.$touched)" ng-messages="retailerRegister.phoneNo.$error" ng-messages-include='views/error-messages.html'>
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                                <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile number. Please try again…</div>
+                            </div>
+                            <div class="form-info">This number will be used to send an activation code to validate your registration.</div>
+                        </div>
+                    </div><!-- /user information section -->
+
+                    <!-- store address section -->
+                    <div class="section">
+                        <h2 class="page-sub-title">Store address</h2>
+                        <div class="form-group" ng-class="{
+                                        'has-error'
+                                                : (retailerRegister.storeName.$invalid && retailerRegister.storeName.$touched) || (retailerRegister.$submitted && retailerRegister.storeName.$invalid)}">
+                            <input type="text" class="form-control " size=30 maxlength=30 name="storeName" ng-model="retailerRegisterObj.storeName" placeholder="Store name *" required>
+                            <p class="error-msg" ng-if="(retailerRegister.storeName.$invalid && retailerRegister.storeName.$touched) || (retailerRegister.$submitted && retailerRegister.storeName.$invalid)">
+                                Oops! This field is required</p>
+                        </div>
+                        <label for="" id="basic-addon1">Address for <span class="text-capitalize">{{mydeliveryuser.postCodeValue}}</span>
+                        </label>
+                        <div class="form-group">
+
+                           <!--<ui-select ng-model="country.selected" theme="selectize" ng-disabled="disabled">
+                            <ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="country in countries | filter: $select.search">
+                              <span ng-bind-html="country.name | highlight: $select.search"></span>
+                              <small ng-bind-html="country.code | highlight: $select.search"></small>
+                            </ui-select-choices>
+                          </ui-select>-->
+                            <!--<pre>{{addresses}}</pre>-->
+                            <!--<ui-select ng-model="person.selected">
+                                <pre>{{person.selected}}</pre>
+                                <ui-select-match placeholder="Please select an address">{{$select.selected.address1 + ' ' + $select.selected.address2 + ' ' + $select.selected.twon + ' ' + $select.selected.county + ' ' + $select.selected.postcode}}</ui-select-match>
+                                <ui-select-choices repeat="post in posts | propsFilter: {address1: $select.search, address2: $select.search, postcode: $select.search}">
+                                    <div ng-bind-html="post.address1 + ' ' + post.address2 + ' ' + post.twon + ' ' + post.county + ' ' + post.postcode | highlight: $select.search" ng-click="addressSelected()"></div>
+                                </ui-select-choices>
+                            </ui-select>-->
+                            <ui-select ng-model="person.selected" on-select="refreshAddresses($item, $model)"><!--person.selected-->
+                                <ui-select-match placeholder="Please select an address">{{$select.selected.address1 + ' ' + $select.selected.address2}}</ui-select-match>
+                                <ui-select-choices repeat="post in posts | propsFilter: {address1: $select.search, address2: $select.search, postcode: $select.search}">
+                                    <div ng-bind-html="post.address1 + ' ' + post.address2 + ' ' + post.county | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                            
+                            <div class="mar-top-10" ng-if="!manuallySelected">
+                                <a class="enteraddress" href="" ng-click="enterAddress()">Enter the address manually</a>
+                            </div>
+                        </div>
+                        
+                        <div ng-if="manuallySelected">
+                            <div class="form-group">
+                                <div class="row addr-hide-show-margin">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group" ng-class="{
+                                                             'has-error'
+                                                                     : (retailerRegister.addressLine1.$invalid && retailerRegister.addressLine1.$touched) || (retailerRegister.$submitted && retailerRegister.addressLine1.$invalid)}">
+
+                                                <input id="address-line-1" name="addressLine1" ng-model="person.selected.address1" type="text" placeholder="First line of address*" class="form-control enteraddress" maxlength="60" required>
+                                                <p class="error-msg" ng-if="(retailerRegister.addressLine1.$invalid && retailerRegister.addressLine1.$touched) || (retailerRegister.$submitted && retailerRegister.addressLine1.$invalid)">
+                                                    Oops! Please enter the first line of the address</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group addr-form-group" ng-class="{
+                                                             'has-error'
+                                                                     : retailerRegister.addressLine2.$invalid && retailerRegister.addressLine2.$touched}">
+
+                                                <input id="address-line-2" name="addressLine2" ng-model="person.selected.address2" type="text" placeholder="Second line of address" class="form-control enteraddress" maxlength="60">
+                                                <p class="error-msg" ng-if="retailerRegister.addressLine2.$invalid && retailerRegister.addressLine2.$touched">
+                                                    This field is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group" ng-class="{'has-error': (retailerRegister.city.$invalid && retailerRegister.city.$touched) || (retailerRegister.$submitted && retailerRegister.city.$invalid)}">
+
+                                                <input tabindex="9000" id="city" name="city" type="text" ng-model="posts[0].town" class="form-control enteraddress" placeholder="City*" maxlength="60" onfocus="this.blur()" readonly required>
+                                                <p class="error-msg" ng-if="(retailerRegister.city.$invalid && retailerRegister.city.$touched) || (retailerRegister.$submitted && retailerRegister.city.$invalid)">Oops! Please enter a town/city</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group" ng-class="{'has-error': (retailerRegister.postalCode.$invalid && retailerRegister.postalCode.$touched) || (retailerRegister.$submitted && retailerRegister.postalCode.$invalid)}">
+                                                <input tabindex="9001" id="postalCode" name="postalCode" ng-model="posts[0].postcode" type="text" class="form-control" placeholder="Postal Code*" readonly required onfocus="this.blur()" check-postcode>
+                                                <p class="error-msg" ng-if="retailerRegister.postalCode.$invalid && retailerRegister.postalCode.$touched">Please enter a valid postal code</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /store address section -->
+
+                    <!-- store information section -->
+                    <div class="section">
+                        <h2 class="page-sub-title">Store information</h2>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 pull-right-sm">
+                                <div class="dropzone" dropzone></div>
+                            </div>
+                            <div class="col-sm-9 col-md-9 pull-left-sm">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    : (retailerRegister.$submitted && retailerRegister.storeDescription.$invalid) || (retailerRegister.storeDescription.$touched && retailerRegister.storeDescription.$invalid) }">
+                                            <textarea class="form-control store-section" rows="5" name="storeDescription" ng-model="retailerRegisterObj.storeDescription" placeholder="Short description about your store and type of products *" ng-trim="false" maxlength="250" id="otherInstructions" ng-maxlength="250" required></textarea>
+                                            <p class="pull-right description-count">{{0 + retailerRegisterObj.storeDescription.length}}/250</p>
+
+                                            <div ng-if="(retailerRegister.$submitted || retailerRegister.storeDescription.$touched)" ng-messages="retailerRegister.storeDescription.$error" ng-messages-include='views/error-messages.html'>
+                                                <div ng-message="required" class="error-msg">Oops! This field is required</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group" ng-class="{
+                                            'has-error'
+                                                    : (retailerRegister.$submitted && retailerRegister.storeContactNo.$invalid) || (retailerRegister.storeContactNo.$touched && retailerRegister.storeContactNo.$invalid) }">
+                                            <input type="text" class="form-control " size=32 maxlength="32" name="storeContactNo" ng-model="retailerRegisterObj.storeContactNo" placeholder="Store contact number *" required ng-maxlength="32" restrict-alphabets>
+                                            <div ng-if="(retailerRegister.$submitted || retailerRegister.storeContactNo.$touched)" ng-messages="retailerRegister.storeContactNo.$error" ng-messages-include='views/error-messages.html'>
+                                                <div ng-message="required" class="error-msg">Oops! This field is required</div>
+                                                 <!--<div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid phone number. Please try again…</div>-->
+                                            </div>
+                                        </div>
+
+<!--                                        <div class="form-group">
+                                            <input type="text" class="form-control " size=32 maxlength="32" name="storeContactNo" ng-model="retailerRegisterObj.storeContactNo" placeholder="Store contact number" ng-maxlength="32" restrict-alphabets> ng-pattern="/^(\+44\s?7\d{3}|\(?(7|07)\d{3}\)?)\s?\d{3}\s?\d{3}$/"
+                                            <div ng-if="(retailerRegister.$submitted || retailerRegister.storeContactNo.$touched)" ng-messages="retailerRegister.storeContactNo.$error" ng-messages-include='views/error-messages.html'>
+                                                <div ng-message="required" class="error-msg">Oops! This field is required</div>
+                                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid phone number. Please try again…</div>
+                                            </div>
+                                        </div>-->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--<div class="form-group">
+                            <input type="text" class="form-control" name="storeWebsite" ng-model="retailerRegisterObj.storeWebsite" placeholder="Website" maxlength="30">
+                        </div>-->
+                        <div class="form-group" ng-class="{'has-error' : (retailerRegister.$submitted && retailerRegister.storeWebsite.$invalid) || (retailerRegister.storeWebsite.$touched && retailerRegister.storeWebsite.$invalid) }">
+                            <input type="text" class="form-control" ng-pattern="/^(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})$/i" name="storeWebsite" ng-model="retailerRegisterObj.storeWebsite" placeholder="Website" />
+                            <div ng-if="(retailerRegister.$submitted || retailerRegister.storeWebsite.$touched)" ng-messages="retailerRegister.storeWebsite.$error" ng-messages-include='views/error-messages.html'>
+                                <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid url</div>
+                            </div>
+                        </div>
+                    </div><!-- /store information section -->
+
+                    <!-- store opening hours section -->
+                    <div class="section">
+                        <h2 class="page-sub-title">Store opening hours</h2>
+                        <div class="bank-holidays-list opening-hours-list relative">
+                            <div class="table-splitted" ng-repeat="x in setData" ng-init="i=$index">
+                                <table id="retailerTable" class="table table-striped table-responsive no-left-border">
+                                    <thead>
+                                        <tr>
+                                            <th width="30%">&nbsp;</th>
+                                            <th width="10%" class="text-center">Day</th>
+                                            <th width="30%" class="text-center">Open</th>
+                                            <th width="30%" class="text-center">Close</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr height="49" ng-repeat="s in x" ng-class-odd="'odd'" ng-class-even="'even'" ng-init="j=$index">
+                                            <td width="30%" ng-if="s.name">{{s.name}}</td>
+                                            <td width="10%" ng-if="s.name">
+                                                <div class="rem-flt">
+                                                    <input type="checkbox" id="{{s.name.replace(' ', '')}}checkbox" name="{{s.name.replace(' ', '')}}checkbox" class="css3checkbox" ng-model="s.availability" checked="true" ng-model="availability[$index]">
+                                                    <label class="toggler" for="{{s.name.replace(' ', '')}}checkbox">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td width="30%" ng-if="s.name">
+                                                <span ng-init='s.oTimes=openTimes'></span>
+                                                <div class="form-group">                                                   
+                                                    <select name="{{s.name.replace(' ', '')}}ShopOpen" ng-change="shopclosecalc(closeTimes, i, j, s.opentime, s.closetime);" class="form-control" ng-change="" ng-model="s.opentime" ng-options="time as time for time in s.oTimes" ng-disabled="!s.availability">
+                                                        <!--<option value="">select--</option>-->
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td width="30%" ng-if="s.name">
+                                                <span ng-init='s.cTimes=closeTimes'></span>                                                
+                                                <div class="form-group" ng-class="{'has-error' : retailerRegister.$submitted && retailerRegister.{{s.name.replace(' ', '')}}ShopClose.$invalid }">
+                                                    <select name="{{s.name.replace(' ', '')}}ShopClose" class="form-control" ng-model="s.closetime" ng-options="time as time for time in s.cTimes" ng-disabled="!s.availability" required check-store-close-time open-time="s.opentime">
+                                                        <option value="">Select</option>
+                                                    </select>
+                                                </div> 
+                                                <div class="error float" ng-if="(retailerRegister.$submitted || retailerRegister.closeTime.$touched || (retailerRegister.closeTime.$dirty && retailerRegister.closeTime.$invalid))" ng-messages="retailerRegister.{{s.name.replace(' ', '')}}ShopClose.$error" ng-messages-include='views/error-messages.html'>
+                                                    <div ng-message="checkStoreCloseTime" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                    <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                </div>
+                                               <!--<div class="error float" ng-if="retailerRegister.$submitted" ng-messages="retailerRegister.{{s.name.replace(' ', '')}}ShopClose.$error"  ng-messages-include='views/error-messages.html'>
+                                                    <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                </div>-->
+                                            </td>
+                                            <td colspan="4" ng-if="!s.name">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>  
+                            <!--<div class="error float" ng-if="retailerRegister.$submitted" ng-messages="retailerRegister.TuesdayShopClose.$error"  ng-messages-include='views/error-messages.html'>
+                                <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                            </div> -->                         
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="address-search">
+                                    Would you also like to offer this services on bank holidays?
+                                </label>
+                            </div>
+                            <label class="radio-inline">
+                              <input type="radio" name="bankingHolidayStatus" id="bankingHolidayStatus1" value="1" ng-click="bankholiday('Yes')" > Yes 
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="bankingHolidayStatus" id="bankingHolidayStatus2" value="0" ng-click="bankholiday('No')" checked> No 
+                            </label>
+                            
+                            <!--<input type="radio" id="bankingHolidayStatus1" ng-model="retailerRegisterObj.bankingHolidayStatus" value="1" name="bankingHolidayStatus" class="css3radio" ng-click="bankholiday('Yes')" />
+                            <label class="toggler_r radio-custom" for="bankingHolidayStatus1" tabindex="12">
+                                <span>Yes </span>
+                            </label>
+                            <input type="radio" id="bankingHolidayStatus2" ng-model="retailerRegisterObj.bankingHolidayStatus" value="0" name="bankingHolidayStatus" class="css3radio" ng-click="bankholiday('No')" checked />
+                            <label class="toggler_r radio-custom" for="bankingHolidayStatus2" tabindex="13">
+                                <span>No </span>
+                            </label>-->
+                        </div>
+                        <div class="bank-holidays-list opening-hours-list relative" ng-if="isBankholiay"> <!---->
+                            <div class="table-splitted odd-even-split" ng-repeat="bankHolidayS in partitionedData" ng-init="i=$index">
+                                <table id="retailerTable" class="table table-striped table-responsive no-left-border">
+                                    <thead>
+                                        <tr>
+                                            <th width="150">&nbsp;</th>
+                                            <th class="text-center">Holiday</th>
+                                            <th class="text-center">Open</th>
+                                            <th class="text-center">Close</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr height="49" ng-repeat="bankHoliday in bankHolidayS" ng-class-odd="'odd'" ng-class-even="'even'" ng-init="j=$index">
+                                            <td width="150" ng-if="bankHoliday.name">{{bankHoliday.name}}</td>
+                                            <td ng-if="bankHoliday.name">
+                                                <div class="rem-flt">
+                                                    <input type="checkbox" id="{{bankHoliday.name.replace(' ', '')}}checkbox" name="{{bankHoliday.name.replace(' ', '')}}checkbox" class="css3checkbox" ng-model="bankHoliday.availability" checked="true" ng-model="availability[$index]">
+                                                    <label class="toggler" for="{{bankHoliday.name.replace(' ', '')}}checkbox">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td ng-if="bankHoliday.name">
+                                                <span ng-init='bankHoliday.oTimes=openTimes'></span>
+                                                <!--<select name="{{bankHoliday.name.replace(' ', '')}}ShopOpen" class="form-control" ng-model="bankHoliday.opentime" ng-options="time as time for time in openTimes" ng-disabled="!bankHoliday.availability"></select>-->
+                                                <div class="form-group">
+                                                    <select name="{{((bankHoliday.name.replace(' ', '')).replace(' ', '')).replace(' ', '')}}ShopOpen" ng-change="shopclosecalcBh(closeTimes, i, j, bankHoliday.opentime, bankHoliday.closetime);" class="form-control" ng-change="" ng-model="bankHoliday.opentime" ng-options="time as time for time in bankHoliday.oTimes" ng-disabled="!bankHoliday.availability"></select>
+                                                </div>
+                                                
+                                            </td>
+                                            <td ng-if="bankHoliday.name">
+                                                <span ng-init='bankHoliday.cTimes=closeTimes'></span>
+                                                <!--<select name="{{bankHoliday.name.replace(' ', '')}}ShopClose" class="form-control" ng-model="bankHoliday.closetime" ng-options="time as time for time in closeTimes" ng-disabled="!bankHoliday.availability"></select>-->
+                                                <div class="form-group" ng-class="{'has-error' : retailerRegister.$submitted && retailerRegister.{{((bankHoliday.name.replace(' ', '')).replace(' ', '')).replace(' ', '')}}ShopClose.$invalid }">
+                                                    <select name="{{((bankHoliday.name.replace(' ', '')).replace(' ', '')).replace(' ', '')}}ShopClose" class="form-control" ng-model="bankHoliday.closetime" ng-options="time as time for time in bankHoliday.cTimes" ng-disabled="!bankHoliday.availability" required check-store-close-time open-time="bankHoliday.opentime">
+                                                        <option value="">Select</option>
+                                                    </select>
+                                                </div>
+                                                <!--<div class="error float" ng-if="retailerRegister.$submitted" ng-messages="retailerRegister.{{((bankHoliday.name.replace(' ', '')).replace(' ', '')).replace(' ', '')}}ShopClose.$error"  ng-messages-include='views/error-messages.html'>
+                                                    <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                </div>-->
+                                                <div class="error float" ng-if="(retailerRegister.$submitted || retailerRegister.closeTime.$touched || (retailerRegister.closeTime.$dirty && retailerRegister.closeTime.$invalid))" ng-messages="retailerRegister.{{((bankHoliday.name.replace(' ', '')).replace(' ', '')).replace(' ', '')}}ShopClose.$error" ng-messages-include='views/error-messages.html'>
+                                                    <div ng-message="checkStoreCloseTime" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                    <div ng-message="required" class="error-msg">Oops! It looks like you have made a mistake. Please check the store opening and closing time</div>
+                                                </div>
+                                            </td>
+                                            <td colspan="4" ng-if="!bankHoliday.name">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="address-search">Would you also like to be an onthedot.co.uk partner retailer and let the customer organise their own deliveries from you? <a href="{{consumerHomeUrl}}/onthedot-consumer-offering" target="_blank">What does this mean?</a>
+                                </label>
+                            </div>
+                            <!--<input type="radio" id="partnerRole1" value="1" ng-model="retailerRegisterObj.partnerRole" name="partnerRole" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="partnerRole1">
+                                <span>Yes </span>
+                            </label>
+                            <input type="radio" id="partnerRole2" value="0" ng-model="retailerRegisterObj.partnerRole" name="partnerRole" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="partnerRole2">
+                                <span>No </span>
+                            </label>-->
+                          <label class="radio-inline">
+                            <input type="radio" id="partnerRole1" value="1" ng-model="retailerRegisterObj.partnerRole" name="partnerRole" checked>Yes
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio"id="partnerRole2" value="0" ng-model="retailerRegisterObj.partnerRole" name="partnerRole">No
+                          </label>
+                        </div>
+                    </div><!-- /store opening hours section -->
+
+
+                    <div class="section">
+                        <h2 class="page-sub-title">Tell us a little more about you</h2>
+                        <label for="address-search">I have</label>
+                        
+                        <div class="form-group">
+                           <div class="radio">
+                              <label>
+                                <input type="radio" id="storeType1" value="0" ng-model="retailerRegisterObj.storeType" name="storeType" checked>1 store
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="storeType2" value="1" ng-model="retailerRegisterObj.storeType" name="storeType">2 - 9 stores
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="storeType3" value="2" ng-model="retailerRegisterObj.storeType" name="storeType">10 - 29 stores
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="storeType4" value="3" ng-model="retailerRegisterObj.storeType" name="storeType">30+ stores
+                              </label>
+                            </div>
+                            <!--<input type="radio" id="storeType1" value="0" ng-model="retailerRegisterObj.storeType" name="storeType" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="storeType1">
+                                <span>1 store</span>
+                            </label><br>
+                            <input type="radio" id="storeType2" value="1" ng-model="retailerRegisterObj.storeType" name="storeType" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="storeType2">
+                                <span>2 - 9 stores</span>
+                            </label><br>
+                            <input type="radio" id="storeType3" value="2" ng-model="retailerRegisterObj.storeType" name="storeType" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="storeType3">
+                                <span>10 - 29 stores</span>
+                            </label><br>
+                            <input type="radio" id="storeType4" value="3" ng-model="retailerRegisterObj.storeType" name="storeType" class="css3radio" />
+                            <label class="toggler_r radio-custom" for="storeType4">
+                                <span>30+ stores</span>
+                            </label>-->
+                        </div>
+                        <label for="address-search">Do you ship from a central Distribution Centre?</label>
+                        <div class="form-group">
+                           <div class="radio">
+                              <label>
+                                <input type="radio" id="shippingDetail1" value="1" ng-model="retailerRegisterObj.shippingDetail" name="shippingDetail" checked>Yes
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="shippingDetail2" value="0" ng-model="retailerRegisterObj.shippingDetail" name="shippingDetail">No
+                              </label>
+                            </div>
+                            
+                            
+                            <!--<input type="radio" id="shippingDetail1" value="1" ng-model="retailerRegisterObj.shippingDetail" name="shippingDetail" class="css3radio" />
+                            <label class="toggler_r" for="shippingDetail1">
+                                <span>Yes</span>
+                            </label>
+                            <br>
+                            <input type="radio" id="shippingDetail2" value="0" ng-model="retailerRegisterObj.shippingDetail" name="shippingDetail" class="css3radio" />
+                            <label class="toggler_r" for="shippingDetail2">
+                                <span>No</span>
+                            </label>-->
+                        </div>
+
+                        <label for="address-search">Can your customers buy online?</label>
+                        <div class="form-group">
+                           <div class="radio">
+                              <label>
+                                <input type="radio" id="havePortal1" value="2" ng-model="retailerRegisterObj.havePortal" name="havePortal" checked>Yes
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="havePortal2" value="1" ng-model="retailerRegisterObj.havePortal" name="havePortal">No
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="havePortal2" value="0" ng-model="retailerRegisterObj.havePortal" name="havePortal">I don't have a website
+                              </label>
+                            </div>
+                            
+                            <!--<input type="radio" id="havePortal1" value="2" ng-model="retailerRegisterObj.havePortal" name="havePortal" class="css3radio" />
+                            <label class="toggler_r" for="havePortal1">
+                                <span>Yes</span>
+                            </label>
+                            <br>
+                            <input type="radio" id="havePortal2" value="1" ng-model="retailerRegisterObj.havePortal" name="havePortal" class="css3radio" />
+                            <label class="toggler_r" for="havePortal2">
+                                <span>No</span>
+                            </label>
+                            <br>
+                            <input type="radio" id="havePortal3" value="0" ng-model="retailerRegisterObj.havePortal" name="havePortal" class="css3radio" />
+                            <label class="toggler_r" for="havePortal3">
+                                <span>I don't have a website </span>
+                            </label>-->
+                        </div>
+                    </div>
+                    <div class="action-panel">
+                        <button type="submit" class="btn btn-default btn-primary">Sign up</button>
+                        <div class="already-registered mar-top-15">If you already have an On the dot account <a ng-href="{{loginLink}}">login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>

@@ -1,0 +1,105 @@
+
+
+<div class="table-wrap table-responsive hidden-xs my-delivery-container">
+    <otd-pagination ng-if="myDeliveries.length > 0"></otd-pagination>
+    <table class="table" ng-if="myDeliveries.length > 0" >
+        <thead>
+            <tr class="row-margin">
+                <th>Order no.</th>
+                <th><a href="" ng-click="doSort(userdelivery)"><i class="fa fa-sort"></i>Order date</a></th>
+                <th>Delivery timeslot</th>
+                <th>Deliver to</th>
+                <th>Booking type</th>
+                <th>Status</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="myDelivery in myDeliveries">
+                <td width=15%>
+        <otd-my-delivery-collapse data-toggle="collapse" data-is-open="false" data-target="#triggerCollapse"  data-index="{{$index}}"  ></otd-my-delivery-collapse>
+        <span class="my-del-ord-no">{{myDelivery.orderNo}}</span>
+        <div class="pad-left-20">{{myDelivery.item.referenceNumber}}</div>
+        </td>
+        <td width=10%>
+
+            {{myDelivery.orderDate| ISO8601Parse : "UK" : "DD-MM-YYYY"}}
+        </td>
+        <td width=17%>
+
+            <span ng-if="myDelivery.timeslot.endTime">{{myDelivery.timeslot.endTime| ISO8601Parse : "UK" : "DD-MM-YYYY"}}</span>
+            <div>
+                <span ng-if="myDelivery.timeslot.startTime">
+                    {{myDelivery.timeslot.startTime| ISO8601Parse : "UK" : "HH:mm"}}
+                </span>
+                <span ng-if="myDelivery.timeslot.endTime">
+                    - {{myDelivery.timeslot.endTime| ISO8601Parse : "UK" : "HH:mm"}}
+                </span>
+            </div>
+        </td>
+        <td width=20%>
+            <div class="my-del-add-section">
+                <p ng-if="myDelivery.consumer.name.length > 0">{{myDelivery.consumer.name}},</p>
+                <p>
+                    <span ng-if="myDelivery.consumer.address.firstLine.length > 0" >{{myDelivery.consumer.address.firstLine}}</span>
+                    <span ng-if="myDelivery.consumer.address.seconeLine.length > 0">{{myDelivery.consumer.address.seconeLine}}</span>
+                    <span ng-if="myDelivery.consumer.address.firstLine.length > 0 || myDelivery.consumer.address.seconeLine.length > 0" >,</span>
+                </p>
+                <p>{{myDelivery.consumer.address.city}} {{myDelivery.consumer.address.postCode}}</p>
+                <p ng-if="myDelivery.consumer.mobileNumber.length > 0">{{myDelivery.consumer.mobileNumber}}</p>
+            </div>
+        </td>
+        <td width=13%>
+            <div class="word-break-all">
+                {{myDelivery.bookingType}} <div ng-if="myDelivery.bookingType === 'PAYG'">  {{myDelivery.amount.total| currency : "&pound;"}} ({{myDelivery.amount.total -- myDelivery.amount.vat| currency : "&pound;"}} incl VAT) </div>
+            </div>
+        </td>
+        <td width="10%">{{myDelivery.status}}</td>
+        <td width="15%" class="action">
+            <a class="table-btn locate btn btn-default" href=""  ng-if="myDelivery.isLiveTrack" title="Live track"><i class="icon icon-marker" ng-click="track(myDelivery.orderNo, myDelivery)"></i></a>
+            <a class="table-btn edit btn btn-default" ng-href="{{homeUrl}}/edit-booking/{{myDelivery.orderNo}}" ng-if="myDelivery.status == 'Booked' || myDelivery.status == 'Amended'" ng-click="editBooking()" title="Edit booking"><i class="icon icon-edit"></i></a>
+            <a class="table-btn delete btn btn-default" href="" ng-if="myDelivery.status == 'Booked' || myDelivery.status == 'Amended'" title="Cancel booking" ng-click="confirmCancellation(myDelivery)"><i class="icon icon-delete"></i></i></a>
+        </td>
+        </tr>
+        <tr class="row-margin collapse" id="triggerCollapse{{$index}}" ng-repeat-end>
+            <td colspan="3">
+                <div class="relative">
+                    <div class="arrow-up"></div>
+                    <div>
+                        <div><label >Store opening hours</label></div>
+                        <div ng-if="myDelivery.store.info.openTime.length > 0 && myDelivery.store.info.closeTime.length > 0">{{myDelivery.store.info.openTime| HHMM}} - {{myDelivery.store.info.closeTime| HHMM}}</div>
+                    </div>
+                    <div ng-if="myDelivery.pod.length > 0">
+                        <div><label>POD</label></div>
+                        <div> <span ng-if="myDelivery.consumer.name.length > 0"> {{myDelivery.consumer.name}} |</span> {{myDelivery.podDate| ISO8601Parse : "UK" : "DD-MM-YYYY HH:mm"}} </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div>
+                    <div><label>Item(s) ready from</label></div>
+                    <!--<div>{{myDelivery.item.readyAt}} {{ (myDelivery.item.deliveryDate )}}</div>-->
+                    <!--<div>{{myDelivery.item.deliveryDate}}</div>-->
+                    <div >{{myDelivery.item.deliveryDate | ISO8601Parse : "UK" : "DD-MM-YYYY"}}
+                        <span ng-if="myDelivery.item.readyAt && myDelivery.status !== 'Booked'"> |
+                            {{myDelivery.item.deliveryDate | ISO8601Parse : "UK" : "HH:mm"}}
+
+                        </span>
+
+                        <span ng-if="myDelivery.item.readyAt && myDelivery.status === 'Booked'"> |
+                            <!--{{myDelivery.item.itemsReadyFrom | ISO8601Parse : "UK" : "HH:mm" }} -->
+                           <!--{{myDelivery.item.deliveryDate| ISO8601ParseII : "UK" : "HH:mm" : myDelivery.item.readyAt}}-->
+                            {{myDelivery.item.readyAt}}
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div><label>Specific delivery instructions</label></div>
+                <div>{{myDelivery.consumer.instruction}}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <otd-pagination ng-if="myDeliveries.length > 0"></otd-pagination>
+</div>

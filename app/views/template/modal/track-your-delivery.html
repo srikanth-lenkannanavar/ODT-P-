@@ -1,0 +1,88 @@
+<!--<form id="modal-form-track-delivery" class="form" role="form" name="trackDelivery">
+    <div class="modal-body" >
+            <div class="row">
+                <div class="col-md-10 col-xs-10">
+                    <h1 class="modal-main-title">
+                        Track your Delivery
+                    </h1>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <h1 class="modal-close-x" ng-click="changeHidemodal()">X</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                       <div>
+                           <label class="control-label">Collect from: </label> {{bookingObj.retaileraddressline1}} / {{bookingObj.retailerpostalcode}}
+                       </div>
+                        <div>
+                            <label class="control-label">Delivery timeslot: </label> {{bookingObj.packagecollectionreadydate | date: "yyyy-MM-dd" :'UTC'}} / {{bookingObj.packagecollectionreadyfrom}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div>
+                            <label class="control-label">Deliver to: </label>{{bookingObj.cbservicecenteraddress1}} / {{bookingObj.postcode}}
+                        </div>
+                        <div>
+                            <label class="control-label">Date of delivery: </label>{{bookingObj.deliverydate | date:'medium' :'UTC' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="map-container"></div>
+                </div>
+            </div>
+    </div>
+</form>-->
+
+<div class="modal-header">
+    <h1 class="modal-main-title">Track your delivery</h1>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="changeHidemodal()"><span class="icon icon-onthedot-icons-28" ></span></button>
+</div>
+
+<form id="modal-form-track-delivery" class="form" role="form" name="trackDelivery">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group track-info">
+                    <div class="row-info">
+                        <label class="control-label">Collect from: </label>
+                        <br>{{bookingObj.retailername}}
+                        <br>{{bookingObj.retaileraddressline1}}, {{bookingObj.retailercity}} | {{bookingObj.retailerpostalcode|codeFilter}}
+
+                    </div>
+                    <div class="row-info">
+                        <label class="control-label">Package ready from: </label>
+                        <br>{{bookingObj.packagecollectionreadydate | date: "dd-MM-yyyy"}} | {{bookingObj.packagecollectionreadyfrom}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 track-info">
+                <div class="form-group">
+                    <div class="row-info">
+                        <label class="control-label">Deliver to: </label>
+                        <br>{{bookingObj.deliveryrefaddress1}}, 
+                        <span ng-show="bookingObj.deliveryrefaddress2">{{bookingObj.deliveryrefaddress2}}, </span> {{bookingObj.deliveryrefaddresstown}} | {{bookingObj.postcode|codeFilter}}
+                    </div>
+                    <div class="row-info">
+                        <label class="control-label">Date of delivery: </label>
+                        <br>{{bookingObj.deliverydate | date: "dd-MM-yyyy" }} &nbsp;{{bookingObj.timeslotstarttime|
+                        uktimefilter}} - {{ bookingObj.timeslotendtime| uktimefilter}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 track-delivery">
+                <div id="map-container">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

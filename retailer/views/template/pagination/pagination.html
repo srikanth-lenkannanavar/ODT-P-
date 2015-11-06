@@ -1,0 +1,34 @@
+<!--<div class="row">
+    <div class="col-md-12">
+        <div class="pagination-container">
+
+            <button class="icon minus icon-left-arrow" ng-disabled="prev" ng-click="doPagination(page.currentPage -1)"></button> <input class="form-control" type="number" min="1" ng-model="page.currentPage"  ng-blur="doPagination(page.currentPage);" max="{{totalRecord}}"  />  of {{totalRecord}} <button ng-click="doPagination(page.currentPage+ 1);" ng-disabled="next" class="icon plus icon-right-arrow"></button>
+        </div>
+
+    </div>
+</div>-->
+
+
+<nav>
+  <ul class="pagination pagination-sm">
+    <li>
+      <button class="btn btn-default btn-tertiary" ng-disabled="prev" ng-click="doPagination(page.currentPage -1)">
+          <i class="icon minus icon-left-arrow"></i>
+      </button>
+    </li>
+    <li>
+     <div class="form-group">
+         <input class="form-control input-pagination" type="text" min="1" ng-model="page.currentPage"  restrict-alphabets ng-blur="doPagination(page.currentPage);" max="{{totalRecord}}"  />
+     </div>
+      
+    </li>
+    <li>
+        of {{totalRecord}}
+    </li>
+    <li>
+        <button ng-click="doPagination(page.currentPage +1);" ng-disabled="next" class="btn btn-default btn-tertiary">
+            <i class="icon plus icon-right-arrow"></i>
+        </button>
+    </li>
+  </ul>
+</nav>

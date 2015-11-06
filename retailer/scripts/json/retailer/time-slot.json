@@ -1,0 +1,196 @@
+{
+    "data": {
+        "bookingtype": "1",
+        "zone": "within",
+        "store": {
+            "storeid": "STORE1008",
+            "opentime": "10",
+            "closetime": "16"
+        },
+        "consumer": {
+            "postcode": "HA11JU"
+        },
+        "items": {
+            "readyat": "2015-11-28T07:00:00z",
+            "deliverydate": "2015-11-28T08:00:00z"
+        },
+        "timeslots": [
+            {
+                "timeslotid": "TS-100",
+                "starttime": "2015-11-28T08:00:00z",
+                "endtime": "2015-11-28T08:59:00z",
+                "expirytime": "2015-11-28T09:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-101",
+                "starttime": "2015-11-28T09:00:00z",
+                "endtime": "2015-11-28T09:55:00z",
+                "expirytime": "2015-11-28T10:30:00z",
+                "quote": {
+                    "price": "5.50",
+                    "vat": "2.25",
+                    "total": "7.75"
+                }
+            },
+            {
+                "timeslotid": "TS-102",
+                "starttime": "2015-11-28T10:00:00z",
+                "endtime": "2015-11-28T10:55:00z",
+                "expirytime": "2015-11-28T10:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-103",
+                "starttime": "2015-11-28T11:00:00z",
+                "endtime": "2015-11-28T11:55:00z",
+                "expirytime": "2015-11-28T11:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-104",
+                "starttime": "2015-11-28T12:00:00z",
+                "endtime": "2015-11-28T12:55:00z",
+                "expirytime": "2015-11-28T13:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-105",
+                "starttime": "2015-11-28T13:00:00z",
+                "endtime": "2015-11-28T13:55:00z",
+                "expirytime": "2015-11-28T14:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-106",
+                "starttime": "2015-11-28T14:00:00z",
+                "endtime": "2015-11-28T14:55:00z",
+                "expirytime": "2015-11-28T15:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-107",
+                "starttime": "2015-11-28T15:00:00z",
+                "endtime": "2015-11-28T15:55:00z",
+                "expirytime": "2015-11-28T16:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-108",
+                "starttime": "2015-11-28T16:00:00z",
+                "endtime": "2015-11-28T16:55:00z",
+                "expirytime": "2015-11-28T17:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-109",
+                "starttime": "2015-11-28T17:00:00z",
+                "endtime": "2015-11-28T17:55:00z",
+                "expirytime": "2015-11-28T18:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-110",
+                "starttime": "2015-11-28T18:00:00z",
+                "endtime": "2015-11-28T18:55:00z",
+                "expirytime": "2015-11-28T19:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-111",
+                "starttime": "2015-11-28T19:00:00z",
+                "endtime": "2015-11-28T19:55:00z",
+                "expirytime": "2015-11-28T20:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-112",
+                "starttime": "2015-11-28T20:00:00z",
+                "endtime": "2015-11-28T20:55:00z",
+                "expirytime": "2015-11-28T21:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-113",
+                "starttime": "2015-11-28T21:00:00z",
+                "endtime": "2015-11-28T21:55:00z",
+                "expirytime": "2015-11-28T22:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-114",
+                "starttime": "2015-11-28T22:00:00z",
+                "endtime": "2015-11-28T22:55:00z",
+                "expirytime": "2015-11-28T23:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            },
+            {
+                "timeslotid": "TS-115",
+                "starttime": "2015-11-28T23:00:00z",
+                "endtime": "2015-11-28T23:55:00z",
+                "expirytime": "2015-11-29T01:30:00z",
+                "quote": {
+                    "price": "6.50",
+                    "vat": "2.25",
+                    "total": "8.75"
+                }
+            }
+        ]
+    }
+}

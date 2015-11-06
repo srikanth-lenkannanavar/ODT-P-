@@ -1,0 +1,138 @@
+<div class="row delivery-grid-sm-container">
+    <otd-pagination ng-if="myDeliveries.length > 0"></otd-pagination>
+    <div class="col-xs-12 col-md-12">
+        <!--<div class="clearfix">
+            <div class="pull-left"> <button  class="btn new-delivery-btn" ng-click="getNewBooking()"></i> Book a new delivery</button></div>
+        </div>-->
+
+
+
+        <table class="table mobile-device-billing table billing-table"  ng-if=" myDeliveries.length > 0" >
+            <thead>
+            <tr class="row-margin">
+                <th>Order no.</th>
+                <th><!--<i class="fa fa-sort"
+                                       ng-click="order('status', reverse)"> Status</i>-->
+                    <a href="" ng-click="doSort(userdelivery)"><i class="fa fa-sort"></i>Order date</a></th>
+                <!--<a href="" ng-click="order('bookingstatus', reverse)"><i class="fa fa-sort"></i>Status</a></th>-->
+                <th class="text-right">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat-start="myDelivery in myDeliveries">
+                <td>
+                    <div style="position: relative;height:65px;">
+                        <a href="" class="sm-my-del-ord">{{myDelivery.orderNo}}</a>
+                        <div  class="word-wrap-word word-break-all" style="position: absolute">{{myDelivery.item.referenceNumber}}</div>
+                    </div>
+                </td>
+
+                <td>
+                    <span ng-if="myDelivery.timeslot.endTime">{{myDelivery.timeslot.endTime | ISO8601Parse : "UK" : "DD-MM-YYYY"}}</span>
+                    <div>
+                        <span ng-if="myDelivery.timeslot.startTime">
+                            {{myDelivery.timeslot.startTime | ISO8601Parse : "UK" : "HH:mm"}}
+                        </span>
+                        <span ng-if="myDelivery.timeslot.endTime">
+                            - {{myDelivery.timeslot.endTime | ISO8601Parse : "UK" : "HH:mm"}}
+                        </span>
+
+                    </div>
+                </td>
+                <td class="action">
+
+                    <a class="table-btn locate btn btn-default" href=""   ng-if="myDelivery.status == 'Allocated to driver'" title="Live track"><i class="icon icon-marker" ng-click="track(myDelivery.orderNo, myDelivery)"></i></a>
+                    <a class="table-btn edit btn btn-default" ng-href="{{homeUrl}}/edit-booking/{{myDelivery.orderNo}}" ng-if="myDelivery.status == 'Booked' || myDelivery.status == 'Amended'"  title="Edit booking"><i class="icon icon-edit"></i></a>
+                    <a class="table-btn delete btn btn-default" href=""  ng-if="myDelivery.status == 'Booked' || myDelivery.status == 'Amended'" title="Cancel booking" ng-click="confirmCancellation(myDelivery)"><i class="icon icon-delete"></i></a>
+                </td>
+            </tr>
+
+            <tr class="my-del-sm-info" ng-repeat-end>
+                <td colspan="3" class="collapse-section relative">
+                    <button type="button" class="close sm-mybilling-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="col-50-p">
+                        <dl class="dl-horizontal">
+                            <dt>Store opening hours</dt>
+
+                            <dd>
+                                <div ng-if="myDelivery.store.info.openTime.length > 0 && myDelivery.store.info.closeTime.length > 0">{{myDelivery.store.info.openTime | HHMM}} - {{myDelivery.store.info.closeTime | HHMM}}</div>
+
+                            </dd>
+
+                            <dt>Status:</dt>
+                            <dd>{{myDelivery.status}}</dd>
+
+                            <dt ng-if="myDelivery.pod.length > 0">POD</dt>
+                            <dd ng-if="myDelivery.pod.length > 0">
+                                <div> <span ng-if="myDelivery.consumer.name.length > 0"> {{myDelivery.consumer.name}} |</span> {{myDelivery.podDate | ISO8601Parse : "UK" : "DD-MM-YYYY HH:mm"}} </div>
+
+                            </dd>
+                            <dt>Delivery timeslot</dt>
+                            <dd class="last">
+                                {{myDelivery.timeslot.endTime | ISO8601Parse : "UK" : "DD-MM-YYYY"}}
+                                <span ng-if="myDelivery.timeslot.startTime">
+                                {{myDelivery.timeslot.startTime | ISO8601Parse : "UK" : "HH:mm"}}
+                                </span>
+                                <span ng-if="myDelivery.timeslot.endTime">
+                                - {{myDelivery.timeslot.endTime | ISO8601Parse : "UK" : "HH:mm"}}
+                                </span>
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <div class="col-50-p">
+                        <dl class="dl-horizontal">
+                            <dt>Deliver to:</dt>
+                            <dd class="word-break-all">
+                                <div ng-if="myDelivery.consumer.name.length > 0">{{myDelivery.consumer.name}},</div>
+
+                                <div>
+                                    <span ng-if="myDelivery.consumer.address.firstLine.length  > 0" >{{myDelivery.consumer.address.firstLine}}</span>
+                                    <span ng-if="myDelivery.consumer.address.seconeLine.length  > 0">{{myDelivery.consumer.address.seconeLine}}</span>
+
+                                </div>
+                                <div>{{myDelivery.consumer.address.city}} {{myDelivery.consumer.address.postCode}}</div>
+                                <div ng-if="myDelivery.consumer.mobileNumber > 0">{{myDelivery.consumer.mobileNumber}}</div>
+
+                            </dd>
+
+                            <dt>Item(s) ready from</dt>
+                            <dd>
+                                {{myDelivery.item.deliveryDate| ISO8601Parse : "UK" : "DD-MM-YYYY"}}
+                                <span ng-if="myDelivery.item.readyAt && myDelivery.status !== 'Booked'"> |
+                                    {{myDelivery.item.deliveryDate | ISO8601Parse : "UK" : "HH:mm"}}
+
+                                </span>
+
+                                <span ng-if="myDelivery.item.readyAt && myDelivery.status === 'Booked'"> |
+                                <!--{{myDelivery.item.itemsReadyFrom | ISO8601Parse : "UK" : "HH:mm" }} -->
+                                <!--{{myDelivery.item.deliveryDate| ISO8601ParseII : "UK" : "HH:mm" : myDelivery.item.readyAt}}-->
+                                    {{myDelivery.item.readyAt}}
+                                </span>
+
+
+                            </dd>
+                            <dt>Booking type</dt>
+                            <dd >
+                                {{myDelivery.bookingType}} {{myDelivery.amount.total | currency : "&pound;"}}
+                            </dd>
+                            <dt>Specific delivery instructions</dt>
+                            <dd class="last">
+                                {{myDelivery.consumer.instruction}}
+                            </dd>
+
+
+
+
+                        </dl>
+                    </div>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <otd-pagination ng-if="myDeliveries.length > 0"></otd-pagination>
+</div>

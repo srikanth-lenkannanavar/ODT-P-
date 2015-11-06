@@ -1,0 +1,210 @@
+
+/* My profile Page CSS Begin */
+.upload-ur-photo{
+  border:1px solid $photo-blue;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+
+.upload-ur-photo-update{
+  border:1px solid $photo-blue;
+  background: $photo-blue;
+  width: 200px;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.upload-ur-photo-error-section{
+  width: 200px;
+  padding-top: 10px;
+}
+
+img.thumb{
+  width:198px;
+  /*height:198px;*/
+}
+
+.upload-ur-photo .my-browse{
+  border:1px solid green;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-ur-photo-update .my-browse-edit{
+  /*
+  border:1px solid green;
+  width: 10px;
+  height: 15px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;*/
+  width: 23px;
+  height:10px;
+  position: absolute;
+  top: -2px;
+  left: 111px;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+
+}
+.edit-browse-input{
+  position:relative;
+  width: 24px;
+  height: 15px;
+  cursor: pointer;
+  /*border: 1px solid red;*/
+}
+
+
+.profile-img-edit-icon,
+.profile-img-delete-icon {
+  position: absolute;
+  top: 201px;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.profile-img-edit-icon{
+  left: 130px;
+}
+
+.profile-img-delete-icon{
+  left: 175px;
+  z-index: 2;
+}
+
+
+/*
+.profile-img-del-icon{
+  position: absolute;
+  left: 205px;
+  top: 200px;
+  cursor: pointer;
+}
+*/
+
+
+.upload-ur-photo-mes{
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  position: absolute;
+  top: 45px;
+  z-index: 0;
+  color:$photo-blue;
+  .fa-plus-circle{
+    font-size: 50px;
+  }
+
+}
+
+
+
+.upload-ur-photo-mes-progress{
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  position: absolute;
+  top: 60px;
+  z-index: 0;
+}
+
+.upload-ur-photo-mes-progress i{
+  font-size:60px;
+}
+
+
+
+.gray-line{
+  margin-left: 22%;
+  width: 78%;
+  margin-top: -10px;
+}
+
+.my-profile-container input,
+.my-profile-container select {
+  /*background: #efefe0;*/
+}
+
+.check-sub-text{
+  font-weight: normal;
+}
+.check-profile-container{
+  padding-top: 5px ;
+  padding-bottom: 5px ;
+}
+
+ul.profile-nav{
+  list-style: none;
+  margin-top: 20px;
+
+}
+ul.profile-nav li{
+  padding: 10px;
+}
+.profile-nav-container{
+  padding-right: 0px;
+}
+
+li.profile-active {
+  background: #fff;
+}
+.fa-plus-circle{
+  font-size: 50px;
+
+}
+
+.phone-ex{
+  font-size: 12px;
+  font-style: italic;
+  color: #999;
+}
+
+.myprof-phone .ur-collection-err-icon {
+    font-size:20px;
+}
+.myprof-phone .error-msg {margin:0;}
+
+.mobile-icon{
+  font-size: 75px;
+  color: #49b5cc;
+  font-weight: bold;
+}
+
+@media only screen and (max-width : 320px) {
+  .mobile-icon{
+    font-size: 60px;
+  }
+}
+
+a.gen-new-pin{
+  color: #49b5cc;
+  cursor: pointer;
+  text-decoration: underline;
+  i{
+    text-decoration: none;
+  }
+}
+
+a.gen-new-pin-disable{
+  color: #A9EBF9 !important;
+  cursor: none;
+  &:hover{
+   color: #A9EBF9 !important;
+  }
+
+}
+
+.form-page.inner-page {margin-top: 0;}
+
+/* My profile Page CSS End */

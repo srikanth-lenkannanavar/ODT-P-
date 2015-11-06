@@ -1,0 +1,129 @@
+<div class="container my-bundles form-page register-page mar-bot-45" apply-bg>
+    <div class="global-msg" ng-if="errFlag && errStatusCode !== 404" scroll-to-global-error>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Oops! It appears something went wrong. Status code: {{errStatusCode}}
+            <span ng-if="errStatusMsg.length > 0">{{errStatusMsg}}</span>
+        </div>
+    </div>
+    <div class="global-msg" ng-if="(mySubscription.subscription.$invalid && mySubscription.subscription.$touched) || (mySubscription.$submitted && mySubscription.subscription.$invalid)" scroll-to-global-error>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" ng-click="resetCloseButton()">
+                &times;
+            </button>
+            Oops! Please choose one of our money-saving bundle
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <h1 class="page-main-title">
+                Bundles
+            </h1>
+        </div>
+    </div>
+    <div class="row" ng-if="check">
+
+        <div class="col-md-12">
+            <div class="ur-sub-big font-weight-bold">
+                {{userSubs.subscriptionname}}
+            </div>
+            <div class="subscription-well-1">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="pull-left date-row">Purchased on: {{userSubs.subscriptionstartdate| ISO8601Parse : "UK" : "DD-MM-YYYY"}}</div>  
+                        <div class="pull-right date-row">Expires on: {{userSubs.subscriptionenddate| ISO8601Parse : "UK" : "DD-MM-YYYY"}}</div>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="subscript-summary-box giant clearfix">
+                            <div class="ur-sub-big pull-left ng-binding">
+                                {{userSubs.remainingbookingsforsubscription}}
+                            </div>
+                            <div class="subscribe-info-box ng-binding">
+                                <!---->
+                                <div class="box-content" ng-if="userSubs.remainingbookingsforsubscription > 1">Good news! You still have {{userSubs.remainingbookingsforsubscription}} out of {{userSubs.totalbookingsforsubscription}} deliveries left in your bundle</div>  
+                                <div class="box-content" ng-if="userSubs.remainingbookingsforsubscription == 1" >Good news! You still have  {{userSubs.remainingbookingsforsubscription}} out of {{userSubs.totalbookingsforsubscription}} deliveries left in your bundle</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="subscription-well-2 clearfix" ng-if="">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 pad-top-5">
+                            <!--<p>Bundles can used for deliveries made within your On the dot collection zone. Please check the postcodes</a> available.</p>-->
+                            <p>Bundles are an easy way to get your deliveries On the dot whilst saving money. Check the <a ng-href="{{homeUrl}}/where-we-deliver">postcodes</a> we deliver to</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <form  role="form" name="mySubscription" novalidate ng-submit="buySubscriptions(mySubscription.$valid)">
+        <div class="row " ng-if="!check">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="y-not-buy">Why not buy one of our money-saving bundles?</div>
+                <div class="y-not-exp">Just make sure to use them within 6 months or they expire.</div>
+                <div class="subscript-box clearfix">
+                    <!--<div class="error-msg" ng-if="(mySubscription.subscription.$invalid && mySubscription.subscription.$touched) || (mySubscription.$submitted && mySubscription.subscription.$invalid)">Oops! Please select the bundle</div>-->
+                    <ul ng-repeat="data in userSubs">
+                        <li class="clearfix">
+                            <div class="row" >
+                                <div class="col-lg-8 col-md-7 col-sm-10 col-xs-10">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-7 col-sm-9 col-xs-9">
+                                            <input type="radio" name="subscription" id="radioss{{$index}}" ng-model="$parent.data" required class="css3radio"  value="{{data}}" ng-click="userSubscriptions($index)">
+                                            <label  class="sub-offer toggler_r" for="radioss{{$index}}">
+                                                <span class="offer-label">{{data.subscriptionname}}</span>
+                                            </label>
+                                            <div class="quote-sub-mes">
+                                                <p>{{data.subscriptiondetails + " "}}({{(data.cost) / (data.noofdeliveries) | currency:"£"}} per delivery)</p>
+                                            </div>
+                                            <div class="quote-sub-mes">
+                                                <p>{{data.specialdescription + " "}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-5 col-sm-3 col-xs-3">
+                                            <div class="row">
+                                                <p class="plull-right subscript-amt" style="text-align: right;">
+                                                    <label  class="quote-sub-amt" >{{(data.cost)| currency:"&pound;" }}</label>
+                                                </p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="subscript-vat pull-right">({{data.jobtotal| currency:"&pound;"}} incl. VAT)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
+                        <!--<p class="error-msg">Please select the bundles</p>-->
+                        <div class="row" style="border-top: 1px solid #ccc;">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkboxTermsCond" name="chkTermsCond" class="css3checkbox" ng-model="chkTermsCond" required />
+                            <label class="toggler" for="checkboxTermsCond">
+                                <div class="check-sub-text">I accept the On the dot <a href="terms-and-conditions" target="_blank">terms and conditions</a></div>
+                            </label>
+                            <div class="error-msg" ng-if="(mySubscription.chkTermsCond.$invalid && mySubscription.chkTermsCond.$touched) || (mySubscription.$submitted && mySubscription.chkTermsCond.$invalid)">Oops! Please confirm that you have accepted our terms and conditions</div>
+                        </div>
+                        <button type="submit" class="btn btn btn-primary mar-right-15">Buy a bundle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

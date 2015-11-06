@@ -1,0 +1,33 @@
+<div class="container form-page" >
+    <div class="global-msg" ng-if="errFlag" scroll-to-global-error>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Oops! It appears something went wrong. Status code: {{errStatusCode}}
+        </div>
+    </div>
+    <div class="global-msg" ng-if="noTimeSlots && !storeClosedMsg" scroll-to-global-error>
+        <div class="alert alert-danger alert-dismissable">
+<!--            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>-->
+            Sorry that day seems to be really popular and all our drivers are busy. Please choose another day.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div id="map-container"></div>
+        </div>
+        <div class="col-md-7 right-col relative">
+            <section>
+                <div ng-include src="'views/template/book-new-delivery/postcode-validation-tpl.html'"></div>
+            </section>
+            <section class="book-new-delivery-section"  ng-if="isDeliveryPostcodeComplete">
+                <div ng-include src="'views/template/book-new-delivery/timeslot-address-confirmation-tpl.html'"></div>
+            </section>
+        </div>
+    </div>
+</div>

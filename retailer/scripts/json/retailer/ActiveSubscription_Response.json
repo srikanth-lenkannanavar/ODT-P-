@@ -1,0 +1,26 @@
+{
+    "data": {
+        "user": "john1@gmail.com",
+        "subscriptionname": "10 Mile - Mini bundle",
+        "displayname": "test",
+        "subscriptioncost": 100.0,
+        "subscriptionjobtotal": 85.0,
+        "subscriptionjobvat": 15.0,
+        "subscriptioncurrency": "gbp",
+        "subscriptionstartdate": "2015-07-16T10:44:16Z",
+        "subscriptionenddate": "2015-09-16T10:44:16Z",
+        "realexpayerref": "010203",
+        "realexpmntref": "123456",
+        "subscriptionbookingref": "017286592401",
+        "subscriptionjobnumber": "172865",
+        "totalbookingsforsubscription": 20,
+        "remainingbookingsforsubscription": 10,
+        "collectionLeadTime": "20",
+        "isPaymentSuccess": "true",
+        "isValidSubscription": true,
+        "isActive": true
+    },
+    "success": {
+        "status": "ok"
+    }
+}

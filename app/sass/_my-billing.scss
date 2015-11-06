@@ -1,0 +1,81 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 8, 2015, 2:15:22 PM
+    Author     : srikanthl
+*/
+/*body { font-size: 140%; }*/
+/*.row-margin
+{
+    background: #A5E2EE;
+}*/
+.billing-table {
+    th , a{
+        // font-size: 10px;
+        // text-transform: uppercase;
+
+        /*font: FontAwesome;*/
+    }
+}
+/*a.sm-mybilling.ng-binding {
+    color: #75C6D8;
+}*/
+.sm-mybilling-open-close{
+    display: none;
+    margin: 1px;
+    position: relative;
+}
+
+.sm-mybilling-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: .7;
+    padding: 5px 10px !important;
+}
+
+.bill-amount{
+    color: #43B02A;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Medium Devices, Desktops */
+@media screen and (min-width: 767px)  {
+    .mobile-device-billing{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px)  {
+    .mobile-device-billing-1{
+        display: none;
+    }
+
+    .sm-mybilling-open-close{
+        background: #e3e3e3;
+        color: #555555;
+        th{
+            text-transform: capitalize;
+            padding-right: 10px;
+        }
+    }
+
+    .sm-mybilling-close
+    {
+        color: red;
+        cursor: pointer;
+        font-weight: bolder;
+    }
+}
+/*For error massage color anf font size*/
+.cust-error-temp{
+    font-size: 18px;
+    margin-top: 30px;
+}
+.row-margin-data{
+    text-align: right;
+}

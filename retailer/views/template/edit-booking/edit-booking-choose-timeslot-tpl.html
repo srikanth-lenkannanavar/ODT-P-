@@ -1,0 +1,244 @@
+<form  role="form" name="editTimeslot" novalidate ng-submit="saveConfirmDelAdd(editTimeslot.$valid)" scrollto-first>
+    <div class="clearfix">
+        <div class="pull-left"><h2 class="page-sub-title">Edit Booking </h2></div>
+        <div class="pull-left pad-top-20">&nbsp;&nbsp; | {{orderId}}</div>
+    </div>
+    <section>
+        <div class="book-new-del-choose-timeslot-container clearfix">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="edit-booking-timeslot-details" ng-if="!isChooseDiffTsclicked" >
+                        <p>Delivery timeslot</p>
+                        <p>{{bookNowEndTime  | ISO8601Parse : "UK" : "DD-MM-YYYY"}} | {{bookNowStartTime | ISO8601Parse : "UK" : "HH:mm" }} - {{bookNowEndTime  | ISO8601Parse : "UK" : "HH:mm"}}</p>
+                        <p>
+                            <a href="" ng-click="chooseDiffTs()">Choose different timeslot</a>
+                        </p>
+                    </div>
+                    <div class="delivery-slot-container nomargin" ng-if = "isChooseDiffTsclicked">
+                        <div class="project-overlay" ng-if="tsProcess">
+                            <!--<div class="load-text">Loading...</div>-->
+                            <!--<div class="fa fa-spinner fa-spin fa-3x"></div>-->
+                            <div><img src="images/ts-loader.GIF" alt="" class="mar-top-50"/></div>
+                        </div>
+                        <div class="delivery-slot-header">
+                            1 hour delivery timeslots
+                        </div>
+                        <div class="row quote-dp-container">
+                            <div class="ds-arrow">
+                                <i ng-if="isPrevDisabled" class="icon icon-left-arrow enabled-dp" date-click-arrow  date-wen="prev" ></i>
+                                <i ng-if="!isPrevDisabled" class="icon icon-left-arrow disabled-dp"></i>
+                            </div>
+                            <div class="calendar-wrap">
+                                <div class="form-group" >
+                                    <div class='input-group date' id='timeslotDate' timeslot-date="timeslotDate" >
+                                        <input type='text' ng-model="timeslotDate" readonly class="form-control" />
+                                <span class="input-group-addon ">
+                                    <span class="icon icon-calendar"></span>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ds-arrow right">
+                                <i ng-if="isNextDisabled" class="icon icon-right-arrow enabled-dp" date-click-arrow  date-wen="next" ></i>
+                                <i ng-if="!isNextDisabled" class="icon icon-right-arrow disabled-dp" ></i>
+                            </div>
+                        </div>
+                        <div class="time-slot-list-container">
+                            <div class="deliverslot-footer" >
+                                <p class="text-center showmore" ng-if="dsErorrFlag && !showMoreFlag">
+                                    No timeslots available
+                                </p>
+                                
+                                <div ng-if="timeSlotNotAvilable" class="ts-close-msg">
+                                    Sorry that day seems to be really popular and all our drivers are busy. Please choose another day.
+                                </div>                                
+                                <div ng-if="storeClosedMsg" class="ts-close-msg">
+                                    Oops! You have previously registered this date as a holiday. You can still continue with this booking today, but you may wish to amend your holiday opening hours on your profile page for future bookings.
+                                </div>
+                            </div>
+                            <!--<pre>{{timeslotsArr}}</pre>-->
+                            <ul class="time-slot-list">
+                                <li  ng-repeat="timeslot in timeslotsArr | limitTo : showMorelimit" >
+                                    <div class="delivery-slot-radio">
+                                        <input type="radio" id="radioDs{{$index}}" ng-model="tsRadio.res"  ng-click="setBookNowPrice(timeslot.startTime,timeslot.endTime,timeslot.quote)" value="{{timeslot.timeslotId}}" ng-required="!tsRadio.res" name="timeSlotHr"   class="css3radio" />
+                                        <label  class="toggler_r" for="radioDs{{$index}}">
+                                            <span id="{{timeslot.timeslotId}}"  data-start="{{timeslot.startTime}}" data-end="{{timeslot.endTime}}">{{timeslot.startTime | ISO8601Parse : "UK" : "HH:mm"}} - {{timeslot.endTime |  ISO8601Parse : "UK" : "HH:mm"}}</span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="deliverslot-footer">
+                        <p class="text-center showmore" ng-if="showMoreFlag && !timeSlotNotAvilable"  ng-click="showMore()">
+                            Show more slots
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-8 col-md-7" >
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="no-timeslot-warn clearfix" ng-if="tsRadio.res.length == 0" >
+                                <div class="no-timeslot-warn-icon-box  pull-left">
+                                    <i class="icon  icon-warning" ></i>
+                                </div>
+                                <div class="no-timeslot-war-msg-box">
+                                    Choose your delivery day & time-slot to continue the booking
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-12  col-lg-12">
+                                <div class="form-group" >
+                                    <input  name="refNameId" ng-model="confirmAdd.refNameId" maxlength="20"  ng-maxlength = "20" placeholder="Customer reference"  type="text" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group"  >
+                                    <div class="input-group">
+                                        <span class="input-group-addon">&pound;</span>
+                                        <input  name="itemValue" placeholder="Value of item(s)"  ng-model="confirmAdd.itemValue" type="text" item-value class="form-control quantity" >
+                                    </div>
+                                    <div class="item-value-validation-box" ng-if="confirmAdd.itemValue > 1000">
+                                        <div class="warning-icon-box">
+                                            <i class="icon  icon-warning" ></i>
+                                        </div>
+                                        <div class="warning-content-box error-msg">
+                                            Opps! the value of your goods is over our limit of &pound; 1000. Please refer to our terms of business for more
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group"  ng-class="{'has-error': (editTimeslot.customerName.$dirty && editTimeslot.customerName.$invalid) || (editTimeslot.$submitted && editTimeslot.customerName.$invalid) || (editTimeslot.customerName.$touched && editTimeslot.customerName.$invalid) }">
+                                    <input  name="customerName" ng-model="confirmAdd.customerName"   placeholder="Customer name *" type="text" class="form-control" required>
+                                    <div ng-if="(editTimeslot.$submitted || editTimeslot.customerName.$touched || (editTimeslot.customerName.$dirty && editTimeslot.customerName.$invalid))" ng-messages="editTimeslot.customerName.$error" >
+                                        <div ng-message="required" class="error-msg">Oops! Please enter Customer name</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group"  ng-class="{'has-error': (editTimeslot.$submitted && editTimeslot.emailAdd.$invalid) || (editTimeslot.emailAdd.$touched && editTimeslot.emailAdd.$invalid) }">
+                                    <input name="emailAdd" ng-model="confirmAdd.emailAdd" type="email" class="form-control" placeholder="Email address "
+                                           ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/"
+                                           ng-maxlength="80"  >
+                                    <div ng-if="(editTimeslot.$submitted || editTimeslot.emailAdd.$touched )"
+                                         ng-messages=" editTimeslot.emailAdd.$error" >
+                                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid email
+                                            address. Please try again…
+                                        </div>
+                                        <div ng-message="maxlength" class="error-msg">Email Address should be maximum of 80 characters
+                                            length.
+                                        </div>
+                                    </div>
+                                    <div>
+                                        If your customer provides an email address, they will receive a link enabling them to track their order.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group"  ng-class="{'has-error': (editTimeslot.$submitted && editTimeslot.mobPhone.$invalid) || (editTimeslot.mobPhone.$touched && editTimeslot.mobPhone.$invalid) }">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+44</span>
+                                        <input type="text" class="form-control quantity" name="mobPhone" ng-model="confirmAdd.phoneNo"
+                                               placeholder="Mobile phone *" ng-pattern="/^(7|07)\d{9}$/"   restrict-quick-validation required />
+                                    </div>
+                                    <!--<div>If your customer provides a mobile phone number, they will receive SMS updates</div>-->
+                                    <div ng-if="(editTimeslot.$submitted || editTimeslot.mobPhone.$touched )"
+                                         ng-messages="editTimeslot.mobPhone.$error" >
+                                        <div ng-message="pattern" class="error-msg">Oops! It appears you have entered an invalid mobile
+                                            number. Please try again…
+                                        </div>
+                                        <div ng-message="required" class="error-msg">Oops! It appears you have entered an invalid mobile
+                                            number. Please try again…
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group" ng-class="{'has-error': (editTimeslot.$submitted && editTimeslot.firstLineAdd.$invalid) || (editTimeslot.firstLineAdd.$touched && editTimeslot.firstLineAdd.$invalid) }" >
+                                    <input  name="firstLineAdd" ng-model="address.selected.address1" ng-maxlength="60"  placeholder="First line of address *" type="text" class="form-control" required>
+                                    <div ng-if="(editTimeslot.$submitted || editTimeslot.firstLineAdd.$touched || (editTimeslot.firstLineAdd.$dirty && editTimeslot.firstLineAdd.$invalid))" ng-messages="editTimeslot.firstLineAdd.$error" >
+                                        <div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>
+                                        <div ng-message="required" class="error-msg">Oops! Please enter first line of address</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group"  ng-class="{'has-error': (editTimeslot.$submitted && editTimeslot.secondLineAdd.$invalid) || (editTimeslot.secondLineAdd.$touched && editTimeslot.secondLineAdd.$invalid) }">
+                                    <input  name="secondLineAdd" ng-model="address.selected.address2"  placeholder="Second line of address" type="text" class="form-control">
+                                    <!--<div ng-if="(editTimeslot.$submitted || editTimeslot.secondLineAdd.$touched || (editTimeslot.secondLineAdd.$dirty && editTimeslot.secondLineAdd.$invalid))" ng-messages="editTimeslot.secondLineAdd.$error" >-->
+                                    <!--<div ng-message="maxlength" class="error-msg">This field should be maximum of 60 characters length</div>-->
+                                    <!--<div ng-message="required" class="error-msg">Oops! Please enter Second line of address</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group" ng-class="{'has-error': (editTimeslot.city.$invalid && editTimeslot.city.$touched) || (editTimeslot.$submitted && editTimeslot.city.$invalid)}">
+                                    <input id="address-line-3" name="city"
+                                           ng-model="address.selected.town" type="text"
+                                           class="form-control enteraddress"
+                                           placeholder="City*" maxlength="60" required readonly>
+                                    <div class="error-msg" ng-if="(editTimeslot.city.$invalid && editTimeslot.city.$touched) || (editTimeslot.$submitted && editTimeslot.city.$invalid)">Oops! Please enter a town/city</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6" >
+                                <div class="form-group" ng-class="{'has-error': (editTimeslot.postalCode.$invalid && editTimeslot.postalCode.$touched) || (editTimeslot.$submitted && editTimeslot.postalCode.$invalid)}" >
+                                    <input id="address-line-4" name="postalCode"
+                                           ng-model="address.selected.postcode" type="text"
+                                           class="form-control" placeholder="Postal Code" readonly
+                                           required>
+                                    <div class="error-msg" ng-if="(editTimeslot.postalCode.$invalid && editTimeslot.postalCode.$touched) || (editTimeslot.$submitted && editTimeslot.postalCode.$invalid)">Please
+                                        enter a valid postal code</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <textarea name="deliveryInstruction" class="form-control" maxlength="100" ng-model="confirmAdd.deliveryInstruction" rows="2" placeholder="Specific delivery instructions"></textarea>
+                                <div> {{100 - confirmAdd.deliveryInstruction.length}} character(s) remaining.</div>
+                            </div>
+                        </div>
+                        <div class="checkbox" ng-if="confirmAdd.itemValue > 1000">
+                            <input type="checkbox" id="checkboxConfirmValue"   name="chkConfirmValue" ng-model="chkConfirmValue" class="css3checkbox"   required />
+                            <label class="toggler" for="checkboxConfirmValue">
+                                <div class="check-sub-text">I accept  that my item  will only be covered up to the value of &pound;1000</div>
+                            </label>
+                            <div class="error-msg" ng-if="(editTimeslot.chkConfirmValue.$invalid && editTimeslot.chkConfirmValue.$touched) || (editTimeslot.$submitted && editTimeslot.chkConfirmValue.$invalid)">Oops! Please confirm you have checked your terms & condition.</div>
+                        </div>
+                        <div class="checkbox" >
+                            <input type="checkbox" id="checkboxConfirm" name="chkConfirm"  class="css3checkbox " ng-model="chkConfirm"   required />
+                            <label class="toggler" for="checkboxConfirm">
+                                <div class="check-sub-text">I confirm that my order does not exceed 20 kgs and 1.2m X 1.0m X 1.0m</div>
+                            </label>
+                            <div class="error-msg" ng-if="(editTimeslot.chkConfirm.$invalid && editTimeslot.chkConfirm.$touched) || (editTimeslot.$submitted && editTimeslot.chkConfirm.$invalid)">Oops! Please confirm you have checked your item(s) size and weight</div>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkboxTc" name="chkTermsCond" class="css3checkbox" name="chkTermsCond" ng-model="chkTermsCond" required />
+                            <label class="toggler" for="checkboxTc">
+                                <div class="check-sub-text">I accept the On the dot <a href="terms-and-conditions" target="_blank">terms and conditions</a></div>
+                            </label>
+                            <div class="error-msg" ng-if="(editTimeslot.chkTermsCond.$invalid && editTimeslot.chkTermsCond.$touched) || (editTimeslot.$submitted && editTimeslot.chkTermsCond.$invalid)">Oops! Please confirm that you have accepted our terms and conditions</div>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-primary" >Confirm</button>
+                        <a ng-href="{{retailerHomeUrl}}/my-deliveries" class="btn btn-default" >Cancel</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

@@ -1,0 +1,14 @@
+{
+  "name": "Angular-Postcode-Validation-Service",
+  "homepage": "https://github.com/markstrefford/Angular-Postcode-Validation-Service",
+  "_release": "e5e0733447",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e5e07334476071428cdedeb917180c2131c281fd"
+  },
+  "_source": "https://github.com/markstrefford/Angular-Postcode-Validation-Service.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/markstrefford/Angular-Postcode-Validation-Service.git",
+  "_direct": true
+}

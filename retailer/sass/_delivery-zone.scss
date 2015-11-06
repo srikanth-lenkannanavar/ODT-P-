@@ -1,0 +1,351 @@
+
+
+
+
+/* Delivery Zone Style Begin */
+.dz-container{
+    margin: 0 25px 0 25px;
+    /*border-bottom: 1px solid #ccc;*/
+    padding-bottom: 20px;
+}
+
+
+
+.dz-steps{
+    margin: 0 auto;
+    width: 78px;
+    display: block;
+    height: 27px;
+    /*background: url('../images/bg_quote_step_tepIndicator.png') no-repeat center 0;*/
+    position: relative;
+
+}
+
+.dz-steps ul{
+    list-style: none;
+}
+.label-margin-set{
+    margin-right: -25px;
+}
+
+.dz-steps .steps-num-list li{
+    list-style: none;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    margin: -1px 0 0 10px;
+    color: #fff;
+    border-radius: 10px;
+    width: 20px;
+    height: auto;
+    text-align: center;
+}
+
+
+.dz-steps .steps-num-list li.circle1{
+    background: #49B5CC;
+    /*border: 1px solid #A1D600;*/
+}
+
+
+.dz-steps .steps-num-list li.circle2{
+    background: #F0F0E1;
+    /*border: 1px solid #4FC6DD;*/
+}
+
+
+.dz-steps .steps-num-list li.circle3{
+    background: #F0F0E1;
+    /*border: 1px solid #E3E3D4;*/
+}
+
+
+.dz-steps .number-container {
+    display: block;
+    height: 30px;
+    margin: 5px 0 0 -55px;
+    position: absolute;
+    width: 204px;
+}
+
+.dz-setps-container{
+    float:right;
+}
+.selected-step {
+  /* cursor: pointer; */
+  cursor: auto;
+}
+
+.dz-delivery-add-row-container{
+    float:left;
+}
+
+.del-postcode,.del-postcode-addon{
+    color:#49B5CC;
+    border: 1px solid #49B5CC;
+
+}
+
+.form-control.del-postcode-len{
+    width: 140px;
+}
+
+
+.del-postcode-addon{
+    background-color: #49B5CC;
+    width: 40px;
+    height: 31px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+
+.retailer-content
+{
+    padding:20px;
+    display:none;
+}
+.show-panel{
+    display: none;
+    width: 100%;
+    background-color: #CDEFFC;
+
+}
+#flip img{
+    cursor: pointer;
+    padding: 10px;
+}
+
+
+
+.retailer-logo img{
+    cursor: pointer;
+    /*width: 150px;*/
+    height: auto;
+    /*padding: 25px 10px;*/
+    /* border-bottom: 1px solid #ccc;*/
+}
+
+.retailer-logo img.active{
+    background-color: #CDEFFC;
+}
+
+.retailer-logo-container{
+    border:1px solid #ccc;
+    /*border-radius: 5px;*/
+    position: relative;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 15px;
+}
+
+.back-arrow, .next-arrow{
+    display: block !important;
+    width: 13px;
+    height: 25px;
+}
+
+.back-arrow{
+    background: url("../images/logos/back-arrow.png") no-repeat;
+    position: absolute;
+    top: 50%;
+    left: -20px;
+}
+.next-arrow{
+    background: url("../images/logos/next-arrow.png") no-repeat;
+    position: absolute;
+    top: 50%;
+    right: -20px;
+}
+
+.retailer-logo{
+    background-color: #fff;
+    margin: 5px;
+    /*border-bottom: 1px solid #ccc;*/
+}
+.remove-border-bot{
+    margin-bottom: 0 !important;
+}
+.retailer-logo-container .location li{
+    display: block;
+    clear: both;
+}
+
+.retailer-logo-container .location li a{
+    text-decoration: underline;
+    color:#ff47a3;
+}
+
+
+
+
+
+
+.ret-warn-container{
+    padding: 25px 0 !important;
+}
+
+.retailer-distance-warning{
+    color: $retailer-distance-warn-icon-color;
+    font-size: 3em;
+}
+
+
+.retailer-distance-text{
+    color:$modal-header-color;
+    font-size: 22px;
+    line-height: 23px;
+    padding: 25px 0 0;
+
+}
+
+p.retailer-distance-info-text{
+    color: $retailer-distance-text;
+    font-size: 16px;
+    line-height: 20px;
+
+}
+
+.del-pc-err-mes {
+    color: $app-red;
+    padding: 10px 0 0 0;
+    margin-left: 0;
+}
+
+.fst-row{
+    margin-top: 25px;
+}
+
+.delivery-address-warning {
+    padding: 0 5px 0 35px;
+    color: #DA5C32;
+    font-size: 24px;
+}
+
+.label-delivery{
+    padding: 6px 10px 0px 0px;
+}
+.input-group-addon.del-postcode {
+    cursor: pointer;
+}
+
+.form-delivery {margin:0 0 40px 0;}
+
+/*steps wrapper*/
+.steps-wrap {float:right; width:102px;}
+
+.delivery-controls {overflow: hidden;}
+.select-wrap {float:left; margin-right:15px;}
+.select-wrap select {max-width: 130px;}
+.input-wrap {width:30%; float:left; margin-right:15px;}
+.mapmark-wrap {float:left;} 
+.mapmark-wrap .popover {
+    border-radius: 0;
+    max-width: inherit;
+    text-align: center;
+}
+.mapmark-wrap .popover-title {
+    display: none;
+}
+
+@media only screen and (max-width : 568px) {
+    .del-pc-err-mes{
+        padding: 0;
+    }
+}
+
+
+
+
+@media only screen and (max-width : 320px) {
+
+    .retailer-distance-warning{
+        font-size: 2em;
+    }
+
+    .retailer-distance-text{
+        font-size: 13px;
+        padding-left: 10px;
+        line-height: 15px;
+    }
+
+
+
+    .ret-warn-modal-footer-btn{
+        padding-left: 40px;
+    }
+
+    p.retailer-distance-info-text{
+        font-size: 11px;
+        line-height: 12px;
+
+    }
+
+}
+.adress-block{
+    position: relative;
+}
+
+
+#results{
+    /*
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    background-color: red;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    -webkit-box-shadow: 0 2px 5px 0 #ccc;
+    box-shadow: 0 2px 5px 0 #ccc;
+    display:none;
+    */
+    position: absolute;
+    top: 59px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-bottom: none;
+    list-style: none;
+    padding: 0;
+    -webkit-box-shadow: 0 2px 5px 0 #ccc;
+    box-shadow: 0 2px 5px 0 #ccc;
+    /*display: none;*/
+    z-index: 1;
+}
+
+
+
+
+#results li{
+    padding: 6px 12px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#results li:hover{
+    background-color: #eee;
+}
+
+@media only screen and (max-width : 767px) {
+  /*steps wrapper*/
+  .steps-wrap {float:none; margin:15px auto; overflow: hidden;}
+  .label-delivery {width:135px; padding-left:0;}
+  .delivery-controls {float:none; width: 100%; margin:25px 0 15px 0;}
+  .select-wrap {float:none; overflow:hidden; margin-right:0;}
+    .select-wrap select {max-width: inherit;}
+  .input-wrap {width:88%; margin-right: 0; overflow: hidden;}
+  .mapmark-wrap {float: right; max-width: 45px;}
+
+  .header-brand-logo img{padding-left:15px; padding-bottom: 10px;}
+  .active-user a {margin-top:0;}
+}
+@media only screen and (max-width : 420px) {
+  .input-wrap {width:80%;}
+}
+/* Delivery Zone Style End */
+

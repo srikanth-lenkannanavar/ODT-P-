@@ -1,0 +1,210 @@
+<div class="container thank-you padding-rl-30">
+    <div class="row onlyprint">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="clearfix track-map-container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <img src="images/logos/onthedontlogo.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row" ng-if="bookingFailed">-->
+    <div class="row" ng-if="bookingFailed">
+        <div class="alert alert-danger alert-error">
+            Oops! There seems to be a problem with your booking. Please contact our customer care team on 020 7880 1444.
+        </div>
+    </div>
+    <!--<div class="booking-conf" ng-if="!bookingFailed">-->
+    <div class="booking-conf" ng-if="!bookingFailed">
+        <div class="row notprint">
+            <div class="col-md-12">
+                <h2 class="page-bold-title" >Thank you! Your booking has been made.</h2>
+                <p> An email confirmation has been sent to you.</p>
+            </div>
+        </div>
+        <div class="row notprint">
+            <div class="col-md-12 quote-sub-mes">
+                <p class="mar-top-m-10 mar-left-m-25">Don't forget you can view and manage all of your booking from your My deliveries page.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="row booking-info booking-info-retailer border-bottom">
+                    <div ng-if="orderConfirmation.item.referenceNumber" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-border"> 
+                        <label class="order-header header-mar-top">Order details</label>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 cust-col-md-3  pull-left right-border">
+                                <p>
+                                    <span class="title store-title">Order ID</span>
+                                    <span class="details">{{orderConfirmation.orderNo}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 cust-col-md-3  pull-left right-border">
+                                <p>
+                                    <span class="title store-title">Customer reference</span>
+                                    <span class="details">{{orderConfirmation.item.referenceNumber}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 cust-col-md-3  pull-left right-border">
+                                <p>
+                                    <span class="title store-title">Value of item(s)</span>
+                                    <span class="details" ng-if="orderConfirmation.item.totalValue != '0'">&pound; {{orderConfirmation.item.totalValue}}</span>
+                                    <span class="details" ng-if="orderConfirmation.item.totalValue == '0'">{{"Not given"}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 cust-col-md-3 cust-col-md-3-subscription  pull-left total" ng-if="!subscribeBook && vouchercode == ''">
+                                <p>
+                                    <span class="title store-title">Total</span>
+                                    <span class="book-amount"> &pound;{{orderConfirmation.amount.total}}</span>
+                                    <span class="vat-in-span">(&pound;{{ (orderConfirmation.amount.total) -- (orderConfirmation.amount.vat) | number : 2}} incl VAT)</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 cust-col-md-3-subscription pull-left" >
+                                <div class="subscript-summary-box clearfix ng-scope" ng-if="subscribeBook">
+                                    <div class="ur-sub-big pull-left ng-binding" ng-if="remainingSubscription >= 1">
+                                        {{remainingSubscription}}</div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription >= 1">
+                                        <span>Good news!</span>
+                                        <p class="subscription-amount"> You still have {{remainingSubscription}} out of {{totalbookingsforsubscription}} deliveries left in your bundle</p>
+                                    </div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription == 0">
+                                        <span>You have no more deliveries left to use in your bundle</span>
+                                    </div>
+                                </div>
+                                <div class="payg-wrap" ng-if="!subscribeBook && vouchercode != ''">
+                                    <p>
+                                        <span class="title">Voucher code used</span>
+                                        <span class="data">{{vouchercode}}</span>
+                                    </p>
+                                    <p class="para"><strong>Yay! You had a freebie. Enjoy</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!orderConfirmation.item.referenceNumber" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-border"> 
+                        <label class="order-header">Order details</label>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-left right-border">
+                                <p>
+                                    <span class="title store-title">Order id</span>
+                                    <span class="details">{{orderConfirmation.orderNo}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-left right-border">
+                                <p>
+                                    <span class="title store-title">Value of item(s)</span>
+                                    <span class="details" ng-if="orderConfirmation.item.totalValue != '0'">&pound; {{orderConfirmation.item.totalValue}}</span>
+                                    <span class="details" ng-if="orderConfirmation.item.totalValue == '0'">{{"Not given"}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-sm-6 col-xs-12 pull-left total" ng-if="!subscribeBook && vouchercode == ''">
+                                <p>
+                                    <span class="title store-title">Total</span>
+                                    <span class="book-amount"> &pound;{{orderConfirmation.amount.total}}</span>
+                                    <span class="vat-in-span">(&pound;{{((orderConfirmation.amount.total)--(orderConfirmation.amount.vat)) | number : 2}} incl VAT)</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-sm-6 col-xs-12 pull-left" >
+                                <div class="subscript-summary-box clearfix ng-scope" ng-if="subscribeBook">
+                                    <div class="ur-sub-big pull-left ng-binding" ng-if="remainingSubscription >= 1">
+                                        {{remainingSubscription}}</div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription >= 1">
+                                        <span>Good news!</span>
+                                        <p class="subscription-amount"> You still have {{remainingSubscription}} out of {{totalbookingsforsubscription}} deliveries left in your bundle</p>
+                                    </div>
+                                    <div class="subscribe-info-box  ng-binding" ng-if="remainingSubscription == 0">
+                                        <span>You have no more deliveries left to use in your bundle</span>
+                                    </div>
+                                </div>
+                                <div class="payg-wrap" ng-if="!subscribeBook && vouchercode != ''">
+                                    <p>
+                                        <span class="title">Voucher code used</span>
+                                        <span class="data">{{vouchercode}}</span>
+                                    </p>
+                                    <p class="para"><strong>Yay! You had a freebie. Enjoy</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12"> 
+                        <div class="row pad-bot-10 pad-top-10">
+                            <div class="col-md-6 col-sm-6 right-border">
+                                <h2 class="sub-title">Collect from</h2>
+                                <div class="col-md-7 col-sm-8 pad-left-0">
+                                    <p>
+                                        <span class="title store-title">{{orderConfirmation.store.retailerName}}</span>
+                                        <span class="details">{{orderConfirmation.store.address.firstLine + ", " + orderConfirmation.store.address.secondLine}}</span>
+                                        <span class="details">{{orderConfirmation.store.address.city + ","}}</span>
+                                        <span class="details">{{orderConfirmation.store.address.postCode|codeFilter}}</span>
+                                        <span class="data">+44{{" " + orderConfirmation.store.info.mobileNumber}}</span>
+                                    </p>
+                                    <p>
+                                        <span class="title store-title">{{"Store opening hours"}}</span>
+                                        <span class="details">{{orderConfirmation.store.info.openTime + " - " + orderConfirmation.store.info.closeTime}}</span>
+                                    </p>
+                                    <p>
+                                        <span class="title store-title">{{"Item(s) ready from"}}</span>
+
+                                        <span class="details" >
+                                            {{orderConfirmation.item.deliveryDate| ISO8601Parse : "UK" : "DD-MM-YYYY"}}  | {{orderConfirmation.item.readyAt}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-5 col-sm-4">
+                                    <div class="logo-border" ng-if="orderConfirmation.store.imageUrl">
+                                        <!--<img src="{{storeDetails.imageUrl}}"/>-->
+                                        <img src="{{orderConfirmation.store.imageUrl}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 print-delivery">
+                                <h2 class="sub-title">Deliver to</h2>
+                                <p>
+                                    <span class="title store-title">{{orderConfirmation.consumer.name}}</span>
+                                    <span class="details">{{orderConfirmation.consumer.address.firstLine + ", " + orderConfirmation.consumer.address.secondLine}}</span>
+                                    <span class="details">{{orderConfirmation.consumer.address.city + ","}}</span>
+                                    <span class="details">{{orderConfirmation.consumer.address.postCode|codeFilter}}</span>
+                                    <span class="data">+44{{" " + orderConfirmation.consumer.mobileNumber}}</span>
+                                </p>
+                                <p>
+                                    <span class="title store-title">{{"Delivery timeslot"}}</span>
+                                    <span class="details">{{orderConfirmation.timeslot.startTime| ISO8601Parse : "UK" : "DD-MM-YYYY"}} {{ " | "}} {{orderConfirmation.timeslot.startTime| ISO8601Parse : "UK" : "HH:mm"}}{{" - "}}{{orderConfirmation.timeslot.endTime| ISO8601Parse : "UK" : "HH:mm"}}</span>
+                                </p>    
+                                <p ng-if="orderConfirmation.consumer.instruction">
+                                    <span class="title store-title">{{"Specific delivery instructions"}}</span>
+                                    <span class="details">{{orderConfirmation.consumer.instruction}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 hidden-print share-wrap">
+                <div class="well">
+                    <h2 class="page-bold-title mar-top-0">Tell your followers about <span class="block-lg">On the dot!</span></h2>
+                    <p class="para min-margin"><strong>Share on Facebook or Twitter</strong><!--I Just brought the {{subscriptionname}} Subscription from Mydeliver.--></p>
+                    <p>Amazing! My customers are getting their goodies delivered in a 1 hour window of their choice! Thanks @onthedotuk</p>
+                    <div class="soc-btn mar-bot-25">
+                        <div class="pull-left">
+                            <a class="btn btn-facebook fb-share-btn" ng-click="fbShare();">
+                                <i class="fa fa-facebook-square fb-share-icon"></i>
+                                <span class="fb-share-text">Share</span></a>
+                        </div>
+                        <div class="pull-left mar-left-15">
+                            <a class="twitter-share-button" data-count="none" data-text="{{twitterText();}}" data-url="{{landingPage}}" tweet></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mar-top-15 mar-bot-15 hidden-print">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+                <button class="btn btn-primary hidden-print hidden-xs" ng-click="orderPrnt();"> Print</button>
+                <button class="btn btn-default" ng-click="closePage();"> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
